@@ -5,11 +5,11 @@
 struct acqEventPSD_t {
 
 	ULong64_t	timetag;
-	UInt_t		baseline;
-	UShort_t	qshort;
-	UShort_t	qlong;
-	UShort_t	pur;
-	UShort_t	samples[4096];
+	double		baseline;
+	double	qshort;
+	double	qlong;
+	double	pur;
+	double	samples[4096];
 };
 
 
@@ -42,13 +42,15 @@ void calibration(string infilename)
 	TBranch * incbranch_3;
 	TBranch * incbranch_4;
 
-
+	// Detector #1
 	incbranch_1 = inctree->GetBranch("acq_ch0");
 	incbranch_1->SetAddress(&inc_data_ch0.timetag);
-	//
+
+	// Detector #2
 	// incbranch_2 = inctree->GetBranch("acq_ch1");
 	// incbranch_2->SetAddress(&inc_data_ch1.timetag);
-	//
+
+	// TAC
 	// incbranch_3 = inctree->GetBranch("acq_ch2");
 	// incbranch_3->SetAddress(&inc_data_ch2.timetag);
 	//
@@ -69,10 +71,18 @@ void calibration(string infilename)
 
 	TH1F * ch0_spectrum = new TH1F("CH0", "CH0", 2048, 0, 30000);
 
+	TH1F * wave = new TH1F("wave", "wave", 4096, 0, 4096);
+
 	while( counter_ch0 < tot_event_ch0)
 	{
-
 		incbranch_1->GetEntry(counter_ch0);
+
+		if(counter_ch0 == 10)
+		{
+			for (size_t i = 0; i < 4096; i++) {
+					wave->SetBinContent(i, inc_data_ch0.samples[i]);
+			}
+		}
 
 		ch0_spectrum->Fill(inc_data_ch0.qlong);
 
@@ -83,6 +93,7 @@ void calibration(string infilename)
 	TFile * outfile = new TFile("prova.root", "RECREATE");
 
 	ch0_spectrum->Write();
+	wave->Write();
 
 	outfile->Close();
 
