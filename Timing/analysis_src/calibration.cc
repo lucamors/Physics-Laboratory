@@ -1,56 +1,92 @@
-void calibrazione(char *infilename, char* outfile_name)
+#include <iostream>
+#include <string>
+
+
+struct acqEventPSD_t {
+
+	ULong64_t	timetag;
+	UInt_t		baseline;
+	UShort_t	qshort;
+	UShort_t	qlong;
+	UShort_t	pur;
+	UShort_t	samples[4096];
+};
+
+
+struct psd_params_t {
+	UInt_t		channel;
+	UInt_t		threshold;
+	UInt_t		pretrigger;
+	UInt_t		pregate;
+	UInt_t		shortgate;
+	UInt_t		longgate;
+	UInt_t		numsamples;
+};
+
+
+void calibration(string infilename)
 {
-	// canali non calibrati
-	float	ch0_sp;
-	float	ch1_sp;
-	float	ch2_sp;
-	float ch3_sp;
 
-	// canali calibrati
-	float	cal_ch0_sp;
-	float	cal_ch1_sp;
-	float	cal_ch2_sp;
-	float cal_ch3_sp;
+	acqEventPSD_t inc_data_ch0;
+	acqEventPSD_t inc_data_ch1;
+	acqEventPSD_t inc_data_ch2;
+	acqEventPSD_t inc_data_ch3;
 
-	// dichiaro un file in input
-	TFile *input_file = new TFile(infilename);
 
-	// recupero la n-tupla
-	TNtuple *input_ntuple = (TNtuple*)input_file->Get("pjmca");
-	int nEntries = (int)input_ntuple->GetEntries();
+	TFile * incfile = new TFile(infilename.c_str());
 
-	// link variabili con rami dell'n-tupla non calibrata
-	input_ntuple->SetBranchAddress("ch0", &ch0_sp);
-	input_ntuple->SetBranchAddress("ch1", &ch1_sp);
-	input_ntuple->SetBranchAddress("ch2", &ch2_sp);
-	input_ntuple->SetBranchAddress("ch3", &ch3_sp);
+	TTree *inctree = (TTree*) incfile->Get("acq_tree_0");
 
-	TH1F* h_ch0_spectrum = new TH1F("ch1_spectrum", "ch1_spectrum", 2048, 0, 2048);
-	TH1F* h_ch1_spectrum = new TH1F("ch2_spectrum", "ch2_spectrum",2048,0,2048);
-	TH1F* h_ch2_spectrum = new TH1F("ch3_spectrum", "ch3_spectrum", 2048, 0, 2048);
-	TH1F* h_ch3_spectrum = new TH1F("ch4_spectrum", "ch4_spectrum", 2048, 0, 2048);
+	TBranch * incbranch_1;
+	TBranch * incbranch_2;
+	TBranch * incbranch_3;
+	TBranch * incbranch_4;
 
-	for (size_t i = 0; i < nEntries; i++)
+
+	incbranch_1 = inctree->GetBranch("acq_ch0");
+	incbranch_1->SetAddress(&inc_data_ch0.timetag);
+	//
+	// incbranch_2 = inctree->GetBranch("acq_ch1");
+	// incbranch_2->SetAddress(&inc_data_ch1.timetag);
+	//
+	// incbranch_3 = inctree->GetBranch("acq_ch2");
+	// incbranch_3->SetAddress(&inc_data_ch2.timetag);
+	//
+	// incbranch_4 = inctree->GetBranch("acq_ch4");
+	// incbranch_4->SetAddress(&inc_data_ch3.timetag);
+
+
+	// psd_params_t params;
+	// TBranch *config = inctree->GetBranch("psd_params");
+	// config->SetAddress(&params.channel);
+	// config->GetEntry(0);
+
+
+	long int tot_event_ch0 = incbranch_1->GetEntries();
+
+	long int counter_ch0 = 0;
+
+
+	TH1F * ch0_spectrum = new TH1F("CH0", "CH0", 2048, 0, 30000);
+
+	while( counter_ch0 < tot_event_ch0)
 	{
-		input_ntuple->GetEntry(i);
-		h_ch0_spectrum->Fill(ch0_sp);
-		h_ch1_spectrum->Fill(ch1_sp);
-		h_ch2_spectrum->Fill(ch2_sp);
-		h_ch3_spectrum->Fill(ch3_sp);
+
+		incbranch_1->GetEntry(counter_ch0);
+
+		ch0_spectrum->Fill(inc_data_ch0.qlong);
+
+		counter_ch0++;
+
 	}
 
-	TFile * outfile = new TFile(outfile_name);
+	TFile * outfile = new TFile("prova.root", "RECREATE");
 
-	h_ch0_spectrum->Write();
-	h_ch1_spectrum->Write();
-	h_ch2_spectrum->Write();
-	h_ch3_spectrum->Write();
+	ch0_spectrum->Write();
 
 	outfile->Close();
 
-	// h_ch2_spectrum->GetXaxis()->Set(2048,20.8612,20.8612+2048*1.26869);
-	// h_ch2_spectrum->Draw();
+
 
 	return ;
 }
-
