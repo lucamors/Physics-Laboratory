@@ -13,14 +13,47 @@
 \usepackage{subfig}
 \usepackage{geometry}
 \usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subfig}
 \geometry{a4paper,top=3cm,bottom=3 cm,left=3.5cm,right=3.5cm,%
 heightrounded,bindingoffset=5mm}
 \usepackage{hyperref}
-\renewcommand{\tablename}{Tabella}
-\renewcommand{\figurename}{Figura}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 \begin{document}
 \input{./title.tex}
+\section*{Key points of the experiment}
+
+
+\section*{Energy Calibration}
+
+
+\begin{figure}[h!]
+\centering
+\subfloat[][\emph{Detector \#1 spectrum}.]
+   {\includegraphics[width=.45\textwidth]{d1_spectrum_qlong}} \quad
+\subfloat[][\emph{Detector \#2 spectrum}.]
+   {\includegraphics[width=.45\textwidth]{d2_spectrum_qlong}} \\
+\caption{Detectors spectra (not calibrated).}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\subfloat[][\emph{Low energy Compton Edge}.]
+   {\includegraphics[width=.45\textwidth]{fit_511_d1}} \quad
+\subfloat[][\emph{High energy Compton Edge}.]
+   {\includegraphics[width=.45\textwidth]{fit_1275_d1}} \\
+\caption{Compton Edge for Detector \#1 .}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\subfloat[][\emph{Low energy Compton Edge}.]
+   {\includegraphics[width=.45\textwidth]{fit_511_d2}} \quad
+\subfloat[][\emph{High energy Compton Edge}.]
+   {\includegraphics[width=.45\textwidth]{fit_1275_d2}} \\
+\caption{Compton Edge for Detector \#2 .}
+\end{figure}
+
 
 \end{document}
