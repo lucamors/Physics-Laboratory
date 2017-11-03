@@ -1,3 +1,11 @@
+/*
+*	Root Macro for reading Timing Experiment Data.
+*
+*	Data Acquisition System: Ve.R.D.I.
+*	Digitizer: CAEN 1Gs
+*
+*/
+
 #include <iostream>
 #include <string>
 
@@ -24,7 +32,7 @@ struct psd_params_t {
 };
 
 
-void calibration(string infilename, string outfile_name)
+void save_histograms(string infilename, string outfile_name)
 {
 
 	acqEventPSD_t inc_data_ch0;
@@ -54,15 +62,15 @@ void calibration(string infilename, string outfile_name)
 	incbranch_2 = inctree->GetBranch("acq_ch2");
 	incbranch_2->SetAddress(&inc_data_ch2.timetag);
 
-	// CH3
+	// CH3 - empty channel
 	// incbranch_3 = inctree->GetBranch("acq_ch4");
 	// incbranch_3->SetAddress(&inc_data_ch3.timetag);
 
-	//
-	// psd_params_t params;
-	// TBranch *config = inctree->GetBranch("psd_params");
-	// config->SetAddress(&params.channel);
-	// config->GetEntry(0);
+
+	psd_params_t params;
+	TBranch *config = inctree->GetBranch("psd_params");
+	config->SetAddress(&params.channel);
+	config->GetEntry(0);
 
 
 	long int tot_event_ch0 = incbranch_0->GetEntries();
@@ -89,7 +97,7 @@ void calibration(string infilename, string outfile_name)
 	ch2_spectrum->GetXaxis()->SetTitle("Energy [a.u.]");
 	ch2_spectrum->GetYaxis()->SetTitle("Counts #");
 
-
+	// Scanning over Branch ch0
 	while( counter_ch0 < tot_event_ch0)
 	{
 
@@ -101,6 +109,7 @@ void calibration(string infilename, string outfile_name)
 
 	}
 
+	// Scanning over Branch ch1
 	while( counter_ch1 < tot_event_ch1)
 	{
 
@@ -112,6 +121,7 @@ void calibration(string infilename, string outfile_name)
 
 	}
 
+	// Scanning over Branch ch2
 	while( counter_ch2 < tot_event_ch2)
 	{
 
@@ -123,6 +133,7 @@ void calibration(string infilename, string outfile_name)
 
 	}
 
+	// Saving Histograms into a root file.
 	TFile * outfile = new TFile(outfile_name.c_str(), "RECREATE");
 
 	ch0_spectrum->Write();
@@ -130,8 +141,6 @@ void calibration(string infilename, string outfile_name)
 	ch2_spectrum->Write();
 
 	outfile->Close();
-
-
 
 	return ;
 }
