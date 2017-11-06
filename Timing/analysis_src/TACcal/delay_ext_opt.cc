@@ -2,7 +2,8 @@
 #include <vector>
 
 
-double peak(double *x, double *par) {
+double peak(double *x, double *par)
+{
        double xx= x[0];
        //const double invsqrt2pi = 0.398942280401433;
        double gaus = par[0]*exp(-0.5*(xx-par[1])*(xx-par[1])/(par[2]*par[2]));
