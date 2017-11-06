@@ -1,7 +1,13 @@
+/*
+*
+* CFTD Extarnal Delay resolution macro.
+* Fitting TAC spectrum with a gaussian with exponential tails.
+*/
+
 #include <string>
 #include <vector>
 
-
+// Declaring Fitting function
 double peak(double *x, double *par)
 {
        double xx= x[0];
@@ -16,9 +22,12 @@ double peak(double *x, double *par)
 
 void del_opt(string filename)
 {
+  // Retrieving ROOT spectra
   TFile * input_file = new TFile(filename.c_str());
 
   TH1F * TAC_spectrum = (TH1F*) input_file->Get("ch2");
+
+  // TAC time calibration
 
   TAC_spectrum->GetXaxis()->Set(1000,-3.18588, -3.18588+0.000735898*65536);
 
@@ -33,7 +42,7 @@ void del_opt(string filename)
   Double_t * x_pos_peaks = search_peaks->GetPositionX();
   Double_t * y_peak = search_peaks->GetPositionY();
 
-  // FWHM Parameters
+  // FWHM parameters declaration
 
   double peakmax=x_pos_peaks[0];
   double peakheight= y_peak[0];
@@ -53,20 +62,16 @@ void del_opt(string filename)
   double FWHMsig=0;
   int checkR=0, checkL=0;
 
+  // Setting Fit parameters
+
   TF1 *fpeak = new TF1("fpeak",peak, peakmax-1.5, peakmax+1.5, 5);
   fpeak->SetParameter(0,peakheight);
   fpeak->SetParLimits(0,peakheight-6*peakheight/100,peakheight+1*peakheight/100);
   fpeak->SetParameter(1,peakmax);
-  //fpeak->SetParLimits(1,peakmax-0.4,peakmax+0.4);
   fpeak->SetParameter(2,0.25);
-  //fpeak->SetParLimits(2,0.1,2);
   fpeak->SetParameter(3,1.4);
-  //fpeak->SetParLimits(3,0,10);
   fpeak->SetParameter(4,0.5);
-  //fpeak->SetParLimits(4,0,10);
-  //TacCh1Ch3->Fit(fpeak,"QRLSN");
   TFitResultPtr res=TAC_spectrum->Fit(fpeak,"RSNME");
-  //TFitResultPtr res=TacCh1Ch3->Fit(fpeak,"BRLSNI");
   cout<<"Status fit = "<<res->Status()<<endl;
 
   // Retrieving Fit Parameters
@@ -97,26 +102,17 @@ void del_opt(string filename)
   fpeak->SetLineWidth(2);
   fpeak->Draw("SAME");
 
+  // FWHM computation
+  
   FWHM=hwhm2-hwhm1;
   if(checkR==0 && checkL==0) FWHMsig=sqrt((((FWHM*par2sig)/par2)*((FWHM*par2sig)/par2))+((par3sig*par2*(0.5-(0.6931471806/(par3*par3))))*(par3sig*par2*(0.5-(0.6931471806/(par3*par3)))))+((par4sig*par2*(0.5-(0.6931471806/(par4*par4))))*(par4sig*par2*(0.5-(0.6931471806/(par4*par4)))))+2*(FWHM/par2)*(par2*(0.5-(0.6931471806/(par3*par3))))*sig23+2*(FWHM/par2)*(par2*(0.5-(0.6931471806/(par4*par4))))*sig24+2*(par2*(0.5-(0.6931471806/(par4*par4))))*(par2*(0.5-(0.6931471806/(par3*par3))))*sig43);
   if(checkR==0 && checkL==1) FWHMsig=sqrt((((FWHM*par2sig)/par2)*((FWHM*par2sig)/par2))+((par3sig*par2*(0.5-(0.6931471806/(par3*par3))))*(par3sig*par2*(0.5-(0.6931471806/(par3*par3)))))+2*(FWHM/par2)*(par2*(0.5-(0.6931471806/(par3*par3))))*sig23);
   if(checkR==1 && checkL==0) FWHMsig=sqrt((((FWHM*par2sig)/par2)*((FWHM*par2sig)/par2))+((par4sig*par2*(0.5-(0.6931471806/(par4*par4))))*(par4sig*par2*(0.5-(0.6931471806/(par4*par4)))))+2*(FWHM/par2)*(par2*(0.5-(0.6931471806/(par4*par4))))*sig24);
   if(checkR==1 && checkL==1) FWHMsig=(FWHM*par2sig)/par2;
+
+  // Print to std output the FWHM
   std::cout << "FWHM [ns]--> " << FWHM << "\n"
             << "Error [ns]--> " << FWHMsig << endl;
-
-  // Drawing fit result
-  //
-  // TCanvas * time_canvas = new TCanvas("time_canvas", "time_canvas", 500);
-  //
-  // TAC_spectrum->SetMarkerSize(2);
-  // TAC_spectrum->SetMarkerStyle(2);
-  // TAC_spectrum->GetXaxis()->SetTitleOffset(1.2);
-  // TAC_spectrum->GetYaxis()->SetTitleOffset(1.2);
-  // TAC_spectrum->GetXaxis()->SetTitle("TAC Channel [a.u.]");
-  // TAC_spectrum->GetYaxis()->SetTitle("Time [ns]");
-  // TAC_spectrum->SetTitle("TAC Calibration");
-  // TAC_spectrum->Draw();
 
 
   return ;
