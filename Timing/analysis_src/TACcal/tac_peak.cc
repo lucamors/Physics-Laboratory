@@ -43,9 +43,8 @@ void find_peaks(string filename)
 
   time_vs_channel->Fit(f_linear);
 
-
   // Drawing fit result
-  
+
   TCanvas * time_canvas = new TCanvas("time_canvas", "time_canvas", 500);
 
   time_vs_channel->SetMarkerSize(2);
