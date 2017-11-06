@@ -18,7 +18,7 @@ void find_peaks(string filename)
   Double_t * x_pos_peaks = search_peaks->GetPositionX();
   Double_t * delay_unit_presets = new Double_t[16];
 
-  for (size_t i = 0; i < found_peaks; i++) { delay_unit_presets[i] = 2*(i+1); }
+  for (size_t i = 0; i < found_peaks; i++) { delay_unit_presets[i] = 2*i; }
 
   // Refactorizable:
   // Vector instead of dynamic array of Double_t in order to use sorting algs
@@ -35,7 +35,7 @@ void find_peaks(string filename)
 
   std::vector<Double_t> V_delay_unit_presets;
 
-  for (size_t i = 0; i < 16; i++) { V_delay_unit_presets.push_back(2*(i+1)); }
+  for (size_t i = 0; i < 16; i++) { V_delay_unit_presets.push_back(2*i); }
 
   TGraph * time_vs_channel = new TGraph(found_peaks, x_pos_peaks, delay_unit_presets);
 
@@ -43,6 +43,9 @@ void find_peaks(string filename)
 
   time_vs_channel->Fit(f_linear);
 
+
+  // Drawing fit result
+  
   TCanvas * time_canvas = new TCanvas("time_canvas", "time_canvas", 500);
 
   time_vs_channel->SetMarkerSize(2);
