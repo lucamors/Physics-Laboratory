@@ -57,19 +57,21 @@ heightrounded,bindingoffset=5mm}
 
 \clearpage
 \section*{TAC calibration}
-
+In order to calibrate the TAC we have acquired data using auto coincidence between a detector signal and itself. By changing the delay in the delay unit we have obtained the spectra in the Fig. \ref{fig: uncalibrated TAC}. Then using TSpectrum we have found the peaks centroid and fit the using a linear function (Fig. \ref{fig: fit tac}). The calibrated spectra is shown in Fig. \ref{fig: calibrated TAC}.
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.5]{tac_uncalibrated_spectrum.pdf}
+\includegraphics[width=\textwidth]{tac_uncalibrated_spectrum.pdf}
 \caption{TAC spectrum (not calibrated). Obtained with an autocoincidence.}
+\label{fig: uncalibrated TAC}
 \end{figure}
 
 
 \begin{figure}[h!]
 \begin{minipage}[b]{0.6\textwidth}
 \centering
-\includegraphics[scale=0.4]{fit_calibrazione_tac}
+\includegraphics[width=\textwidth]{fit_calibrazione_tac}
 \caption{Fit for TAC calibration.}
+\label{fig: fit tac}
 \end{minipage}
 \hfill
 \begin{minipage}[b]{0.45\textwidth}
@@ -86,14 +88,24 @@ p1     &  0.000736   $\pm$  0.000001\\
 \end{tabular}
 \vspace{1.5cm}
 \caption{Fit parameters.}
-
 \end{minipage}
+
 \end{figure}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{tac_calibrato}
+\caption{Calibrated TAC spectrum. }
+\label{fig: calibrated TAC}
+\end{figure}
+\clearpage
+\section{External delay optimization}
 
-
-
-
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{grafico_editato}
+\caption{Dynamic Range.}
+\end{figure}
 
 
 
