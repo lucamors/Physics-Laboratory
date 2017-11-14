@@ -243,8 +243,7 @@ void read_CAEN(string input_file_name, int Draw)
 
   // Defining Histograms
 
-	TCanvas *show = new TCanvas("c0","c0", 1000, 500);
-	show->Divide(2,1);
+	if(Draw==1){TCanvas *show = new TCanvas("c0","c0", 1000, 500); show->Divide(2,1);}
 	TH1F * Wave_ch_A   = new TH1F("", "", Buffer, 0, Buffer);
 	TH1F * bpsig_ch_A  = new TH1F("", "", Buffer, 0, Buffer);
 	TH1F * Wave_ch_B   = new TH1F("", "", Buffer, 0, Buffer);
@@ -255,8 +254,8 @@ void read_CAEN(string input_file_name, int Draw)
 	Wave_ch_B->GetXaxis()->SetTitle("Time [ns]");
 	Wave_ch_B->GetYaxis()->SetTitle("Height [ch]");
 
-	TH2F * TimeVsAmp0 = new TH2F("Time vs Amplitude 0", "Time vs Amplitude 0", 1000, 0, 1400, 1000, -10, 10);
-	TH2F * TimeVsAmp1 = new TH2F("Time vs Amplitude 1", "Time vs Amplitude 1", 1000, 0, 1400, 1000, -10, 10);
+	TH2F * TimeVsAmp0 = new TH2F("Time vs Amplitude 0", "Time vs Amplitude 0", 1000, 0, 1400, 1000, -15, 15);
+	TH2F * TimeVsAmp1 = new TH2F("Time vs Amplitude 1", "Time vs Amplitude 1", 1000, 0, 1400, 1000, -15, 15);
 
 	TimeVsAmp0->GetXaxis()->SetTitle("Energy [keV]");
 	TimeVsAmp0->GetYaxis()->SetTitle("Digital Timing [ns]");
@@ -265,12 +264,12 @@ void read_CAEN(string input_file_name, int Draw)
 	TimeVsAmp1->GetYaxis()->SetTitle("Digital Timing [ns]");
 
 	//Timing resolution as function of energy
-	TH1F * Time_Gate_0 = new TH1F("Energy 0-200 keV"   ,"Energy 0-200 keV"   ,1000, 0, 30);
-	TH1F * Time_Gate_1 = new TH1F("Energy 200-400 keV" ,"Energy 200-400 keV" ,1000, 0, 30);
-	TH1F * Time_Gate_2 = new TH1F("Energy 400-600 keV" ,"Energy 400-600 keV" ,1000, 0, 30);
-	TH1F * Time_Gate_3 = new TH1F("Energy 600-800 keV" ,"Energy 600-800 keV" ,1000, 0, 30);
-	TH1F * Time_Gate_4 = new TH1F("Energy 800-1000 keV","Energy 800-1000 keV",1000, 0, 30);
-	TH1F * Time_Gate_5 = new TH1F("Energy 1000-1200 keV","Energy 1000-1200 keV",1000, 0, 30);
+	TH1F * Time_Gate_0 = new TH1F("Energy 0-200 keV"   ,"Energy 0-200 keV"     ,1000, -15, 15);
+	TH1F * Time_Gate_1 = new TH1F("Energy 200-400 keV" ,"Energy 200-400 keV"   ,1000, -15, 15);
+	TH1F * Time_Gate_2 = new TH1F("Energy 400-600 keV" ,"Energy 400-600 keV"   ,1000, -15, 15);
+	TH1F * Time_Gate_3 = new TH1F("Energy 600-800 keV" ,"Energy 600-800 keV"   ,1000, -15, 15);
+	TH1F * Time_Gate_4 = new TH1F("Energy 800-1000 keV","Energy 800-1000 keV"  ,1000, -15, 15);
+	TH1F * Time_Gate_5 = new TH1F("Energy 1000-1200 keV","Energy 1000-1200 keV",1000, -15, 15);
 
 
 	Time_Gate_0->GetXaxis()->SetTitle("Time [ns]");
