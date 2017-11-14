@@ -245,7 +245,7 @@ void read_CAEN(string input_file_name, int Draw)
 
 	TCanvas *show = new TCanvas("c0","c0", 1000, 500);
 	show->Divide(2,1);
-	
+
 	TH1F * Wave_ch_A   = new TH1F("", "", Buffer, 0, Buffer);
 	TH1F * bpsig_ch_A  = new TH1F("", "", Buffer, 0, Buffer);
 	TH1F * Wave_ch_B   = new TH1F("", "", Buffer, 0, Buffer);
@@ -256,8 +256,8 @@ void read_CAEN(string input_file_name, int Draw)
 	Wave_ch_B->GetXaxis()->SetTitle("Time [ns]");
 	Wave_ch_B->GetYaxis()->SetTitle("Height [ch]");
 
-	TH2F * TimeVsAmp0 = new TH2F("Time vs Amplitude 0", "Time vs Amplitude 0", 1000, 0, 1400, 1000, -15, 15);
-	TH2F * TimeVsAmp1 = new TH2F("Time vs Amplitude 1", "Time vs Amplitude 1", 1000, 0, 1400, 1000, -15, 15);
+	TH2F * TimeVsAmp0 = new TH2F("Time vs Amplitude 0", "Time vs Amplitude 0", 1000, 0, 700, 1000, -15, 15);
+	TH2F * TimeVsAmp1 = new TH2F("Time vs Amplitude 1", "Time vs Amplitude 1", 1000, 0, 700, 1000, -15, 15);
 
 	TimeVsAmp0->GetXaxis()->SetTitle("Energy [keV]");
 	TimeVsAmp0->GetYaxis()->SetTitle("Digital Timing [ns]");
@@ -266,12 +266,12 @@ void read_CAEN(string input_file_name, int Draw)
 	TimeVsAmp1->GetYaxis()->SetTitle("Digital Timing [ns]");
 
 	//Timing resolution as function of energy
-	TH1F * Time_Gate_0 = new TH1F("Energy 0-200 keV"   ,"Energy 0-200 keV"     ,1000, -15, 15);
-	TH1F * Time_Gate_1 = new TH1F("Energy 200-400 keV" ,"Energy 200-400 keV"   ,1000, -15, 15);
-	TH1F * Time_Gate_2 = new TH1F("Energy 400-600 keV" ,"Energy 400-600 keV"   ,1000, -15, 15);
-	TH1F * Time_Gate_3 = new TH1F("Energy 600-800 keV" ,"Energy 600-800 keV"   ,1000, -15, 15);
-	TH1F * Time_Gate_4 = new TH1F("Energy 800-1000 keV","Energy 800-1000 keV"  ,1000, -15, 15);
-	TH1F * Time_Gate_5 = new TH1F("Energy 1000-1200 keV","Energy 1000-1200 keV",1000, -15, 15);
+	TH1F * Time_Gate_0 = new TH1F("Energy 0-50   keV"   ,"Energy 0-50 keV"   ,1000, -15, 15);
+	TH1F * Time_Gate_1 = new TH1F("Energy 50-100 keV" ,"Energy 50-100 keV" ,1000, -15, 15);
+	TH1F * Time_Gate_2 = new TH1F("Energy 100-150 keV","Energy 100-150 keV",1000, -15, 15);
+	TH1F * Time_Gate_3 = new TH1F("Energy 150-200 keV","Energy 150-200 keV",1000, -15, 15);
+	TH1F * Time_Gate_4 = new TH1F("Energy 200-250 keV","Energy 200-250 keV",1000, -15, 15);
+	TH1F * Time_Gate_5 = new TH1F("Energy 250-300 keV","Energy 250-300 keV",1000, -15, 15);
 
 
 	Time_Gate_0->GetXaxis()->SetTitle("Time [ns]");
@@ -294,8 +294,8 @@ void read_CAEN(string input_file_name, int Draw)
 	Time_Gate_4->SetStats(kFALSE);
 	Time_Gate_5->SetStats(kFALSE);
 
-  TH1F * d1_en_sp = new TH1F("d1_en_sp","Detector 1 Spectrum", 1000, 0, 1500);
-  TH1F * d2_en_sp = new TH1F("d2_en_sp","Detector 2 Spectrum", 1000, 0, 1500);
+  TH1F * d1_en_sp = new TH1F("d1_en_sp","Detector 1 Spectrum", 1000, 0, 700);
+  TH1F * d2_en_sp = new TH1F("d2_en_sp","Detector 2 Spectrum", 1000, 0, 700);
 
   std::cout << "Loading Event from FILE\n";
   std::cout << "-----------------------\n";
@@ -397,12 +397,12 @@ void read_CAEN(string input_file_name, int Draw)
 				    TimeVsAmp0->Fill(Energy_0, Time_ch_B-Time_ch_A);
 				    TimeVsAmp1->Fill(Energy_1, Time_ch_B-Time_ch_A);
 
-				    if(Energy_0 > 0   && Energy_0 <= 200 )  Time_Gate_0->Fill(Time_ch_B-Time_ch_A);
-	          if(Energy_0 > 200 && Energy_0 <= 400 )  Time_Gate_1->Fill(Time_ch_B-Time_ch_A);
-	          if(Energy_0 > 400 && Energy_0 <= 600 )  Time_Gate_2->Fill(Time_ch_B-Time_ch_A);
-	          if(Energy_0 > 600 && Energy_0 <= 800 )  Time_Gate_3->Fill(Time_ch_B-Time_ch_A);
-	          if(Energy_0 > 800 && Energy_0 <= 1000)  Time_Gate_4->Fill(Time_ch_B-Time_ch_A);
-				    if(Energy_0 > 1000 && Energy_0 <= 1200) Time_Gate_5->Fill(Time_ch_B-Time_ch_A);
+				    if(Energy_0 > 0   && Energy_0 <= 50  )  Time_Gate_0->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 50  && Energy_0 <= 100 )  Time_Gate_1->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 100 && Energy_0 <= 150 )  Time_Gate_2->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 150 && Energy_0 <= 200 )  Time_Gate_3->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 200 && Energy_0 <= 250 )  Time_Gate_4->Fill(Time_ch_B-Time_ch_A);
+				    if(Energy_0 > 250 && Energy_0 <= 300 )  Time_Gate_5->Fill(Time_ch_B-Time_ch_A);
 			  }
         // updating counters
         coincident_events++;
@@ -431,12 +431,12 @@ void read_CAEN(string input_file_name, int Draw)
 
 	ofstream temp("temp.dat");
 
-	temp<<"100 "<<my_vec_0[0]<<" "<<my_vec_0[1]<<endl;
-	temp<<"300 "<<my_vec_1[0]<<" "<<my_vec_1[1]<<endl;
-	temp<<"500 "<<my_vec_2[0]<<" "<<my_vec_2[1]<<endl;
-	temp<<"700 "<<my_vec_3[0]<<" "<<my_vec_3[1]<<endl;
-	temp<<"900 "<<my_vec_4[0]<<" "<<my_vec_4[1]<<endl;
-	temp<<"1100 "<<my_vec_5[0]<<" "<<my_vec_5[1]<<endl;
+	temp<<"25 "<<my_vec_0[0]<<" "<<my_vec_0[1]<<endl;
+	temp<<"75 "<<my_vec_1[0]<<" "<<my_vec_1[1]<<endl;
+	temp<<"125 "<<my_vec_2[0]<<" "<<my_vec_2[1]<<endl;
+	temp<<"175 "<<my_vec_3[0]<<" "<<my_vec_3[1]<<endl;
+	temp<<"225 "<<my_vec_4[0]<<" "<<my_vec_4[1]<<endl;
+	temp<<"275 "<<my_vec_5[0]<<" "<<my_vec_5[1]<<endl;
 
 	temp.close();
 
@@ -460,7 +460,7 @@ void read_CAEN(string input_file_name, int Draw)
 			 TGraphErrors *Graph = new TGraphErrors("temp.dat","%lg%lg%lg");
 			 Graph->GetXaxis()->SetTitle("Energy[KeV]");
 			 Graph->GetYaxis()->SetTitle("FWHM[ns]");
-			 Graph->GetXaxis()->SetLimits(0,1400);
+			 Graph->GetXaxis()->SetLimits(0,700);
 			 Graph->GetYaxis()->SetLimits(0.53,2.5);
 
 			 Graph->GetYaxis()->SetTitleSize(0.06);
