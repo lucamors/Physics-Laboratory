@@ -243,7 +243,9 @@ void read_CAEN(string input_file_name, int Draw)
 
   // Defining Histograms
 
-	if(Draw==1){TCanvas *show = new TCanvas("c0","c0", 1000, 500); show->Divide(2,1);}
+	TCanvas *show = new TCanvas("c0","c0", 1000, 500);
+	show->Divide(2,1);
+	
 	TH1F * Wave_ch_A   = new TH1F("", "", Buffer, 0, Buffer);
 	TH1F * bpsig_ch_A  = new TH1F("", "", Buffer, 0, Buffer);
 	TH1F * Wave_ch_B   = new TH1F("", "", Buffer, 0, Buffer);
@@ -391,16 +393,17 @@ void read_CAEN(string input_file_name, int Draw)
         d1_en_sp->Fill(Energy_0);
         d2_en_sp->Fill(Energy_1);
 
-				TimeVsAmp0->Fill(Energy_0, Time_ch_B-Time_ch_A);
-				TimeVsAmp1->Fill(Energy_1, Time_ch_B-Time_ch_A);
+				if(Time_ch_A!=0 && Time_ch_B!=0){
+				    TimeVsAmp0->Fill(Energy_0, Time_ch_B-Time_ch_A);
+				    TimeVsAmp1->Fill(Energy_1, Time_ch_B-Time_ch_A);
 
-				if(Energy_0 > 0   && Energy_0 <= 200 )  Time_Gate_0->Fill(Time_ch_B-Time_ch_A);
-	      if(Energy_0 > 200 && Energy_0 <= 400 )  Time_Gate_1->Fill(Time_ch_B-Time_ch_A);
-	      if(Energy_0 > 400 && Energy_0 <= 600 )  Time_Gate_2->Fill(Time_ch_B-Time_ch_A);
-	      if(Energy_0 > 600 && Energy_0 <= 800 )  Time_Gate_3->Fill(Time_ch_B-Time_ch_A);
-	      if(Energy_0 > 800 && Energy_0 <= 1000)  Time_Gate_4->Fill(Time_ch_B-Time_ch_A);
-				if(Energy_0 > 1000 && Energy_0 <= 1200) Time_Gate_5->Fill(Time_ch_B-Time_ch_A);
-
+				    if(Energy_0 > 0   && Energy_0 <= 200 )  Time_Gate_0->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 200 && Energy_0 <= 400 )  Time_Gate_1->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 400 && Energy_0 <= 600 )  Time_Gate_2->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 600 && Energy_0 <= 800 )  Time_Gate_3->Fill(Time_ch_B-Time_ch_A);
+	          if(Energy_0 > 800 && Energy_0 <= 1000)  Time_Gate_4->Fill(Time_ch_B-Time_ch_A);
+				    if(Energy_0 > 1000 && Energy_0 <= 1200) Time_Gate_5->Fill(Time_ch_B-Time_ch_A);
+			  }
         // updating counters
         coincident_events++;
         id_A++;
@@ -476,8 +479,6 @@ void read_CAEN(string input_file_name, int Draw)
 
 			 gStyle->SetOptStat(false);
 			 TimeVsAmp0->Draw("COLZ");
-
-  d1_en_sp->Draw();
 
   return ;
 }
