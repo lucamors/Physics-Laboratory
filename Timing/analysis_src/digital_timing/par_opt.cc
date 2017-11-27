@@ -1,4 +1,5 @@
 #include "opt_par.h"
+#include <ctime>
 
 int counter_world = 0;
 
@@ -132,13 +133,13 @@ void par_opt(string input_file_name)
       {
         for(int ZCL=-10; ZCL<11; ZCL+=2)
         {
+          const clock_t begin_time = clock();
 
           opt->set_id(counter_world);
           counter_world++;
 
           for (int counter = 0; counter < number_of_ev; counter++)
           {
-            if(counter > 10) break;
 
             if ( counter % (number_of_ev/100) == 0)
             {
@@ -156,7 +157,6 @@ void par_opt(string input_file_name)
               branch_ch_A->GetEntry(counter);
               branch_ch_B->GetEntry(counter);
 
-              cout << "here\n";
               //Initialise variables
               bsvar_ch_A = 0.0;
               Time_ch_A = 0.0;
@@ -194,8 +194,9 @@ void par_opt(string input_file_name)
                 opt->get_energy()[counter] = event_ch_B.qlong*0.0748945-54.25;
               }
 
-
           } // events
+
+          std::cout << "Elapsed Time: " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
 
           branch->Fill();
         }// ZCL
