@@ -1,5 +1,6 @@
 #include "opt_par.h"
 
+int counter_world = 0;
 
 struct acqEventPSD_t {
 
@@ -125,15 +126,19 @@ void par_opt(string input_file_name)
 	Double_t * DataVect_ch_A=new Double_t[Buffer];
   Double_t * DataVect_ch_B=new Double_t[Buffer];
 
-    for(float Frac = 0.2; Frac<=0.45; Frac+=0.05)
+    for(float Frac = 0.2; Frac<0.25; Frac+=0.05)
     {
-      for(int Del=3; Del<9; Del++)
+      for(int Del=3; Del<4; Del++)
       {
         for(int ZCL=-10; ZCL<11; ZCL+=2)
         {
+
+          opt->set_id(counter_world);
+          counter_world++;
+
           for (int counter = 0; counter < number_of_ev; counter++)
           {
-            if(counter > 1) break;
+            if(counter > 10) break;
 
             if ( counter % (number_of_ev/100) == 0)
             {
@@ -150,8 +155,6 @@ void par_opt(string input_file_name)
 
               branch_ch_A->GetEntry(counter);
               branch_ch_B->GetEntry(counter);
-
-              opt->set_id(counter);
 
               cout << "here\n";
               //Initialise variables
@@ -191,9 +194,10 @@ void par_opt(string input_file_name)
                 opt->get_energy()[counter] = event_ch_B.qlong*0.0748945-54.25;
               }
 
-              branch->Fill();
 
           } // events
+
+          branch->Fill();
         }// ZCL
       }// Del
     }// FRAC
