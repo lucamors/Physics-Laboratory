@@ -14,16 +14,6 @@ struct acqEventPSD_t {
 	UShort_t	samples[4096];
 };
 
-struct Timing_par {
-
-	Float_t		Fraction;
-  Int_t	  Delay;
-  Int_t   Zcline;
-  std::vector<Double_t> Timing_A;
-  std::vector<Double_t> Timing_B;
-  std::vector<Double_t> Energy_A;
-
-  };
 
 // Defining Digital Timing algorithm
 double TimingC2(double *data, int Buffer, double Fact, int delay, double Zcline, double BaseLine, int bsRange){
@@ -85,6 +75,8 @@ double TimingC2(double *data, int Buffer, double Fact, int delay, double Zcline,
 
 void Optimizer(string input_file_name)
 {
+	Int_t Id_counter = 1;
+
   TFile * input_file = new TFile(input_file_name.c_str());
 
 	TTree * daq_tree;
@@ -108,11 +100,7 @@ void Optimizer(string input_file_name)
   long int nEventsA = (long int) branch_ch_A->GetEntries();
   long int nEventsB = (long int) branch_ch_B->GetEntries();
 
-	TTree * tree = new TTree("Digi_Time","Digi_Time titolo");
-
-	Timing_par * event = 0;
-
-	tree->Branch("event", "Timing_par", &event);
+	// TTREE
 
 	for(float Frac = 0.2; Frac<=0.45; Frac+=0.05){
 	  for(int Del=3; Del<9; Del++){
@@ -150,8 +138,8 @@ void Optimizer(string input_file_name)
 				Double_t * DataVect_ch_A=new Double_t[Buffer];
 				Double_t * DataVect_ch_B=new Double_t[Buffer];
 
-				std::vector<Double_t> Time_A;
-				std::vector<Double_t> Time_B;
+				std::vector<Double_t> TimeA;
+				std::vector<Double_t> TimeB;
 				std::vector<Double_t> Energy;
 
 				while(counter_A < nEventsA and counter_B < nEventsB)
@@ -192,75 +180,81 @@ void Optimizer(string input_file_name)
 
 				    //retrieve waveforms
 
-				      for(int i=0;i<Buffer;i++){
-				        DataVect_ch_A[i]=1000-event_ch_A.samples[i];
-				        DataVect_ch_B[i]=1000-event_ch_B.samples[i];
-							}
+			      for(int i=0;i<Buffer;i++){
+			        DataVect_ch_A[i]=1000-event_ch_A.samples[i];
+			        DataVect_ch_B[i]=1000-event_ch_B.samples[i];
+						}
 
-				       //Initialise variables
-				           bsvar_ch_A = 0.0;
-				            Time_ch_A = 0.0;
-				        BaseLine_ch_A = 0.0;
-				          Thresh_ch_A = 0;
+			       //Initialise variables
+			       bsvar_ch_A = 0.0;
+			       Time_ch_A = 0.0;
+			       BaseLine_ch_A = 0.0;
+			       Thresh_ch_A = 0;
 
-				           bsvar_ch_B = 0.0;
-				            Time_ch_B = 0.0;
-				        BaseLine_ch_B = 0.0;
-				          Thresh_ch_B = 0;
+			       bsvar_ch_B = 0.0;
+			       Time_ch_B = 0.0;
+			       BaseLine_ch_B = 0.0;
+			       Thresh_ch_B = 0;
 
-				       // Baseline ch_A
-				       bs=0;
-				       for(int i=0;i<Buffer;i++){
-				         if((i>bsRange)&&(Thresh_ch_A==0)&&(DataVect_ch_A[i]>(BaseLine_ch_A)+Th))Thresh_ch_A=i;
-				         if((i>bsmin)&&(i<bsRange)){BaseLine_ch_A+=DataVect_ch_A[i]; bs++;}
-				         if(i==bsRange)BaseLine_ch_A=(double)BaseLine_ch_A/bs;
-				       }
+			       // Baseline ch_A
+			       bs=0;
+			       for(int i=0;i<Buffer;i++)
+						 {
+			         if((i>bsRange)&&(Thresh_ch_A==0)&&(DataVect_ch_A[i]>(BaseLine_ch_A)+Th))Thresh_ch_A=i;
+			         if((i>bsmin)&&(i<bsRange)){BaseLine_ch_A+=DataVect_ch_A[i]; bs++;}
+			         if(i==bsRange)BaseLine_ch_A=(double)BaseLine_ch_A/bs;
+			       }
 
-				       // Baseline ch_B
-				       bs=0;
-				       for(int i=0;i<Buffer;i++){
-				         if((i>bsRange)&&(Thresh_ch_B==0)&&(DataVect_ch_B[i]>(BaseLine_ch_B)+Th))Thresh_ch_B=i;
-				         if((i>bsmin)&&(i<bsRange)){BaseLine_ch_B+=DataVect_ch_B[i]; bs++;}
-				         if(i==bsRange)BaseLine_ch_B=(double)BaseLine_ch_B/bs;
-				       }
+			       // Baseline ch_B
+			       bs=0;
+			       for(int i=0;i<Buffer;i++)
+						 {
+			         if((i>bsRange)&&(Thresh_ch_B==0)&&(DataVect_ch_B[i]>(BaseLine_ch_B)+Th))Thresh_ch_B=i;
+			         if((i>bsmin)&&(i<bsRange)){BaseLine_ch_B+=DataVect_ch_B[i]; bs++;}
+			         if(i==bsRange)BaseLine_ch_B=(double)BaseLine_ch_B/bs;
+			       }
 
-				       // Digital Timing
-				       if(Thresh_ch_A>0 && Thresh_ch_B>0){
-				         Time_A.push_back(TimingC2(DataVect_ch_A, Buffer, Frac, Del, ZCL, BaseLine_ch_A, bsRange));
-				         Time_B.push_back(TimingC2(DataVect_ch_B, Buffer, Frac, Del, ZCL, BaseLine_ch_B, bsRange));
-								 Energy.push_back(event_ch_B.qlong*0.0748945-54.25);
-				       }
+			       // Digital Timing
+			       if(Thresh_ch_A>0 && Thresh_ch_B>0)
+						 {
 
-				      // updating counters
-				      coincident_events++;
-				      id_A++;
-				      id_B++;
-				      counter_A++;
-				      counter_B++;
+			         TimeA.push_back(TimingC2(DataVect_ch_A, Buffer, Frac, Del, ZCL, BaseLine_ch_A, bsRange));
+			         TimeB.push_back(TimingC2(DataVect_ch_B, Buffer, Frac, Del, ZCL, BaseLine_ch_B, bsRange));
+							 Energy.push_back(event_ch_B.qlong*0.0748945-54.25);
 
-				    }
+			       }
+
+			      // updating counters
+
+						coincident_events++;
+			      id_A++;
+			      id_B++;
+			      counter_A++;
+			      counter_B++;
+
+			    }
 
 				}
+
 				delete[] DataVect_ch_A;
 				delete[] DataVect_ch_B;
 
-				event = new Timing_par;
-				event->Fraction=Frac;
-				event->Delay=Del;
-				event->Zcline=ZCL;
-				event->Timing_A=Time_A;
-				event->Timing_B=Time_B;
-				event->Energy_A=Energy;
+				// SAVING
 
-				tree->Fill();
+				std::string name = "opt_frac_"+std::to_string(Frac)+"__del_"+std::to_string(Del)+"__ZCL_"+std::to_string(ZCL)+".txt";
 
-				delete event;
+				std::ofstream outfile(name.c_str());
+
+				for (size_t o = 0; o < TimeA.size(); o++)
+				{
+					outfile << TimeA[o] << "	" << TimeB[o] << "	" << Energy[o] << endl;
+				}
+
+				outfile.close();
+
 	    }
 	  }
 	}
 
-	TFile * output_file = new TFile("analyzed.root","RECREATE");
-  tree->Write();
-	output_file->Close();
   return ;
 }
