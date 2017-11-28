@@ -1,7 +1,4 @@
-#include "opt_par.h"
 #include <ctime>
-
-int counter_world = 0;
 
 struct acqEventPSD_t {
 
@@ -12,6 +9,26 @@ struct acqEventPSD_t {
 	UShort_t	pur;
 	UShort_t	samples[4096];
 };
+
+
+class Opt_par : public TObject
+{
+	public:
+
+		int delay;
+		float factor;
+		int zcl;
+
+		std::vector<double> TimeA;
+		std::vector<double> TimeB;
+		std::vector<double> Energy;
+
+		ClassDef(Opt_par, 1)
+
+};
+
+ClassImp(Opt_par)
+
 // Defining Digital Timing algorithm
 double TimingC2(double *data, int Buffer, double Fact, int delay, double Zcline, double BaseLine, int bsRange){
 
@@ -79,7 +96,7 @@ void par_opt(string input_file_name)
 
   // Retrieving TTree from TFile
 
-  daq_tree = (TTree*) input_file->Get("cleandata");
+  daq_tree = (TTree*) input_file->Get("acq_tree_0");
 
   // Linking
 
@@ -93,19 +110,22 @@ void par_opt(string input_file_name)
 
   long int number_of_ev = (long int) branch_ch_A->GetEntries();
 
-
   // Declaring Saving ttree structure
+
+	Opt_par * opt = new  Opt_par;
 
   TFile * outfile = new TFile("file_out_opt.root","RECREATE");
 
   TTree * out_tree = new TTree("out_opt_par", "risultati ottimizzazione");
 
+	out_tree->Branch("parameters",&opt);
 
-  Opt_params * opt = new  Opt_params(number_of_ev);
 
-  string tleaf = "id_ev/i:TimeA["+std::to_string(number_of_ev)+"]/d:TimeB["+std::to_string(number_of_ev)+"]/d:Energy["+std::to_string(number_of_ev)+"]/d:delay/f:factor/f";
 
-  TBranch * branch = out_tree->Branch("opt", opt->get_id(), tleaf.c_str());
+  // string tleaf = "id_ev/i:TimeA["+std::to_string(number_of_ev)+"]/d:TimeB["+std::to_string(number_of_ev)+"]/d:Energy["+std::to_string(number_of_ev)+"]/d:delay/f:factor/f";
+
+  // TBranch * branch = out_tree->Branch("opt", &opt, tleaf.c_str());
+
 
   // Defining waveform array and timing variables
 	int Buffer = 350;
@@ -127,16 +147,13 @@ void par_opt(string input_file_name)
 	Double_t * DataVect_ch_A=new Double_t[Buffer];
   Double_t * DataVect_ch_B=new Double_t[Buffer];
 
-    for(float Frac = 0.2; Frac<0.25; Frac+=0.05)
+    for(float Frac = 0.15; Frac<=0.45; Frac+=0.05)
     {
-      for(int Del=3; Del<4; Del++)
+      for(int Del=3; Del<9; Del++)
       {
         for(int ZCL=-10; ZCL<11; ZCL+=2)
         {
           const clock_t begin_time = clock();
-
-          opt->set_id(counter_world);
-          counter_world++;
 
           for (int counter = 0; counter < number_of_ev; counter++)
           {
@@ -189,16 +206,20 @@ void par_opt(string input_file_name)
               // Digital Timing
               if(Thresh_ch_A>0 && Thresh_ch_B>0)
               {
-                opt->get_timeA()[counter] = TimingC2(DataVect_ch_A, Buffer, Frac, Del, ZCL, BaseLine_ch_A, bsRange);
-                opt->get_timeB()[counter] = TimingC2(DataVect_ch_B, Buffer, Frac, Del, ZCL, BaseLine_ch_B, bsRange);
-                opt->get_energy()[counter] = event_ch_B.qlong*0.0748945-54.25;
+                opt->TimeA.push_back(TimingC2(DataVect_ch_A, Buffer, Frac, Del, ZCL, BaseLine_ch_A, bsRange));
+                opt->TimeB.push_back(TimingC2(DataVect_ch_B, Buffer, Frac, Del, ZCL, BaseLine_ch_B, bsRange));
+                opt->Energy.push_back(event_ch_B.qlong*0.0748945-54.25);
               }
 
           } // events
 
+					opt->zcl = ZCL;
+					opt->factor = Frac;
+					opt->delay = Del;
+
           std::cout << "Elapsed Time: " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
 
-          branch->Fill();
+          out_tree->Fill();
         }// ZCL
       }// Del
     }// FRAC
