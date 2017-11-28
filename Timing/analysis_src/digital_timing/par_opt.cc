@@ -1,6 +1,7 @@
 #include <ctime>
 
-struct acqEventPSD_t {
+struct acqEventPSD_t
+{
 
 	ULong64_t	timetag;
 	UInt_t		baseline;
@@ -141,7 +142,6 @@ void par_opt(string input_file_name)
 
   // TBranch * branch = out_tree->Branch("opt", &opt, tleaf.c_str());
 
-
   // Defining waveform array and timing variables
 	int Buffer = 350;
 	int     Th = 10;
@@ -173,7 +173,7 @@ void par_opt(string input_file_name)
         for(int ZCL=-10; ZCL<11; ZCL+=2)
         {
 
-					alg_statistics << Frac << "	" << Del << "	" << "	" << ZCL << "	";
+					alg_statistics << Frac << "	" << Del << "	" << ZCL << "	";
 
 					// Algorithm statistic
           const clock_t begin_time = clock();
@@ -239,17 +239,16 @@ void par_opt(string input_file_name)
 								processed_events++;
               }
 
-							opt->zcl = ZCL;
-							opt->factor = Frac;
-							opt->delay = Del;
-
-							out_tree->Fill();
-
           } // events
 
           std::cout << "Elapsed Time: " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
-					alg_statistics << processed_events << " " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
+					alg_statistics << processed_events << "		" << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
 
+					opt->zcl = ZCL;
+					opt->factor = Frac;
+					opt->delay = Del;
+
+					out_tree->Fill();
 
         }// ZCL
       }// Del
