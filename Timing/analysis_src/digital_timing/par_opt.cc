@@ -149,7 +149,7 @@ void par_opt(string input_file_name)
 	int Thresh_ch_A, Thresh_ch_B;
 
 	int bsmin   = 5;
-	int bsRange = 75;
+	int bsRange = 15;
 
 	double    bsvar_ch_A = 0.0;
 	double    Time_ch_A = 0.0;
@@ -183,7 +183,7 @@ void par_opt(string input_file_name)
           for (int counter = 0; counter < number_of_ev; counter++)
           {
 
-						if( counter > 1000) break; // debugging purpose
+						if( counter > 100) break; // debugging purpose
 
             if ( counter % (number_of_ev/100) == 0)
             {
@@ -200,6 +200,12 @@ void par_opt(string input_file_name)
 
               branch_ch_A->GetEntry(counter);
               branch_ch_B->GetEntry(counter);
+
+							for(int i=0;i<Buffer;i++)
+							{
+				        DataVect_ch_A[i]=1000-event_ch_A->samples[i];
+				        DataVect_ch_B[i]=1000-event_ch_B->samples[i];
+							}
 
               //Initialise variables
               bsvar_ch_A = 0.0;
@@ -241,6 +247,7 @@ void par_opt(string input_file_name)
 
           } // events
 
+
           std::cout << "Elapsed Time: " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
 					alg_statistics << processed_events << "		" << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
 
@@ -249,6 +256,12 @@ void par_opt(string input_file_name)
 					opt->delay = Del;
 
 					out_tree->Fill();
+
+					// Clearing event --> Refactor this into a class destructor
+					
+					opt->TimeA.clear();
+					opt->TimeB.clear();
+					opt->Energy.clear();
 
         }// ZCL
       }// Del

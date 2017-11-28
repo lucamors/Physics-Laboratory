@@ -38,12 +38,12 @@ void read_opt(string filename)
 
   branch->SetAddress(&opt_sett);
 
+
+
   for (size_t i = 0; i < n_ev; i++)
   {
     branch->GetEntry(i);
 
-    cout << opt_sett->zcl << endl;
-    
 
   }
 
