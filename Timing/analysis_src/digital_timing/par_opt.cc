@@ -29,6 +29,22 @@ class Opt_par : public TObject
 
 ClassImp(Opt_par)
 
+class cleanEv : public TObject
+{
+	public:
+
+		long int timetag;
+		short qshort;
+		short qlong;
+		short samples[4096];
+
+
+		ClassDef(cleanEv, 2)
+
+};
+
+ClassImp(cleanEv)
+
 // Defining Digital Timing algorithm
 double TimingC2(double *data, int Buffer, double Fact, int delay, double Zcline, double BaseLine, int bsRange){
 
@@ -100,13 +116,14 @@ void par_opt(string input_file_name)
 
   // Linking
 
-  acqEventPSD_t event_ch_A, event_ch_B;
+	cleanEv * event_ch_A = new cleanEv;
+	cleanEv * event_ch_B = new cleanEv;
 
-  TBranch * branch_ch_A, * branch_ch_B;
-  branch_ch_A = daq_tree->GetBranch(Form("acq_ch%i",0));
-  branch_ch_A->SetAddress(&event_ch_A.timetag);
-  branch_ch_B = daq_tree->GetBranch(Form("acq_ch%i",1));
-  branch_ch_B->SetAddress(&event_ch_B.timetag);
+	TBranch * branch_ch_A, * branch_ch_B;
+	branch_ch_A = daq_tree->GetBranch("acq_ch0");
+	branch_ch_A->SetAddress(&event_ch_A);
+	branch_ch_B = daq_tree->GetBranch("acq_ch1");
+	branch_ch_B->SetAddress(&event_ch_B);
 
   long int number_of_ev = (long int) branch_ch_A->GetEntries();
 
@@ -119,8 +136,6 @@ void par_opt(string input_file_name)
   TTree * out_tree = new TTree("out_opt_par", "risultati ottimizzazione");
 
 	out_tree->Branch("parameters",&opt);
-
-
 
   // string tleaf = "id_ev/i:TimeA["+std::to_string(number_of_ev)+"]/d:TimeB["+std::to_string(number_of_ev)+"]/d:Energy["+std::to_string(number_of_ev)+"]/d:delay/f:factor/f";
 
@@ -147,16 +162,28 @@ void par_opt(string input_file_name)
 	Double_t * DataVect_ch_A=new Double_t[Buffer];
   Double_t * DataVect_ch_B=new Double_t[Buffer];
 
-    for(float Frac = 0.15; Frac<=0.45; Frac+=0.05)
+	ofstream alg_statistics("alg_stat.txt");
+
+	alg_statistics << "#Frac	del	zcl	processed	time\n";
+
+    for(float Frac = 0.2; Frac<0.25; Frac+=0.05)
     {
       for(int Del=3; Del<9; Del++)
       {
         for(int ZCL=-10; ZCL<11; ZCL+=2)
         {
+
+					alg_statistics << Frac << "	" << Del << "	" << "	" << ZCL << "	";
+
+					// Algorithm statistic
           const clock_t begin_time = clock();
+					long processed_events = 0;
+
 
           for (int counter = 0; counter < number_of_ev; counter++)
           {
+
+						if( counter > 1000) break; // debugging purpose
 
             if ( counter % (number_of_ev/100) == 0)
             {
@@ -208,18 +235,22 @@ void par_opt(string input_file_name)
               {
                 opt->TimeA.push_back(TimingC2(DataVect_ch_A, Buffer, Frac, Del, ZCL, BaseLine_ch_A, bsRange));
                 opt->TimeB.push_back(TimingC2(DataVect_ch_B, Buffer, Frac, Del, ZCL, BaseLine_ch_B, bsRange));
-                opt->Energy.push_back(event_ch_B.qlong*0.0748945-54.25);
+                opt->Energy.push_back(event_ch_B->qlong*0.0748945-54.25);
+								processed_events++;
               }
+
+							opt->zcl = ZCL;
+							opt->factor = Frac;
+							opt->delay = Del;
+
+							out_tree->Fill();
 
           } // events
 
-					opt->zcl = ZCL;
-					opt->factor = Frac;
-					opt->delay = Del;
-
           std::cout << "Elapsed Time: " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
+					alg_statistics << processed_events << " " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
 
-          out_tree->Fill();
+
         }// ZCL
       }// Del
     }// FRAC
