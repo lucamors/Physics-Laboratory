@@ -4,8 +4,6 @@
 * Channel aligning
 */
 
-#include "opt_par.h"
-
 struct acqEventPSD_t {
 
 	ULong64_t	timetag;
