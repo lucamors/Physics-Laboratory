@@ -166,11 +166,11 @@ void par_opt(string input_file_name)
 
 	alg_statistics << "#Frac	del	zcl	processed	time\n";
 
-    for(float Frac = 0.2; Frac<0.25; Frac+=0.05)
+    for(float Frac = 0.2; Frac<0.35; Frac+=0.05)
     {
-      for(int Del=3; Del<9; Del++)
+      for(int Del=3; Del<7; Del++)
       {
-        for(int ZCL=-10; ZCL<11; ZCL+=2)
+        for(int ZCL=-5; ZCL<6; ZCL+=1)
         {
 
 					alg_statistics << Frac << "	" << Del << "	" << ZCL << "	";
@@ -183,7 +183,7 @@ void par_opt(string input_file_name)
           for (int counter = 0; counter < number_of_ev; counter++)
           {
 
-						if( counter > 100) break; // debugging purpose
+						if( counter > 50000) break; // debugging purpose
 
             if ( counter % (number_of_ev/100) == 0)
             {
@@ -258,7 +258,7 @@ void par_opt(string input_file_name)
 					out_tree->Fill();
 
 					// Clearing event --> Refactor this into a class destructor
-					
+
 					opt->TimeA.clear();
 					opt->TimeB.clear();
 					opt->Energy.clear();
