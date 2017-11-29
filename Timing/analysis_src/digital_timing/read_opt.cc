@@ -48,6 +48,8 @@ std::vector<Double_t> Fitter(TH1F * histo, Double_t range)
   FitResult.push_back(FWHM);
   FitResult.push_back(FWHMsig);
 
+  delete GausPeak;
+	delete search_peak;
 	return FitResult;
 
 }
@@ -73,8 +75,12 @@ void read_opt(string filename)
 
   branch->SetAddress(&opt_sett);
 
-  TNtupleD *nt = new TNtupleD("FWHM result","FWHM","Frac:Del:ZCL:FWHM:FWHMsig");
 	TH1F * Time = 0;
+
+	std::vector<Float_t> Frac;
+	std::vector<Int_t> Del;
+	std::vector<Double_t> FWHM;
+	std::vector<Int_t> Zcl;
 
   for (size_t i = 0; i < n_ev; i++)
   {
@@ -85,31 +91,114 @@ void read_opt(string filename)
 		int   Delay    = opt_sett->delay;
 		int   ZCL      = opt_sett->zcl;
 
-		Time = new TH1F("Time", Form("Frac%.2f_Del%i_Zcl%i_Timing", Fraction, Delay, ZCL), 1000, -10, 10);
+		Time = new TH1F(Form("Frac%.2f_Del%i_Zcl%i_Timing",Fraction, Delay, ZCL), Form("Frac%.2f_Del%i_Zcl%i_Timing", Fraction, Delay, ZCL), 1000, -7, 7);
 
 
     for (size_t j = 0; j < opt_sett->TimeA.size() ; j++)
 		{
 			Time->Fill(opt_sett->TimeA[j]-opt_sett->TimeB[j]);
-
 		}
 
 		std::vector<Double_t> v = Fitter(Time,0.55);
-		nt->Fill(Fraction,Delay,ZCL,v[0],v[1]);
+
+		Frac.push_back(Fraction);
+		Del.push_back(Delay);
+    Zcl.push_back(ZCL);
+		FWHM.push_back(v[0]);
+
+		delete Time;
 
   }
 
-  TFile *OutFile=new TFile("FWHMntuple.root", "RECREATE");
+  std::vector<Float_t> Frac_scanned;
+	std::vector<Int_t> Del_scanned;
+  //Number of different Fraction
+	for (size_t i = 0; i < Frac.size(); i++) {
+		if (Zcl[i]==0){
+			if (Frac_scanned.size()==0) Frac_scanned.push_back(Frac[i]);
+			int k = 0;
+			for (size_t j = 0; j < Frac_scanned.size(); j++) {
+				if (Frac_scanned[j]==Frac[i]) k++;
+			}
+			if(k == 0){
+				Frac_scanned.push_back(Frac[i]);
+				//cout<<Frac[i]<<endl;                                        //debug
+			}
 
-	nt->Print();
+		}
+	}
+	//Number of different Delay
+	for (size_t i = 0; i < Del.size(); i++) {
+		if (Zcl[i]==0){
+			if (Del_scanned.size()==0) Del_scanned.push_back(Del[i]);
+			int k = 0;
+			for (size_t j = 0; j < Del_scanned.size(); j++) {
+				if (Del_scanned[j]==Del[i]) k++;
+			}
+			if(k == 0){
+				Del_scanned.push_back(Del[i]);
+				//cout<<Del[i]<<endl;                                        //debug
+			}
 
-	TCanvas * c = new TCanvas("c","Fraction vs FWHM",1280,720);
-	c->cd();
-	nt->Draw("Frac:FWHM");
-	c->Update();
-	nt->Write();
-	OutFile->Write();
-	OutFile->Close();
+		}
+	}
 
-  return ;
+	TRandom *color = new TRandom();
+	//FWHMvsDelay
+  std::vector<TGraph *> FWHMvsDelay;
+	for (size_t i = 0; i < Frac_scanned.size(); i++) {
+		cout<<"fraction set------>"<<Frac_scanned[i]<<endl;  //debug
+		FWHMvsDelay.push_back(new TGraph(Del_scanned.size()));
+		int j = 0;
+		for (size_t k = 0; k < Frac.size(); k++) {
+			if (Zcl[k]==0 && Frac[k]==Frac_scanned[i]){
+				FWHMvsDelay[i]->SetPoint(j,Del[k],FWHM[k]);
+				j++;
+				//cout<<Del[k]<<" "<<FWHM[k]<<endl;           //debug
+			}
+		}
+
+		FWHMvsDelay[i]->Sort();
+		FWHMvsDelay[i]->SetTitle(Form("Fraction %.2f",Frac_scanned[i]));
+		FWHMvsDelay[i]->SetLineColor(color->Integer(9)+1);
+	}
+
+	TMultiGraph *FWHMvsDelay_mg = new TMultiGraph();
+	TCanvas * FWHMvsDelay_Canvas = new TCanvas("FWHMvsDelay_Canvas", "FWHM as function of Delay",1280,720);
+	FWHMvsDelay_Canvas->cd();
+	for (size_t i = 0; i < FWHMvsDelay.size(); i++) {
+		FWHMvsDelay_mg->Add(FWHMvsDelay[i]);
+	}
+	FWHMvsDelay_mg->Draw("A*L");
+	FWHMvsDelay_Canvas->Update();
+
+	//FWHMvsFraction
+  std::vector<TGraph *> FWHMvsFraction;
+	for (size_t i = 0; i < Del_scanned.size(); i++) {
+		cout<<"Delay set------>"<<Del_scanned[i]<<endl;  //debug
+		FWHMvsFraction.push_back(new TGraph(Frac_scanned.size()));
+		int j = 0;
+		for (size_t k = 0; k < Del.size(); k++) {
+			if (Zcl[k]==0 && Del[k]==Del_scanned[i]){
+				FWHMvsFraction[i]->SetPoint(j,Frac[k],FWHM[k]);
+				j++;
+				//cout<<Frac[k]<<" "<<FWHM[k]<<endl;           //debug
+			}
+		}
+
+		FWHMvsFraction[i]->Sort();
+		FWHMvsFraction[i]->SetTitle(Form("Delay %i ns",Del_scanned[i]));
+		FWHMvsFraction[i]->SetLineColor(color->Integer(9)+1);
+	}
+
+	TMultiGraph *FWHMvsFraction_mg = new TMultiGraph();
+	TCanvas * FWHMvsFraction_Canvas = new TCanvas("FWHMvsFraction_Canvas", "FWHM as function of Fraction",1280,720);
+	FWHMvsFraction_Canvas->cd();
+	for (size_t i = 0; i < FWHMvsFraction.size(); i++) {
+		FWHMvsFraction_mg->Add(FWHMvsFraction[i]);
+	}
+	FWHMvsFraction_mg->Draw("A*L");
+	FWHMvsFraction_Canvas->Update();
+
+	return ;
 }
