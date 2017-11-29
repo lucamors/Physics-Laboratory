@@ -17,6 +17,41 @@ class Opt_par : public TObject
 
 ClassImp(Opt_par)
 
+std::vector<Double_t> Fitter(TH1F * histo, Double_t range)
+{
+	const double sqrt2ln2 = 1.17741002251547;
+
+	TSpectrum *search_peak = new TSpectrum(1);
+
+	int found_peak = search_peak->Search(histo, 1, "", 0.5);
+
+	// Retrieving X positions and print them out to std output
+
+	Double_t  x_peak = search_peak->GetPositionX()[0];
+	Double_t  y_peak = search_peak->GetPositionY()[0];
+
+	TF1 *GausPeak = new TF1("GPeak","gaus", x_peak-range, x_peak+range);
+	//GausPeak->SetParameter(0,y_peak);
+	//GausPeak->SetParLimits(0,y_peak-6*y_peak/100,y_peak+1*y_peak/100);
+	//GausPeak->SetParameter(1,x_peak);
+
+  histo->Fit(GausPeak,"RNME");
+
+	x_peak         = GausPeak->GetParameter(1);
+	y_peak         = GausPeak->GetParameter(0);
+	Double_t Sigma = GausPeak->GetParameter(2);
+	Double_t SigmaSig = GausPeak->GetParError(2);
+	Double_t FWHM    = 2*sqrt2ln2*Sigma;
+	Double_t FWHMsig = 2*sqrt2ln2*SigmaSig;
+
+	std::vector<Double_t> FitResult;
+  FitResult.push_back(FWHM);
+  FitResult.push_back(FWHMsig);
+
+	return FitResult;
+
+}
+
 void read_opt(string filename)
 {
 
@@ -38,25 +73,8 @@ void read_opt(string filename)
 
   branch->SetAddress(&opt_sett);
 
-	std::vector<TCanvas * > Canvas;
-	//TCanvas * c = 0;
-
-	for (size_t i = 0; i < n_ev; i++)
-  {
-    branch->GetEntry(i);
-
-		//get parameters
-		float Fraction = opt_sett->factor;
-		int   Delay    = opt_sett->delay;
-		int   ZCL      = opt_sett->zcl;
-
-		TCanvas * c = new TCanvas(Form("Canvas %i", i),Form("Frac%.2f_Del%i_Zcl%i", Fraction, Delay, ZCL), 1280,800);
-
-		Canvas.push_back(c);
-	}
-
+  TNtupleD *nt = new TNtupleD("FWHM result","FWHM","Frac:Del:ZCL:FWHM:FWHMsig");
 	TH1F * Time = 0;
-	TH2F * TimeVsAmp = 0;
 
   for (size_t i = 0; i < n_ev; i++)
   {
@@ -67,34 +85,31 @@ void read_opt(string filename)
 		int   Delay    = opt_sett->delay;
 		int   ZCL      = opt_sett->zcl;
 
-		Time      = new TH1F("Time"       , Form("Frac%.2f_Del%i_Zcl%i_Timing", Fraction, Delay, ZCL), 1000, -10, 10);
-		TimeVsAmp = new TH2F("Time Vs Amp", Form("Frac%.2f_Del%i_Zcl%i_TimVsAmp", Fraction, Delay, ZCL), 1000, 0, 500, 1000, -10, 10);
-
-		Time->GetXaxis()->SetTitle("Timing [ns]");
-  	Time->GetYaxis()->SetTitle("Count");
-
-		TimeVsAmp->GetXaxis()->SetTitle("Energy [keV]");
-  	TimeVsAmp->GetYaxis()->SetTitle("Timing [ns]");
+		Time = new TH1F("Time", Form("Frac%.2f_Del%i_Zcl%i_Timing", Fraction, Delay, ZCL), 1000, -10, 10);
 
 
     for (size_t j = 0; j < opt_sett->TimeA.size() ; j++)
 		{
 			Time->Fill(opt_sett->TimeA[j]-opt_sett->TimeB[j]);
-			TimeVsAmp->Fill(opt_sett->Energy[j],opt_sett->TimeA[j]-opt_sett->TimeB[j]);
+
 		}
 
-		Canvas[i]->Divide(2,1);
-
-		Canvas[i]->cd(1);
-		Time->Draw();
-
-		Canvas[i]->cd(2);
-		TimeVsAmp->Draw("COLZ");
-
-		Canvas[i]->Update();
+		std::vector<Double_t> v = Fitter(Time,0.55);
+		nt->Fill(Fraction,Delay,ZCL,v[0],v[1]);
 
   }
 
+  TFile *OutFile=new TFile("FWHMntuple.root", "RECREATE");
+
+	nt->Print();
+
+	TCanvas * c = new TCanvas("c","Fraction vs FWHM",1280,720);
+	c->cd();
+	nt->Draw("Frac:FWHM");
+	c->Update();
+	nt->Write();
+	OutFile->Write();
+	OutFile->Close();
 
   return ;
 }
