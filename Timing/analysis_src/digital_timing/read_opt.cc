@@ -200,5 +200,30 @@ void read_opt(string filename)
 	FWHMvsFraction_mg->Draw("A*L");
 	FWHMvsFraction_Canvas->Update();
 
+	//2-D surface plot
+	Float_t Frac_step  = Frac_scanned[1]-Frac_scanned[0];
+	Float_t Frac_start = Frac_scanned[0]-0.5*Frac_step;
+	Float_t Frac_stop  = Frac_scanned[Frac_scanned.size()-1]+0.5*Frac_step;
+
+	Float_t Del_step  = Del_scanned[1] -Del_scanned[0];
+	Float_t Del_start = Del_scanned[0]-0.5*Del_step;
+	Float_t Del_stop  = Del_scanned[Del_scanned.size()-1]+0.5*Del_step;
+
+	TCanvas * FWHM_surf = new TCanvas("FWHM_surf", "FWHM surface plot",1280,720);
+
+	TH2D * FWHM_opt = new TH2D("surface plot", "2-D fraction vs delay",Frac_scanned.size(),Frac_start,Frac_stop,Del_scanned.size(),Del_start,Del_stop);
+
+	for (size_t i = 0; i < Del_scanned.size(); i++) {
+
+		for (size_t k = 0; k < Frac.size(); k++) {
+			if (Zcl[k]==0 && Del[k]==Del_scanned[i]){
+				FWHM_opt->Fill(Frac[k],Del[k],FWHM[k]);
+				cout<<Frac[k]<<" "<<Del[k]<<" "<<FWHM[k]<<endl;           //debug
+			}
+		}
+	}
+  FWHM_surf->cd();
+	FWHM_opt->Draw("COLZ");
+	FWHM_surf->Update();
 	return ;
 }
