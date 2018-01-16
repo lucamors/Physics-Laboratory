@@ -20,16 +20,20 @@ double peak(double *x, double *par)
        else {return gaus;}
 }
 
-void del_opt(string filename)
+TCanvas * del_opt(string filename)
 {
+
   // Retrieving ROOT spectra
   TFile * input_file = new TFile(filename.c_str());
 
+
+  TCanvas * canv = new TCanvas(filename.c_str(),filename.c_str());
+
   TH1F * TAC_spectrum = (TH1F*) input_file->Get("ch2");
-
+  TAC_spectrum->SetTitle(filename.c_str());
   // TAC time calibration
-
-  TAC_spectrum->GetXaxis()->Set(1000,-3.18588, -3.18588+0.000735898*65536);
+  int n_bins = 1000;
+  TAC_spectrum->GetXaxis()->Set(n_bins,-1.19, -1.19+0.000735898*65536);
 
   // TSpectrum Peak Search
 
@@ -42,9 +46,17 @@ void del_opt(string filename)
   Double_t * x_pos_peaks = search_peaks->GetPositionX();
   Double_t * y_peak = search_peaks->GetPositionY();
 
+  cout << "x-pos -> " << *x_pos_peaks << endl;
+
+  Double_t shift = -*x_pos_peaks;
+  double max = TAC_spectrum->GetBinCenter(n_bins);
+  double min = TAC_spectrum->GetBinCenter(0);
+
+  TAC_spectrum->GetXaxis()->SetLimits(min+shift,max+shift);
+  TAC_spectrum->GetXaxis()->SetRangeUser(-3,3);
   // FWHM parameters declaration
 
-  double peakmax=x_pos_peaks[0];
+  double peakmax=0;
   double peakheight= y_peak[0];
   double par0;
   double par1;
@@ -111,9 +123,11 @@ void del_opt(string filename)
   if(checkR==1 && checkL==1) FWHMsig=(FWHM*par2sig)/par2;
 
   // Print to std output the FWHM
-  std::cout << "FWHM [ns]--> " << FWHM << "\n"
+  ofstream myfile;
+  myfile.open("FWHM.txt",std::ios_base::app);
+  myfile << filename << "\n" << "FWHM [ns]--> " << FWHM << "\n"
             << "Error [ns]--> " << FWHMsig << endl;
 
 
-  return ;
+  return canv;
 }
