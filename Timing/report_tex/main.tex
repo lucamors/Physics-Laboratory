@@ -189,14 +189,13 @@ p1     &  0.000736   $\pm$  0.000001\\
 \end{minipage}
 
 \end{figure}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.8\textwidth]{tac_calibrato}
-\caption{Calibrated TAC spectrum. }
-\label{fig: calibrated TAC}
-\end{figure}
-\clearpage
+%
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=0.8\textwidth]{tac_calibrato}
+%\caption{Calibrated TAC spectrum. }
+%\label{fig: calibrated TAC}
+%\end{figure}
 
 \section*{External delay optimization}
 
@@ -218,7 +217,7 @@ In order to study the time resolution dependence as a function of the energy we 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width = 0.9\textwidth]{ThresholdTAC_FWHMvs2Ddist}
+\includegraphics[width = 1\textwidth]{ThresholdTAC_FWHMvs2Ddist}
 \caption{Lower energy threshold.}
 \label{Fig: lower energy thr}
 \end{figure}
@@ -253,7 +252,12 @@ In order to study the time resolution dependence as a function of the energy we 
 \includegraphics[width=0.8\textwidth]{TACoverlayed_dist}
 \caption{TAC distribution in the four different positions.}
 \end{figure}
-
+ 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{Speed_fit}
+\caption{Position vs Time (the angular coefficient is c/2).}
+\end{figure}
 \section*{Digital Timing}
 
 We can perform a digital timing that reconstructs all the analog chain using software. In order to do so we need the signal waveforms provided by the DT5751 CAEN digitizer\footnote{with a sampling rate of 1 GS/s}.
@@ -264,13 +268,17 @@ The digitized waveform then is manipulated in order to obtain a bipolar signal (
 \caption{Digital waveforms manipulations used to get the bipolar signal}
 \label{Fig: digital waveform manipulations}
 \end{figure}
+Then troughtout an algorithms we have to find the zero of the signal that is the time that we associate to the event.
+
+\medskip
+descrizione dell'algoritmo e del fit c2 etc etc
+\medskip
 
 \noindent The bipolar signal shape depends on two parameter that we need to tune in order to optimize the time resolution:
 \begin{itemize}
 \item Fraction
 \item Delay
 \end{itemize}
-
 
 
 \end{document}
