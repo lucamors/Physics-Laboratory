@@ -75,7 +75,7 @@ TH1F * ReadData(string infile_name , int ch){
     histo_ch_1->GetXaxis()->SetTitle("Energy [keV]");
   	histo_ch_1->GetYaxis()->SetTitle("Count");
     histo_ch_2->GetXaxis()->SetTitle("TAC [ns]");
-  	histo_ch_2->GetYaxis()->SetTitle("Count");
+  	histo_ch_2->GetYaxis()->SetTitle("Count [n.u.]");
 
 	  histo_ch_0->SetStats(kFALSE);
     histo_ch_1->SetStats(kFALSE);
@@ -119,24 +119,103 @@ void Overlay(string infile_name_0, string infile_name_1, string infile_name_2, s
     TH1F * histo_3 = ReadData(infile_name_3,2);
 
 
-    
+
     histo_0->Scale(1/histo_0->GetEntries());
 		histo_1->Scale(1/histo_1->GetEntries());
 		histo_2->Scale(1/histo_2->GetEntries());
-
 		histo_3->Scale(1/histo_3->GetEntries());
-    
+
 
     TCanvas * C = new TCanvas("c0","c0", 1920, 1080);
-
+		histo_0->GetXaxis()->SetRangeUser(10,30);
+		histo_0->GetYaxis()->SetRangeUser(0,0.035);
     histo_0->SetLineColor(kRed);
 		histo_0->Draw("SAME");
     histo_1->SetLineColor(kGreen);
     histo_1->Draw("SAME");
     histo_2->SetLineColor(kOrange);
     histo_2->Draw("SAME");
-    histo_3->SetLineColor(kBlue);\
+    histo_3->SetLineColor(kBlue);
     histo_3->Draw("SAME");
 
+		TF1 *GausPeak_0 = new TF1("GPeak_0","gaus", 22.5, 26.5);
+		histo_0->Fit(GausPeak_0,"RN");
+
+		TF1 *GausPeak_1 = new TF1("GPeak_1","gaus", 19, 23);
+		histo_1->Fit(GausPeak_1,"RN");
+
+		TF1 *GausPeak_2 = new TF1("GPeak_2","gaus", 15.6, 19.6);
+		histo_2->Fit(GausPeak_2,"RN");
+
+		TF1 *GausPeak_3 = new TF1("GPeak_3","gaus", 12.6, 16.6);
+		histo_3->Fit(GausPeak_3,"RN");
+
+		GausPeak_0->SetLineColor(kRed+2);
+		GausPeak_0->SetLineWidth(3);
+		GausPeak_0->SetLineStyle(9);
+		GausPeak_0->Draw("SAME");
+
+		GausPeak_1->SetLineColor(kGreen+4);
+		GausPeak_1->SetLineWidth(3);
+		GausPeak_1->SetLineStyle(9);
+		GausPeak_1->Draw("SAME");
+
+		GausPeak_2->SetLineColor(kOrange+4);
+		GausPeak_2->SetLineWidth(3);
+		GausPeak_2->SetLineStyle(9);
+		GausPeak_2->Draw("SAME");
+
+		GausPeak_3->SetLineColor(kBlue+3);
+		GausPeak_3->SetLineWidth(3);
+		GausPeak_3->SetLineStyle(9);
+		GausPeak_3->Draw("SAME");
+
+		TArrow *ar_0 = new TArrow(GausPeak_0->GetParameter(1),0.025,GausPeak_1->GetParameter(1),0.025,0.005,"<|>");
+		        ar_0->Draw();
+
+		TArrow *ar_1 = new TArrow(GausPeak_1->GetParameter(1),0.025,GausPeak_2->GetParameter(1),0.025,0.005,"<|>");
+		        ar_1->Draw();
+
+		TArrow *ar_2 = new TArrow(GausPeak_2->GetParameter(1),0.025,GausPeak_3->GetParameter(1),0.025,0.005,"<|>");
+		        ar_2->Draw();
+
+		TLine  *ln_0 = new TLine(GausPeak_0->GetParameter(1),0,GausPeak_0->GetParameter(1),0.035);
+            ln_0->SetLineStyle(7);
+		        ln_0->Draw();
+						TLine  *ln_1 = new TLine(GausPeak_1->GetParameter(1),0,GausPeak_1->GetParameter(1),0.035);
+				            ln_1->SetLineStyle(7);
+						        ln_1->Draw();
+										TLine  *ln_2 = new TLine(GausPeak_2->GetParameter(1),0,GausPeak_2->GetParameter(1),0.035);
+														ln_2->SetLineStyle(7);
+														ln_2->Draw();
+														TLine  *ln_3 = new TLine(GausPeak_3->GetParameter(1),0,GausPeak_3->GetParameter(1),0.035);
+																		ln_3->SetLineStyle(7);
+																		ln_3->Draw();
+
+																ofstream temp("temp.dat");
+																temp<<GausPeak_3->GetParameter(1)<<" 0 "<<GausPeak_3->GetParError(1)<<"  0.144338"<<endl;
+																temp<<GausPeak_2->GetParameter(1)<<" 42.5 "<<GausPeak_2->GetParError(1)<<" 0.144338"<<endl;
+																temp<<GausPeak_1->GetParameter(1)<<" 92.5 "<<GausPeak_1->GetParError(1)<<" 0.144338"<<endl;
+																temp<<GausPeak_0->GetParameter(1)<<" 142.5 "<<GausPeak_0->GetParError(1)<<" 0.144338"<<endl;
+																temp.close();
+
+                                TCanvas *Fit = new TCanvas("fit","fit", 1920, 1080);
+																TGraphErrors *Graph = new TGraphErrors("temp.dat","%lg%lg%lg%lg");
+																Graph->GetXaxis()->SetTitle("TAC [ns]");
+																Graph->GetYaxis()->SetTitle("Source position [cm]");
+																Graph->GetXaxis()->SetLimits(10, 29);
+																Graph->GetYaxis()->SetLimits(-5, 150);
+
+																Graph->GetYaxis()->SetTitleSize(0.06);
+																Graph->GetYaxis()->SetTitleOffset(0.8);
+																Graph->GetYaxis()->SetLabelSize(0.05);
+																Graph->GetYaxis()->SetNdivisions(502);
+
+																Graph->GetXaxis()->SetTitleSize(0.06);
+																Graph->GetXaxis()->SetLabelSize(0.04);
+																Graph->GetXaxis()->SetTitleOffset(0.75);
+
+																Graph->SetLineWidth(1);
+																Graph->Draw();
   return ;
 }

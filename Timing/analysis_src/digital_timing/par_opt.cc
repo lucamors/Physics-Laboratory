@@ -166,11 +166,11 @@ void par_opt(string input_file_name)
 
 	alg_statistics << "#Frac	del	zcl	processed	time\n";
 
-    for(float Frac = 0.2; Frac<0.35; Frac+=0.05)
+    for(float Frac = 0.25; Frac<0.65; Frac+=0.05)
     {
-      for(int Del=3; Del<7; Del++)
+      for(int Del=4; Del<16; Del++)
       {
-        for(int ZCL=-5; ZCL<6; ZCL+=1)
+        for(int ZCL=0; ZCL<1; ZCL+=1)
         {
 
 					alg_statistics << Frac << "	" << Del << "	" << ZCL << "	";
@@ -183,7 +183,7 @@ void par_opt(string input_file_name)
           for (int counter = 0; counter < number_of_ev; counter++)
           {
 
-						if( counter > 50000) break; // debugging purpose
+						//if( counter > 50000) break; // debugging purpose
 
             if ( counter % (number_of_ev/100) == 0)
             {
@@ -237,6 +237,7 @@ void par_opt(string input_file_name)
               }
 
               // Digital Timing
+							if((event_ch_B->qlong*0.0748945-54.25) < 190 && (event_ch_B->qlong*0.0748945-54.25) > 240 ) continue;
               if(Thresh_ch_A>0 && Thresh_ch_B>0)
               {
                 opt->TimeA.push_back(TimingC2(DataVect_ch_A, Buffer, Frac, Del, ZCL, BaseLine_ch_A, bsRange));
