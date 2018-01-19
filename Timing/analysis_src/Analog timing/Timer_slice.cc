@@ -215,13 +215,16 @@ void Timer(string infile_name)
   	TACVsAmp1->GetYaxis()->SetTitle("Analog Timing [ns]");
 
     //Timing resolution as function of energy
-    TH1F * TAC_Gate_0 = new TH1F("Energy 0-200 keV"   ,"Energy 0-200 keV"   ,1000, 0, 30);
-    TH1F * TAC_Gate_1 = new TH1F("Energy 200-400 keV" ,"Energy 200-400 keV" ,1000, 0, 30);
-    TH1F * TAC_Gate_2 = new TH1F("Energy 400-600 keV" ,"Energy 400-600 keV" ,1000, 0, 30);
-    TH1F * TAC_Gate_3 = new TH1F("Energy 600-800 keV" ,"Energy 600-800 keV" ,1000, 0, 30);
-    TH1F * TAC_Gate_4 = new TH1F("Energy 800-1000 keV","Energy 800-1000 keV",1000, 0, 30);
-		TH1F * TAC_Gate_5 = new TH1F("Energy 1000-1200 keV","Energy 1000-1200 keV",1000, 0, 30);
-
+    TH1F * TAC_Gate_0 = new TH1F("Energy 100-200 keV"   ,"Energy 100-200 keV"   ,1000, 0, 30);
+    TH1F * TAC_Gate_1 = new TH1F("Energy 200-300 keV" ,"Energy 200-300 keV" ,1000, 0, 30);
+    TH1F * TAC_Gate_2 = new TH1F("Energy 300-400 keV" ,"Energy 300-400 keV" ,1000, 0, 30);
+    TH1F * TAC_Gate_3 = new TH1F("Energy 400-500 keV" ,"Energy 400-500 keV" ,1000, 0, 30);
+    TH1F * TAC_Gate_4 = new TH1F("Energy 500-600 keV","Energy 500-600 keV",1000, 0, 30);
+		TH1F * TAC_Gate_5 = new TH1F("Energy 600-700 keV","Energy 600-700 keV",1000, 0, 30);
+    TH1F * TAC_Gate_6 = new TH1F("Energy 700-800 keV","Energy 700-800 keV",1000, 0, 30);
+    TH1F * TAC_Gate_7 = new TH1F("Energy 800-900 keV","Energy 800-900 keV",1000, 0, 30);
+    TH1F * TAC_Gate_8 = new TH1F("Energy 900-1000 keV","Energy 900-1000 keV",1000, 0, 30);
+    TH1F * TAC_Gate_9 = new TH1F("Energy 1000-1100 keV","Energy 1000-1100 keV",1000, 0, 30);
 
     TAC_Gate_0->GetXaxis()->SetTitle("TAC [ns]");
   	TAC_Gate_0->GetYaxis()->SetTitle("Count");
@@ -235,6 +238,14 @@ void Timer(string infile_name)
   	TAC_Gate_4->GetYaxis()->SetTitle("Count");
 		TAC_Gate_5->GetXaxis()->SetTitle("TAC [ns]");
 		TAC_Gate_5->GetYaxis()->SetTitle("Count");
+    TAC_Gate_6->GetXaxis()->SetTitle("TAC [ns]");
+    TAC_Gate_6->GetYaxis()->SetTitle("Count");
+    TAC_Gate_7->GetXaxis()->SetTitle("TAC [ns]");
+    TAC_Gate_7->GetYaxis()->SetTitle("Count");
+    TAC_Gate_8->GetXaxis()->SetTitle("TAC [ns]");
+    TAC_Gate_8->GetYaxis()->SetTitle("Count");
+    TAC_Gate_9->GetXaxis()->SetTitle("TAC [ns]");
+    TAC_Gate_9->GetYaxis()->SetTitle("Count");
 
 	  TAC_Gate_0->SetStats(kFALSE);
     TAC_Gate_1->SetStats(kFALSE);
@@ -242,6 +253,10 @@ void Timer(string infile_name)
     TAC_Gate_3->SetStats(kFALSE);
     TAC_Gate_4->SetStats(kFALSE);
     TAC_Gate_5->SetStats(kFALSE);
+    TAC_Gate_6->SetStats(kFALSE);
+    TAC_Gate_7->SetStats(kFALSE);
+    TAC_Gate_8->SetStats(kFALSE);
+    TAC_Gate_9->SetStats(kFALSE);
 
 		Double_t TAC      = 0;
     Double_t Energy_0 = 0;
@@ -261,19 +276,23 @@ void Timer(string infile_name)
   		TACVsAmp0->Fill(Energy_0, TAC);
       TACVsAmp1->Fill(Energy_1, TAC);
 
-      if(Energy_0 > 0   && Energy_0 <= 200 ) TAC_Gate_0->Fill(TAC);
-      if(Energy_0 > 200 && Energy_0 <= 400 ) TAC_Gate_1->Fill(TAC);
-      if(Energy_0 > 400 && Energy_0 <= 600 ) TAC_Gate_2->Fill(TAC);
-      if(Energy_0 > 600 && Energy_0 <= 800 ) TAC_Gate_3->Fill(TAC);
-      if(Energy_0 > 800 && Energy_0 <= 1000) TAC_Gate_4->Fill(TAC);
-			if(Energy_0 > 1000 && Energy_0 <= 1200) TAC_Gate_5->Fill(TAC);
+      if(Energy_0 > 100   && Energy_0 <= 200 ) TAC_Gate_0->Fill(TAC);
+      if(Energy_0 > 200 && Energy_0 <= 300 ) TAC_Gate_1->Fill(TAC);
+      if(Energy_0 > 300 && Energy_0 <= 400 ) TAC_Gate_2->Fill(TAC);
+      if(Energy_0 > 400 && Energy_0 <= 500 ) TAC_Gate_3->Fill(TAC);
+      if(Energy_0 > 500 && Energy_0 <= 600) TAC_Gate_4->Fill(TAC);
+			if(Energy_0 > 600 && Energy_0 <= 700) TAC_Gate_5->Fill(TAC);
+      if(Energy_0 > 700 && Energy_0 <= 800) TAC_Gate_6->Fill(TAC);
+      if(Energy_0 > 800 && Energy_0 <= 900) TAC_Gate_7->Fill(TAC);
+      if(Energy_0 > 900 && Energy_0 <= 1000) TAC_Gate_8->Fill(TAC);
+      if(Energy_0 > 1000 && Energy_0 <= 1100) TAC_Gate_9->Fill(TAC);
 
   		counter++;
 
   	}
 
 		TCanvas * c0 = new TCanvas("c0","c0", 1920, 1080);
-		c0->Divide(3,2);
+		c0->Divide(5,2);
 
 		std::vector<Double_t> my_vec_0 = Fitter(TAC_Gate_0, 0.6, c0, 1);
 		std::vector<Double_t> my_vec_1 = Fitter(TAC_Gate_1, 0.5, c0, 2);
@@ -281,16 +300,25 @@ void Timer(string infile_name)
 		std::vector<Double_t> my_vec_3 = Fitter(TAC_Gate_3, 0.5, c0, 4);
 		std::vector<Double_t> my_vec_4 = Fitter(TAC_Gate_4, 0.5, c0, 5);
     std::vector<Double_t> my_vec_5 = Fitter(TAC_Gate_5, 0.5, c0, 6);
+    std::vector<Double_t> my_vec_6 = Fitter(TAC_Gate_6, 0.5, c0, 7);
+    std::vector<Double_t> my_vec_7 = Fitter(TAC_Gate_7, 0.5, c0, 8);
+    std::vector<Double_t> my_vec_8 = Fitter(TAC_Gate_8, 0.5, c0, 9);
+    std::vector<Double_t> my_vec_9 = Fitter(TAC_Gate_9, 0.5, c0, 10);
 
     c0->Update();
 		ofstream temp("temp.dat");
 
-		temp<<"100 "<<my_vec_0[0]<<" "<<my_vec_0[1]<<endl;
-    temp<<"300 "<<my_vec_1[0]<<" "<<my_vec_1[1]<<endl;
-    temp<<"500 "<<my_vec_2[0]<<" "<<my_vec_2[1]<<endl;
-    temp<<"700 "<<my_vec_3[0]<<" "<<my_vec_3[1]<<endl;
-    temp<<"900 "<<my_vec_4[0]<<" "<<my_vec_4[1]<<endl;
-		temp<<"1100 "<<my_vec_5[0]<<" "<<my_vec_5[1]<<endl;
+		temp<<"150 "<<my_vec_0[0]<<" "<<my_vec_0[1]<<endl;
+    temp<<"250 "<<my_vec_1[0]<<" "<<my_vec_1[1]<<endl;
+    temp<<"350 "<<my_vec_2[0]<<" "<<my_vec_2[1]<<endl;
+    temp<<"450 "<<my_vec_3[0]<<" "<<my_vec_3[1]<<endl;
+    temp<<"550 "<<my_vec_4[0]<<" "<<my_vec_4[1]<<endl;
+		temp<<"650 "<<my_vec_5[0]<<" "<<my_vec_5[1]<<endl;
+    temp<<"750 "<<my_vec_6[0]<<" "<<my_vec_6[1]<<endl;
+    temp<<"850 "<<my_vec_7[0]<<" "<<my_vec_7[1]<<endl;
+    temp<<"950 "<<my_vec_8[0]<<" "<<my_vec_8[1]<<endl;
+    temp<<"1050 "<<my_vec_9[0]<<" "<<my_vec_9[1]<<endl;
+
 
 		temp.close();
 
@@ -307,36 +335,47 @@ void Timer(string infile_name)
     lowerPad->SetGridx();
     upperPad->SetGridx();
 
-    lowerPad->SetTickx(2);
+    lowerPad->SetTickx(1);
     upperPad->cd();
 
 
-         TGraphErrors *Graph = new TGraphErrors("temp.dat","%lg%lg%lg");
-         Graph->GetXaxis()->SetTitle("Energy [KeV]");
-         Graph->GetYaxis()->SetTitle("FWHM [ns]");
-         Graph->GetXaxis()->SetLimits(0,1400);
-         Graph->GetYaxis()->SetLimits(0.53,0.67);
+   TGraphErrors *Graph = new TGraphErrors("temp.dat","%lg%lg%lg");
+   Graph->GetXaxis()->SetTitle("Energy [KeV]");
+   Graph->GetYaxis()->SetTitle("FWHM [ns]");
+   Graph->GetXaxis()->SetLimits(0,1400);
+   Graph->GetYaxis()->SetLimits(0.53,0.67);
 
-         Graph->GetYaxis()->SetTitleSize(0.06);
-         Graph->GetYaxis()->SetTitleOffset(0.8);
-         Graph->GetYaxis()->SetLabelSize(0.05);
-         Graph->GetYaxis()->SetNdivisions(502);
+   Graph->GetYaxis()->SetTitleSize(0.06);
+   Graph->GetYaxis()->SetTitleOffset(0.8);
+   Graph->GetYaxis()->SetLabelSize(0.05);
+   Graph->GetYaxis()->SetNdivisions(5);
 
-         Graph->GetXaxis()->SetTitleSize(0.06);
-         Graph->GetXaxis()->SetLabelSize(0.04);
-         Graph->GetXaxis()->SetTitleOffset(0.75);
+   Graph->GetXaxis()->SetNdivisions(14);
 
-         Graph->SetLineWidth(1);
-         Graph->Draw();
+   Graph->GetXaxis()->SetTitleSize(0.06);
+   Graph->GetXaxis()->SetLabelSize(0.04);
+   Graph->GetXaxis()->SetTitleOffset(0.75);
 
-         lowerPad->cd();
+   Graph->SetTitle("");
 
-				 gStyle->SetOptStat(false);
-				 double max = TACVsAmp0->GetYaxis()->GetBinCenter(1000);
-				 double min = TACVsAmp0->GetYaxis()->GetBinCenter(0);
-				 TACVsAmp0->GetYaxis()->SetLimits(min-19.5,max-19.5);
-				 TACVsAmp0->GetYaxis()->SetRangeUser(-7,7);
-         TACVsAmp0->Draw("COLZ");
+   Graph->SetFillStyle(0);
+   Graph->SetLineColor(kBlue);
+   Graph->SetMarkerStyle(20);
+   Graph->SetMarkerColor(kRed);
+   Graph->SetLineWidth(2);
+   Graph->Draw();
+
+   lowerPad->cd();
+
+	 gStyle->SetOptStat(false);
+	 double max = TACVsAmp0->GetYaxis()->GetBinCenter(1000);
+	 double min = TACVsAmp0->GetYaxis()->GetBinCenter(0);
+	 TACVsAmp0->GetYaxis()->SetLimits(min-19.5,max-19.5);
+	 TACVsAmp0->GetYaxis()->SetRangeUser(-7,7);
+   TACVsAmp0->GetXaxis()->SetNdivisions(14);
+   TACVsAmp0->SetOptStat(kFALSE);
+   TACVsAmp0->SetTitle("");
+   TACVsAmp0->Draw("COLZ");
 
   return ;
 }
