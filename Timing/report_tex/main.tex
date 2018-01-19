@@ -255,7 +255,21 @@ In order to study the time resolution dependence as a function of the energy we 
 \end{figure}
 
 \section*{Digital Timing}
-\lipsum[1]
+
+We can perform a digital timing that reconstructs all the analog chain using software. In order to do so we need the signal waveforms provided by the DT5751 CAEN digitizer\footnote{with a sampling rate of 1 GS/s}.
+The digitized waveform then is manipulated in order to obtain a bipolar signal (Fig.\ref{Fig: digital waveform manipulations}).
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{digital_waveform}
+\caption{Digital waveforms manipulations used to get the bipolar signal}
+\label{Fig: digital waveform manipulations}
+\end{figure}
+
+\noindent The bipolar signal shape depends on two parameter that we need to tune in order to optimize the time resolution:
+\begin{itemize}
+\item Fraction
+\item Delay
+\end{itemize}
 
 
 
