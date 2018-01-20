@@ -37,21 +37,20 @@ int main(int argc, char const *argv[])
     std::vector<Photon*> gammas = events_list[i]->get_gamma_configuration();
 
     // Saving file
-    test << gammas[0]->get_momentum().get_x()/gammas[0]->get_totalmomentum() << " "
-         << gammas[0]->get_momentum().get_y()/gammas[0]->get_totalmomentum() << " "
-         << gammas[0]->get_momentum().get_z()/gammas[0]->get_totalmomentum() << " "
+    test << gammas[0]->get_momentum()[0]/gammas[0]->get_totalmomentum() << " "
+         << gammas[0]->get_momentum()[1]/gammas[0]->get_totalmomentum() << " "
+         << gammas[0]->get_momentum()[2]/gammas[0]->get_totalmomentum() << " "
          << std::endl;
-    test << gammas[1]->get_momentum().get_x()/gammas[1]->get_totalmomentum() << " "
-         << gammas[1]->get_momentum().get_y()/gammas[1]->get_totalmomentum() << " "
-         << gammas[1]->get_momentum().get_z()/gammas[1]->get_totalmomentum() << " "
+    test << gammas[1]->get_momentum()[0]/gammas[1]->get_totalmomentum() << " "
+         << gammas[1]->get_momentum()[1]/gammas[1]->get_totalmomentum() << " "
+         << gammas[1]->get_momentum()[2]/gammas[1]->get_totalmomentum() << " "
          << std::endl;
-    test << gammas[2]->get_momentum().get_x()/gammas[1]->get_totalmomentum() << " "
-         << gammas[2]->get_momentum().get_y()/gammas[1]->get_totalmomentum() << " "
-         << gammas[2]->get_momentum().get_z()/gammas[1]->get_totalmomentum() << " "
+    test << gammas[2]->get_momentum()[0]/gammas[1]->get_totalmomentum() << " "
+         << gammas[2]->get_momentum()[1]/gammas[1]->get_totalmomentum() << " "
+         << gammas[2]->get_momentum()[2]/gammas[1]->get_totalmomentum() << " "
          << std::endl;
 
   }
-
 
   std::cout << "ok!" << '\n';
 

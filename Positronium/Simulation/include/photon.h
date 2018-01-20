@@ -5,13 +5,13 @@
 #ifndef PHOTON_H
 #define PHOTON_H
 
-#include <vector_3.h>
+#include<armadillo>
 
 class Photon
 {
   private:
 
-    VECTOR_3D momentum;
+    arma::vec momentum;
     double total_momentum;
     double energy;
 
@@ -19,17 +19,17 @@ class Photon
 
     // Constructor & Destructor
     Photon();
-    Photon(VECTOR_3D, double);
+    Photon(arma::vec, double);
 
     // Getter Methods
 
-    VECTOR_3D get_momentum();
+    arma::vec get_momentum();
     double get_totalmomentum();
     double get_energy();
 
     // Setter Methods
 
-    void set_momentum(VECTOR_3D);
+    void set_momentum(arma::vec);
     void set_energy(double);
 
 };

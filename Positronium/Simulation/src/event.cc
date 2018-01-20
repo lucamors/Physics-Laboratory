@@ -5,9 +5,9 @@
 #include <string>
 #include <cmath>
 #include<chrono>
-
+#include<armadillo>
 #include <event.h>
-#include <vector_3.h>
+
 
 #include "TH1F.h"
 #include "TFile.h"
@@ -77,7 +77,7 @@ void Event::generate_gamma(Photon * gamma)
 
   double s_energy;
   double theta, phi; // Spherical coordinate
-  VECTOR_3D s_momentum;
+  arma::vec s_momentum(3);
 
   // Generating the first gamma
   s_energy = energy_spectrum->GetRandom();
@@ -88,9 +88,9 @@ void Event::generate_gamma(Photon * gamma)
   phi = acos(1 - 2 * uniform01(generator));
 
   // Mapping theta-phi into spherical coordinates
-  s_momentum.set_x(s_energy * 1000 * (1.0/C) * sin(phi) * cos(theta));
-  s_momentum.set_y(s_energy * 1000 * (1.0/C) * sin(phi) * sin(theta));
-  s_momentum.set_z( s_energy * 1000 * (1.0/C) * cos(phi));
+  s_momentum[0] = (s_energy * 1000 * (1.0/C) * sin(phi) * cos(theta));
+  s_momentum[1] = (s_energy * 1000 * (1.0/C) * sin(phi) * sin(theta));
+  s_momentum[2] = ( s_energy * 1000 * (1.0/C) * cos(phi));
 
   gamma->set_momentum(s_momentum);
   gamma->set_energy(s_energy);
@@ -102,25 +102,25 @@ void Event::generate_third_gamma()
 {
 
   // Retrieving momentum direction of gamma 1
-  double g1_x = gamma1->get_momentum().get_x();
-  double g1_y = gamma1->get_momentum().get_y();
-  double g1_z = gamma1->get_momentum().get_z();
+  double g1_x = gamma1->get_momentum()[0];
+  double g1_y = gamma1->get_momentum()[1];
+  double g1_z = gamma1->get_momentum()[2];
 
   // Retrieving momentum direction of gamma 2
-  double g2_x = gamma2->get_momentum().get_x();
-  double g2_y = gamma2->get_momentum().get_y();
-  double g2_z = gamma2->get_momentum().get_z();
+  double g2_x = gamma2->get_momentum()[0];
+  double g2_y = gamma2->get_momentum()[1];
+  double g2_z = gamma2->get_momentum()[2];
 
   // Imposing the conservation of the momentum
   double g3_x = -g1_x-g2_x;
   double g3_y = -g1_y-g2_y;
   double g3_z = -g1_z-g2_z;
 
-  VECTOR_3D s_momentum;
+  arma::vec s_momentum(3);
 
-  s_momentum.set_x(g3_x);
-  s_momentum.set_y(g3_y);
-  s_momentum.set_z(g3_z);
+  s_momentum[0] = g3_x;
+  s_momentum[1] = g3_y;
+  s_momentum[2] = g3_z;
 
   gamma3->set_momentum(s_momentum);
 

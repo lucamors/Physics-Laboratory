@@ -8,8 +8,9 @@
 
 #include <vector>
 #include <photon.h>
+#include <armadillo>
+
 #include "TH1F.h"
-#include <vector_3.h>
 
 class Event
 {
