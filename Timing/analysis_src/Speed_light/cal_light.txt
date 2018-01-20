@@ -1,4 +1,14 @@
-14.64	0
-17.61	42.5
-21.03	92.5
-24.45	142.5
+TFitEditor::DoFit - using function PrevFit-2  0x41733d0
+ FCN=4.56354 FROM MIGRAD    STATUS=CONVERGED      25 CALLS          26 TOTAL
+                     EDM=2.5073e-12    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.13260e+02   5.76878e-01   1.15139e-04   6.86145e-07
+   2  p1           1.45418e+01   2.90598e-02   6.93409e-06   9.04383e-05
+Info in <TCanvas::Print>: pdf file /home/andrea/Desktop/Laboratory/Git/Physics_Lab_Reports/Timing/analysis_src/Speed_light/FinalImages/Speed_fit.pdf has been created
+1/1.45418e+01
+(double) 0.068767
+root [3] 1.45418e+01*2
+(double) 29.083600
+root [4] 
+29.083600 +- 0.0290598 cm/ns
