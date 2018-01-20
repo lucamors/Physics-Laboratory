@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  20 JAN 2018 11:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  20 JAN 2018 12:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -937,6 +937,17 @@ Package pdftex.def Info: immagini/gauscfd.pdf  used on input line 12. on input
 line 12.
 Package pdftex.def Info: Requested size: 184.37222pt x 103.7303pt on input line
  12.
+<immagini/SetUp.pdf, id=17, pagebox=cropbox, 1203.70259pt x 677.3664pt>
+File: immagini/SetUp.pdf Graphic file (type pdf)
+<use immagini/SetUp.pdf>
+Package pdftex.def Info: immagini/SetUp.pdf  used on input line 33. on input li
+ne 33.
+Package pdftex.def Info: Requested size: 384.11223pt x 216.15186pt on input lin
+e 33.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 ) (./Section/Calibration.tex
 
 LaTeX Warning: Command \textbullet invalid in math mode on input line 4.
@@ -952,7 +963,7 @@ been already used, duplicate ignored
 l.5 
      [1 <./immagini/gausledge.pdf, page is rotated 90 degrees> <./immagini/gaus
 cfd.pdf, page is rotated 90 degrees>]
-<immagini/d1_spectrum_qlong.pdf, id=116, pagebox=cropbox, 569.12625pt x 387.447
+<immagini/d1_spectrum_qlong.pdf, id=117, pagebox=cropbox, 569.12625pt x 387.447
 5pt>
 File: immagini/d1_spectrum_qlong.pdf Graphic file (type pdf)
 <use immagini/d1_spectrum_qlong.pdf>
@@ -960,7 +971,7 @@ Package pdftex.def Info: immagini/d1_spectrum_qlong.pdf  used on input line 10.
  on input line 10.
 Package pdftex.def Info: Requested size: 172.84932pt x 117.67175pt on input lin
 e 10.
-<immagini/d2_spectrum_qlong.pdf, id=117, pagebox=cropbox, 569.12625pt x 387.447
+<immagini/d2_spectrum_qlong.pdf, id=118, pagebox=cropbox, 569.12625pt x 387.447
 5pt>
 File: immagini/d2_spectrum_qlong.pdf Graphic file (type pdf)
 <use immagini/d2_spectrum_qlong.pdf>
@@ -968,8 +979,8 @@ Package pdftex.def Info: immagini/d2_spectrum_qlong.pdf  used on input line 12.
  on input line 12.
 Package pdftex.def Info: Requested size: 172.84932pt x 117.67175pt on input lin
 e 12.
- [2 <./immagini/d1_spectrum_qlong.pdf, page is rotated 90 degrees> <./immagini/
-d2_spectrum_qlong.pdf, page is rotated 90 degrees>]
+ [2 <./immagini/SetUp.pdf> <./immagini/d1_spectrum_qlong.pdf, page is rotated 9
+0 degrees> <./immagini/d2_spectrum_qlong.pdf, page is rotated 90 degrees>]
 Package epstopdf Info: Source file: <immagini/smeared_spectra.eps>
 (epstopdf)                    date: 2017-11-14 16:53:10
 (epstopdf)                    size: 2029460 bytes
@@ -981,7 +992,7 @@ pdf>
 ps-converted-to.pdf immagini/smeared_spectra.eps>
 (epstopdf)             \includegraphics on input line 20.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/smeared_spectra-eps-converted-to.pdf, id=214, pagebox=cropbox, 569.12
+<immagini/smeared_spectra-eps-converted-to.pdf, id=224, pagebox=cropbox, 569.12
 625pt x 381.425pt>
 File: immagini/smeared_spectra-eps-converted-to.pdf Graphic file (type pdf)
 <use immagini/smeared_spectra-eps-converted-to.pdf>
@@ -1000,7 +1011,7 @@ ed-to.pdf>
 ound-eps-converted-to.pdf immagini/spectra_vs_background.eps>
 (epstopdf)             \includegraphics on input line 33.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/spectra_vs_background-eps-converted-to.pdf, id=216, pagebox=cropbox, 
+<immagini/spectra_vs_background-eps-converted-to.pdf, id=226, pagebox=cropbox, 
 569.12625pt x 387.4475pt>
 File: immagini/spectra_vs_background-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1024,7 +1035,7 @@ ed-to.pdf>
 a_d1-eps-converted-to.pdf immagini/calibrated_spectra_d1.eps>
 (epstopdf)             \includegraphics on input line 43.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/calibrated_spectra_d1-eps-converted-to.pdf, id=249, pagebox=cropbox, 
+<immagini/calibrated_spectra_d1-eps-converted-to.pdf, id=259, pagebox=cropbox, 
 569.12625pt x 387.4475pt>
 File: immagini/calibrated_spectra_d1-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1044,7 +1055,7 @@ ed-to.pdf>
 a_d2-eps-converted-to.pdf immagini/calibrated_spectra_d2.eps>
 (epstopdf)             \includegraphics on input line 45.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/calibrated_spectra_d2-eps-converted-to.pdf, id=250, pagebox=cropbox, 
+<immagini/calibrated_spectra_d2-eps-converted-to.pdf, id=260, pagebox=cropbox, 
 569.12625pt x 387.4475pt>
 File: immagini/calibrated_spectra_d2-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1059,7 +1070,7 @@ ted_spectra_d2-eps-converted-to.pdf>]
 LaTeX Warning: Reference `fig: calibrated TAC' on page 5 undefined on input lin
 e 116.
 
-<immagini/tac_uncalibrated_spectrum.pdf, id=273, pagebox=cropbox, 569.12625pt x
+<immagini/tac_uncalibrated_spectrum.pdf, id=283, pagebox=cropbox, 569.12625pt x
  387.4475pt>
 File: immagini/tac_uncalibrated_spectrum.pdf Graphic file (type pdf)
 <use immagini/tac_uncalibrated_spectrum.pdf>
@@ -1067,7 +1078,7 @@ Package pdftex.def Info: immagini/tac_uncalibrated_spectrum.pdf  used on input
 line 119. on input line 119.
 Package pdftex.def Info: Requested size: 307.29095pt x 209.20671pt on input lin
 e 119.
-<immagini/fit_calibrazione_tac.pdf, id=274, pagebox=cropbox, 569.12625pt x 387.
+<immagini/fit_calibrazione_tac.pdf, id=284, pagebox=cropbox, 569.12625pt x 387.
 4475pt>
 File: immagini/fit_calibrazione_tac.pdf Graphic file (type pdf)
 <use immagini/fit_calibrazione_tac.pdf>
@@ -1084,7 +1095,7 @@ Overfull \hbox (21.6401pt too wide) in paragraph at lines 126--148
 
  <./immagini/tac_uncalibrated_spectrum.pdf, page is rotated 90 degrees> <./imma
 gini/fit_calibrazione_tac.pdf, page is rotated 90 degrees>]
-<immagini/ThresholdTAC_dists.pdf, id=372, pagebox=cropbox, 569.12625pt x 313.17
+<immagini/ThresholdTAC_dists.pdf, id=382, pagebox=cropbox, 569.12625pt x 313.17
 pt>
 File: immagini/ThresholdTAC_dists.pdf Graphic file (type pdf)
 <use immagini/ThresholdTAC_dists.pdf>
@@ -1092,7 +1103,7 @@ Package pdftex.def Info: immagini/ThresholdTAC_dists.pdf  used on input line 14
 . on input line 14.
 Package pdftex.def Info: Requested size: 384.11223pt x 211.37106pt on input lin
 e 14.
-<immagini/ThresholdTAC_FWHMvs2Ddist.pdf, id=373, pagebox=cropbox, 569.12625pt x
+<immagini/ThresholdTAC_FWHMvs2Ddist.pdf, id=383, pagebox=cropbox, 569.12625pt x
  347.2975pt>
 File: immagini/ThresholdTAC_FWHMvs2Ddist.pdf Graphic file (type pdf)
 <use immagini/ThresholdTAC_FWHMvs2Ddist.pdf>
@@ -1100,7 +1111,7 @@ Package pdftex.def Info: immagini/ThresholdTAC_FWHMvs2Ddist.pdf  used on input
 line 21. on input line 21.
 Package pdftex.def Info: Requested size: 384.11223pt x 234.40509pt on input lin
 e 21.
-<immagini/SlicedTACdists.pdf, id=375, pagebox=cropbox, 569.12625pt x 313.17pt>
+<immagini/SlicedTACdists.pdf, id=385, pagebox=cropbox, 569.12625pt x 313.17pt>
 File: immagini/SlicedTACdists.pdf Graphic file (type pdf)
 <use immagini/SlicedTACdists.pdf>
 Package pdftex.def Info: immagini/SlicedTACdists.pdf  used on input line 33. on
@@ -1111,7 +1122,7 @@ e 33.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<immagini/SlicedTAC_FWHMvs2Ddist.pdf, id=376, pagebox=cropbox, 569.12625pt x 34
+<immagini/SlicedTAC_FWHMvs2Ddist.pdf, id=386, pagebox=cropbox, 569.12625pt x 34
 7.2975pt>
 File: immagini/SlicedTAC_FWHMvs2Ddist.pdf Graphic file (type pdf)
 <use immagini/SlicedTAC_FWHMvs2Ddist.pdf>
@@ -1123,7 +1134,7 @@ e 40.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ) (./Section/DigitalTiming.tex
-<immagini/digital_waveform.pdf, id=379, pagebox=cropbox, 569.12625pt x 361.35pt
+<immagini/digital_waveform.pdf, id=389, pagebox=cropbox, 569.12625pt x 361.35pt
 >
 File: immagini/digital_waveform.pdf Graphic file (type pdf)
 <use immagini/digital_waveform.pdf>
@@ -1139,7 +1150,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [7 <./immagini/SlicedTACdists.pdf, page is rotated 90 degrees> <./immagini/Slic
 edTAC_FWHMvs2Ddist.pdf, page is rotated 90 degrees>])
 (./Section/SpeedofLight.tex
-<immagini/TACoverlayed_dist.pdf, id=570, pagebox=cropbox, 569.12625pt x 347.297
+<immagini/TACoverlayed_dist.pdf, id=580, pagebox=cropbox, 569.12625pt x 347.297
 5pt>
 File: immagini/TACoverlayed_dist.pdf Graphic file (type pdf)
 <use immagini/TACoverlayed_dist.pdf>
@@ -1151,27 +1162,21 @@ e 5.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-! LaTeX Error: File `Speed_fit' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.11 ...degraphics[width=0.8\textwidth]{Speed_fit}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<immagini/Speed_fit.pdf, id=581, pagebox=cropbox, 569.12625pt x 347.2975pt>
+File: immagini/Speed_fit.pdf Graphic file (type pdf)
+<use immagini/Speed_fit.pdf>
+Package pdftex.def Info: immagini/Speed_fit.pdf  used on input line 11. on inpu
+t line 11.
+Package pdftex.def Info: Requested size: 307.29095pt x 187.52725pt on input lin
+e 11.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
  [8 <./immagini/digital_waveform.pdf, page is rotated 90 degrees>] [9 <./immagi
-ni/TACoverlayed_dist.pdf, page is rotated 90 degrees>]
+ni/TACoverlayed_dist.pdf, page is rotated 90 degrees> <./immagini/Speed_fit.pdf
+, page is rotated 90 degrees>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
@@ -1188,10 +1193,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 8764 strings out of 492985
- 130567 string characters out of 6132571
- 316730 words of memory out of 5000000
- 12123 multiletter control sequences out of 15000+600000
+ 8775 strings out of 492985
+ 130855 string characters out of 6132571
+ 316816 words of memory out of 5000000
+ 12132 multiletter control sequences out of 15000+600000
  14878 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  46i,10n,49p,662b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1212,10 +1217,10 @@ e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2
 017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/201
 7/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (10 pages, 1662367 bytes).
+Output written on main.pdf (10 pages, 1685598 bytes).
 PDF statistics:
- 732 PDF objects out of 1000 (max. 8388607)
- 377 compressed objects within 4 object streams
- 41 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 787 PDF objects out of 1000 (max. 8388607)
+ 402 compressed objects within 5 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
