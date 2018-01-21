@@ -1,9 +1,14 @@
 #ifndef DETECTOR_H
 #define DETECTOR_H
-
 #include <armadillo>
 
-class Detector
+/*
+*
+* This class implement a simple cylindrical detector shape
+*
+*/
+
+class CylindricalDetector
 {
   private:
 
@@ -13,10 +18,23 @@ class Detector
 
   public:
 
-    Detector();
-    Detector(arma::vec, double);
+    CylindricalDetector(); // to be deleted
+    CylindricalDetector(const &CylindricalDetector);
+    CylindricalDetector(arma::vec, double);
+
+    // Getter Methods
 
     double get_halfaperture();
+
+    // Setter Methods
+
+
+    // Geometrical Methods
+
+    void XRotate(double); // angle in degrees
+    void YRotate(double); // angle in degrees
+    void ZRotate(double); // angle in degrees
+
     bool check_detection(arma::vec );
 
 };

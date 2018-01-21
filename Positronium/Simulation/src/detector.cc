@@ -6,6 +6,9 @@
 #include <random>
 
 CylindricalDetector::CylindricalDetector(){}
+
+
+
 CylindricalDetector::CylindricalDetector(arma::vec x, double r)
 {
   // Setting position & radius
@@ -51,4 +54,35 @@ bool CylindricalDetector::check_detection(arma::vec gamma_direction)
   if ( cos_angle > cos(half_aperture)) { return true; }
 
   return false;
+}
+
+// Geometrical Methods
+
+CylindricalDetector::XRotate(double theta)
+{
+  theta = (theta*M_PI)/180.0;
+
+  arma::mat XR = {{1,0,0},{0,cos(theta), -sin(theta)},{0,sin(theta),cos(theta)}};
+  position = affmul(XR,position);
+}
+
+
+CylindricalDetector::YRotate(double theta)
+{
+
+  theta = (theta*M_PI)/180.0;
+
+  arma::mat YR = {{cos(theta),0,sin(theta)},{0,1,0},{-sin(theta),0,cos(theta)}};
+  position = affmul(YR,position);
+
+}
+
+CylindricalDetector::ZRotate(double theta)
+{
+
+  theta = (theta*M_PI)/180.0;
+
+  arma::mat ZR = {{cos(theta),-sin(theta),0},{sin(theta),cos(theta),0},{0,0,1}};
+  position = affmul(ZR,position);
+
 }
