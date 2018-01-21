@@ -15,10 +15,11 @@
 
 const double C = 3E8;
 
-Event::Event(unsigned long id)
+Event::Event(unsigned long id, bool flag)
 {
 
   identifier = id;
+  fake_event = flag;
   std::string event_name = "event_"+std::to_string(id);
 
   // Generating energy gamma energy
@@ -45,19 +46,26 @@ Event::Event(unsigned long id)
 
   }
 
-  std::cout << "pre-good!" << '\n';
+  if(fake_event)
+  {
+    // Generating event
+    generate_fake(gamma1);
+    generate_fake(gamma2);
+    generate_fake(gamma3);
 
-  // Generating event
-  do{
+  }
+  else
+  {
+    // Generating event
+    do{
 
-    generate_gamma(gamma1);
-    generate_gamma(gamma2);
-    generate_third_gamma();
+      generate_gamma(gamma1);
+      generate_gamma(gamma2);
+      generate_third_gamma();
 
-  }while(check_physics());
+    }while(check_physics());
 
-  std::cout << "good!" << '\n';
-
+  }
 
 }
 
@@ -82,7 +90,6 @@ void Event::generate_gamma(Photon * gamma)
   // Generating the first gamma
   s_energy = energy_spectrum->GetRandom();
 
-  // Generating momentum vector for the first gamma
   // Generated according to the spherical differential area dA
   theta = 2 * M_PI * uniform01(generator);
   phi = acos(1 - 2 * uniform01(generator));
@@ -157,4 +164,33 @@ std::vector<Photon*> Event::get_gamma_configuration()
   decayed_gamma.push_back(gamma3);
 
   return decayed_gamma;
+}
+
+void Event::generate_fake(Photon * gamma)
+{
+  // Random generator
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  std::mt19937 generator (seed);
+  std::uniform_real_distribution<double> uniform01(0.0, 1.0);
+
+  double s_energy;
+  double theta, phi; // Spherical coordinate
+  arma::vec s_momentum(3);
+
+  s_energy = 1; // fake point that lies on S2
+
+  // Generated according to the spherical differential area dA
+  theta = 2 * M_PI * uniform01(generator);
+  phi = acos(1 - 2 * uniform01(generator));
+
+  // Mapping theta-phi into spherical coordinates
+  s_momentum[0] = ( sin(phi) * cos(theta) );
+  s_momentum[1] = ( sin(phi) * sin(theta) );
+  s_momentum[2] = ( cos(phi) );
+
+  // s_momentum = normalise(s_momentum);
+
+  gamma->set_momentum(s_momentum);
+  gamma->set_energy(s_energy);
+
 }

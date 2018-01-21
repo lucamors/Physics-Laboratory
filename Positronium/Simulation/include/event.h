@@ -24,14 +24,19 @@ class Event
 
     TH1F * energy_spectrum;
 
+    bool fake_event;
+
   public:
 
-    Event(unsigned long);
+    Event(unsigned long, bool);
     ~Event();
 
+    void generate_fake(Photon * gamma);
     void generate_gamma(Photon * gamma);
     void generate_third_gamma();
     bool check_physics();
+
+
     std::vector<Photon*> get_gamma_configuration();
 
 
