@@ -1,4 +1,6 @@
-# Physics_Lab_Reports
+# Physics Lab Reports
+
+Experimental Report for Physics Laboratory Master Course. AA 18/19
 
 ## Timing Experiment
 
@@ -14,5 +16,9 @@ energy.
 * Comparison between the timing resolutions obtained
 from analogue and digital treatment of the signals.
 * Measurement of the speed of light. 
+
+## Compton Scattering Experiment
+
+## Positronium Experiment
 
 
