@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  20 JAN 2018 12:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  21 JAN 2018 15:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -366,6 +366,14 @@ File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
+(/usr/local/texlive/2017/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count87
+\float@exts=\toks17
+\float@box=\box26
+\@float@everytoks=\toks18
+\@floatcapt=\box27
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
@@ -524,9 +532,9 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tools/afterpage.sty
 Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
-\AP@output=\toks17
-\AP@partial=\box26
-\AP@footins=\box27
+\AP@output=\toks19
+\AP@partial=\box28
+\AP@footins=\box29
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
@@ -541,9 +549,9 @@ Package ifvtex Info: VTeX not detected.
 (/usr/local/texlive/2017/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count87
-\Gm@cntv=\count88
-\c@Gm@tempcnt=\count89
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
 \Gm@bindingoffset=\dimen105
 \Gm@wd@mp=\dimen106
 \Gm@odd@mp=\dimen107
@@ -552,7 +560,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutheight=\dimen110
 \Gm@layouthoffset=\dimen111
 \Gm@layoutvoffset=\dimen112
-\Gm@dimlist=\toks18
+\Gm@dimlist=\toks20
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
@@ -566,12 +574,12 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \cmidrulesep=\dimen120
 \cmidrulekern=\dimen121
 \defaultaddspace=\dimen122
-\@cmidla=\count90
-\@cmidlb=\count91
+\@cmidla=\count91
+\@cmidlb=\count92
 \@aboverulesep=\dimen123
 \@belowrulesep=\dimen124
-\@thisruleclass=\count92
-\@lastruleclass=\count93
+\@thisruleclass=\count93
+\@lastruleclass=\count94
 \@thisrulewidth=\dimen125
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
@@ -584,7 +592,7 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks19
+\@emptytoks=\toks21
 \ex@=\dimen126
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
@@ -594,41 +602,41 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count94
+\inf@bad=\count95
 LaTeX Info: Redefining \frac on input line 213.
-\uproot@=\count95
-\leftroot@=\count96
+\uproot@=\count96
+\leftroot@=\count97
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count97
-\DOTSCASE@=\count98
+\classnum@=\count98
+\DOTSCASE@=\count99
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
-\Mathstrutbox@=\box28
-\strutbox@=\box29
+\Mathstrutbox@=\box30
+\strutbox@=\box31
 \big@size=\dimen128
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count99
-\c@MaxMatrixCols=\count100
+\macc@depth=\count100
+\c@MaxMatrixCols=\count101
 \dotsspace@=\muskip10
-\c@parentequation=\count101
-\dspbrk@lvl=\count102
-\tag@help=\toks20
-\row@=\count103
-\column@=\count104
-\maxfields@=\count105
-\andhelp@=\toks21
+\c@parentequation=\count102
+\dspbrk@lvl=\count103
+\tag@help=\toks22
+\row@=\count104
+\column@=\count105
+\maxfields@=\count106
+\andhelp@=\toks23
 \eqnshift@=\dimen129
 \alignsep@=\dimen130
 \tagshift@=\dimen131
 \tagwidth@=\dimen132
 \totwidth@=\dimen133
 \lineht@=\dimen134
-\@envbody=\toks22
+\@envbody=\toks24
 \multlinegap=\skip44
 \multlinetaggap=\skip45
-\mathdisplay@stack=\toks23
+\mathdisplay@stack=\toks25
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
@@ -659,25 +667,26 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@parindent=\dimen140
 \caption@hangindent=\dimen141
 )
-\c@ContinuedFloat=\count106
+\c@ContinuedFloat=\count107
+Package caption Info: float package is loaded.
 )
-\c@KVtest=\count107
+\c@KVtest=\count108
 \sf@farskip=\skip46
 \sf@captopadj=\dimen142
 \sf@capskip=\skip47
 \sf@nearskip=\skip48
-\c@subfigure=\count108
-\c@subfigure@save=\count109
-\c@lofdepth=\count110
-\c@subtable=\count111
-\c@subtable@save=\count112
-\c@lotdepth=\count113
+\c@subfigure=\count109
+\c@subfigure@save=\count110
+\c@lofdepth=\count111
+\c@subtable=\count112
+\c@subtable@save=\count113
+\c@lotdepth=\count114
 \sf@top=\skip49
 \sf@bottom=\skip50
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count114
+\c@lips@count=\count115
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
@@ -732,15 +741,15 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen143
-\Hy@linkcounter=\count115
-\Hy@pagecounter=\count116
+\Hy@linkcounter=\count116
+\Hy@pagecounter=\count117
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count117
+\Hy@SavedSpaceFactor=\count118
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -752,7 +761,7 @@ Package hyperref Info: Plain pages OFF on input line 4513.
 Package hyperref Info: Backreferencing OFF on input line 4518.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4751.
-\c@Hy@tempcnt=\count118
+\c@Hy@tempcnt=\count119
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
@@ -760,7 +769,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5104.
 \XeTeXLinkMargin=\dimen144
-\Fld@menulength=\count119
+\Fld@menulength=\count120
 \Field@Width=\dimen145
 \Fld@charsize=\dimen146
 Package hyperref Info: Hyper figures OFF on input line 6358.
@@ -772,17 +781,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6383.
 Package hyperref Info: PDF/A mode OFF on input line 6388.
 LaTeX Info: Redefining \ref on input line 6428.
 LaTeX Info: Redefining \pageref on input line 6432.
-\Hy@abspage=\count120
-\c@Item=\count121
-\c@Hfootnote=\count122
+\Hy@abspage=\count121
+\c@Item=\count122
+\c@Hfootnote=\count123
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
-\Fld@listcount=\count123
-\c@bookmark@seq@number=\count124
+\Fld@listcount=\count124
+\c@bookmark@seq@number=\count125
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
@@ -824,17 +833,17 @@ LaTeX Font Info:    ... okay on input line 10.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count125
+\scratchcounter=\count126
 \scratchdimen=\dimen147
-\scratchbox=\box30
-\nofMPsegments=\count126
-\nofMParguments=\count127
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count128
+\scratchbox=\box32
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count129
 \MPscratchDim=\dimen148
-\MPnumerator=\count129
-\makeMPintoPDFobject=\count130
-\everyMPtoPDFconversion=\toks25
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks27
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -891,7 +900,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box31
+\AtBeginShipoutBox=\box33
 Package hyperref Info: Link coloring OFF on input line 10.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -899,7 +908,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count131
+\c@section@level=\count132
 )
 LaTeX Info: Redefining \ref on input line 10.
 LaTeX Info: Redefining \pageref on input line 10.
@@ -910,34 +919,37 @@ LaTeX Info: Redefining \nameref on input line 10.
 \openout3 = `main.out'.
 
  (./Title.tex
-LaTeX Font Info:    Try loading font information for U+msa on input line 26.
+<immagini/logo_unipd.jpg, id=4, 377.4903pt x 375.3222pt>
+File: immagini/logo_unipd.jpg Graphic file (type jpg)
+<use immagini/logo_unipd.jpg>
+Package pdftex.def Info: immagini/logo_unipd.jpg  used on input line 8. on inpu
+t line 8.
+Package pdftex.def Info: Requested size: 56.6211pt x 56.2959pt on input line 8.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 26.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
-(./Section/Introduction.tex
-<immagini/gausledge.pdf, id=15, pagebox=cropbox, 569.12625pt x 320.19624pt>
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 17.
+
+[1
+
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./immag
+ini/logo_unipd.jpg>]) (./Section/Introduction.tex
+<immagini/gausledge.pdf, id=18, pagebox=cropbox, 569.12625pt x 320.19624pt>
 File: immagini/gausledge.pdf Graphic file (type pdf)
 <use immagini/gausledge.pdf>
 Package pdftex.def Info: immagini/gausledge.pdf  used on input line 10. on inpu
 t line 10.
 Package pdftex.def Info: Requested size: 184.37222pt x 103.7303pt on input line
  10.
-<immagini/gauscfd.pdf, id=16, pagebox=cropbox, 569.12625pt x 320.19624pt>
+<immagini/gauscfd.pdf, id=19, pagebox=cropbox, 569.12625pt x 320.19624pt>
 File: immagini/gauscfd.pdf Graphic file (type pdf)
 <use immagini/gauscfd.pdf>
 Package pdftex.def Info: immagini/gauscfd.pdf  used on input line 12. on input 
 line 12.
 Package pdftex.def Info: Requested size: 184.37222pt x 103.7303pt on input line
  12.
-<immagini/SetUp.pdf, id=17, pagebox=cropbox, 1203.70259pt x 677.3664pt>
+<immagini/SetUp.pdf, id=20, pagebox=cropbox, 1203.70259pt x 677.3664pt>
 File: immagini/SetUp.pdf Graphic file (type pdf)
 <use immagini/SetUp.pdf>
 Package pdftex.def Info: immagini/SetUp.pdf  used on input line 33. on input li
@@ -949,6 +961,16 @@ e 33.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ) (./Section/Calibration.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 4.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 4.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 LaTeX Warning: Command \textbullet invalid in math mode on input line 4.
 
@@ -963,7 +985,7 @@ been already used, duplicate ignored
 l.5 
      [1 <./immagini/gausledge.pdf, page is rotated 90 degrees> <./immagini/gaus
 cfd.pdf, page is rotated 90 degrees>]
-<immagini/d1_spectrum_qlong.pdf, id=117, pagebox=cropbox, 569.12625pt x 387.447
+<immagini/d1_spectrum_qlong.pdf, id=119, pagebox=cropbox, 569.12625pt x 387.447
 5pt>
 File: immagini/d1_spectrum_qlong.pdf Graphic file (type pdf)
 <use immagini/d1_spectrum_qlong.pdf>
@@ -971,7 +993,7 @@ Package pdftex.def Info: immagini/d1_spectrum_qlong.pdf  used on input line 10.
  on input line 10.
 Package pdftex.def Info: Requested size: 172.84932pt x 117.67175pt on input lin
 e 10.
-<immagini/d2_spectrum_qlong.pdf, id=118, pagebox=cropbox, 569.12625pt x 387.447
+<immagini/d2_spectrum_qlong.pdf, id=120, pagebox=cropbox, 569.12625pt x 387.447
 5pt>
 File: immagini/d2_spectrum_qlong.pdf Graphic file (type pdf)
 <use immagini/d2_spectrum_qlong.pdf>
@@ -992,7 +1014,7 @@ pdf>
 ps-converted-to.pdf immagini/smeared_spectra.eps>
 (epstopdf)             \includegraphics on input line 20.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/smeared_spectra-eps-converted-to.pdf, id=224, pagebox=cropbox, 569.12
+<immagini/smeared_spectra-eps-converted-to.pdf, id=227, pagebox=cropbox, 569.12
 625pt x 381.425pt>
 File: immagini/smeared_spectra-eps-converted-to.pdf Graphic file (type pdf)
 <use immagini/smeared_spectra-eps-converted-to.pdf>
@@ -1011,7 +1033,7 @@ ed-to.pdf>
 ound-eps-converted-to.pdf immagini/spectra_vs_background.eps>
 (epstopdf)             \includegraphics on input line 33.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/spectra_vs_background-eps-converted-to.pdf, id=226, pagebox=cropbox, 
+<immagini/spectra_vs_background-eps-converted-to.pdf, id=229, pagebox=cropbox, 
 569.12625pt x 387.4475pt>
 File: immagini/spectra_vs_background-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1035,7 +1057,7 @@ ed-to.pdf>
 a_d1-eps-converted-to.pdf immagini/calibrated_spectra_d1.eps>
 (epstopdf)             \includegraphics on input line 43.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/calibrated_spectra_d1-eps-converted-to.pdf, id=259, pagebox=cropbox, 
+<immagini/calibrated_spectra_d1-eps-converted-to.pdf, id=261, pagebox=cropbox, 
 569.12625pt x 387.4475pt>
 File: immagini/calibrated_spectra_d1-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1055,7 +1077,7 @@ ed-to.pdf>
 a_d2-eps-converted-to.pdf immagini/calibrated_spectra_d2.eps>
 (epstopdf)             \includegraphics on input line 45.
 Package epstopdf Info: Output file is already uptodate.
-<immagini/calibrated_spectra_d2-eps-converted-to.pdf, id=260, pagebox=cropbox, 
+<immagini/calibrated_spectra_d2-eps-converted-to.pdf, id=262, pagebox=cropbox, 
 569.12625pt x 387.4475pt>
 File: immagini/calibrated_spectra_d2-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1070,7 +1092,7 @@ ted_spectra_d2-eps-converted-to.pdf>]
 LaTeX Warning: Reference `fig: calibrated TAC' on page 5 undefined on input lin
 e 116.
 
-<immagini/tac_uncalibrated_spectrum.pdf, id=283, pagebox=cropbox, 569.12625pt x
+<immagini/tac_uncalibrated_spectrum.pdf, id=285, pagebox=cropbox, 569.12625pt x
  387.4475pt>
 File: immagini/tac_uncalibrated_spectrum.pdf Graphic file (type pdf)
 <use immagini/tac_uncalibrated_spectrum.pdf>
@@ -1078,7 +1100,7 @@ Package pdftex.def Info: immagini/tac_uncalibrated_spectrum.pdf  used on input
 line 119. on input line 119.
 Package pdftex.def Info: Requested size: 307.29095pt x 209.20671pt on input lin
 e 119.
-<immagini/fit_calibrazione_tac.pdf, id=284, pagebox=cropbox, 569.12625pt x 387.
+<immagini/fit_calibrazione_tac.pdf, id=286, pagebox=cropbox, 569.12625pt x 387.
 4475pt>
 File: immagini/fit_calibrazione_tac.pdf Graphic file (type pdf)
 <use immagini/fit_calibrazione_tac.pdf>
@@ -1095,7 +1117,7 @@ Overfull \hbox (21.6401pt too wide) in paragraph at lines 126--148
 
  <./immagini/tac_uncalibrated_spectrum.pdf, page is rotated 90 degrees> <./imma
 gini/fit_calibrazione_tac.pdf, page is rotated 90 degrees>]
-<immagini/ThresholdTAC_dists.pdf, id=382, pagebox=cropbox, 569.12625pt x 313.17
+<immagini/ThresholdTAC_dists.pdf, id=383, pagebox=cropbox, 569.12625pt x 313.17
 pt>
 File: immagini/ThresholdTAC_dists.pdf Graphic file (type pdf)
 <use immagini/ThresholdTAC_dists.pdf>
@@ -1103,7 +1125,7 @@ Package pdftex.def Info: immagini/ThresholdTAC_dists.pdf  used on input line 14
 . on input line 14.
 Package pdftex.def Info: Requested size: 384.11223pt x 211.37106pt on input lin
 e 14.
-<immagini/ThresholdTAC_FWHMvs2Ddist.pdf, id=383, pagebox=cropbox, 569.12625pt x
+<immagini/ThresholdTAC_FWHMvs2Ddist.pdf, id=384, pagebox=cropbox, 569.12625pt x
  347.2975pt>
 File: immagini/ThresholdTAC_FWHMvs2Ddist.pdf Graphic file (type pdf)
 <use immagini/ThresholdTAC_FWHMvs2Ddist.pdf>
@@ -1111,7 +1133,7 @@ Package pdftex.def Info: immagini/ThresholdTAC_FWHMvs2Ddist.pdf  used on input
 line 21. on input line 21.
 Package pdftex.def Info: Requested size: 384.11223pt x 234.40509pt on input lin
 e 21.
-<immagini/SlicedTACdists.pdf, id=385, pagebox=cropbox, 569.12625pt x 313.17pt>
+<immagini/SlicedTACdists.pdf, id=386, pagebox=cropbox, 569.12625pt x 313.17pt>
 File: immagini/SlicedTACdists.pdf Graphic file (type pdf)
 <use immagini/SlicedTACdists.pdf>
 Package pdftex.def Info: immagini/SlicedTACdists.pdf  used on input line 33. on
@@ -1122,7 +1144,7 @@ e 33.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<immagini/SlicedTAC_FWHMvs2Ddist.pdf, id=386, pagebox=cropbox, 569.12625pt x 34
+<immagini/SlicedTAC_FWHMvs2Ddist.pdf, id=387, pagebox=cropbox, 569.12625pt x 34
 7.2975pt>
 File: immagini/SlicedTAC_FWHMvs2Ddist.pdf Graphic file (type pdf)
 <use immagini/SlicedTAC_FWHMvs2Ddist.pdf>
@@ -1134,7 +1156,7 @@ e 40.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ) (./Section/DigitalTiming.tex
-<immagini/digital_waveform.pdf, id=389, pagebox=cropbox, 569.12625pt x 361.35pt
+<immagini/digital_waveform.pdf, id=390, pagebox=cropbox, 569.12625pt x 361.35pt
 >
 File: immagini/digital_waveform.pdf Graphic file (type pdf)
 <use immagini/digital_waveform.pdf>
@@ -1150,32 +1172,29 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [7 <./immagini/SlicedTACdists.pdf, page is rotated 90 degrees> <./immagini/Slic
 edTAC_FWHMvs2Ddist.pdf, page is rotated 90 degrees>])
 (./Section/SpeedofLight.tex
-<immagini/TACoverlayed_dist.pdf, id=580, pagebox=cropbox, 569.12625pt x 347.297
+<immagini/TACoverlayed_dist.pdf, id=581, pagebox=cropbox, 569.12625pt x 347.297
 5pt>
 File: immagini/TACoverlayed_dist.pdf Graphic file (type pdf)
 <use immagini/TACoverlayed_dist.pdf>
-Package pdftex.def Info: immagini/TACoverlayed_dist.pdf  used on input line 5. 
-on input line 5.
+Package pdftex.def Info: immagini/TACoverlayed_dist.pdf  used on input line 10.
+ on input line 10.
 Package pdftex.def Info: Requested size: 307.29095pt x 187.52725pt on input lin
-e 5.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<immagini/Speed_fit.pdf, id=581, pagebox=cropbox, 569.12625pt x 347.2975pt>
+e 10.
+<immagini/Speed_fit.pdf, id=582, pagebox=cropbox, 569.12625pt x 347.2975pt>
 File: immagini/Speed_fit.pdf Graphic file (type pdf)
 <use immagini/Speed_fit.pdf>
-Package pdftex.def Info: immagini/Speed_fit.pdf  used on input line 11. on inpu
-t line 11.
+Package pdftex.def Info: immagini/Speed_fit.pdf  used on input line 16. on inpu
+t line 16.
 Package pdftex.def Info: Requested size: 307.29095pt x 187.52725pt on input lin
-e 11.
+e 16.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
- [8 <./immagini/digital_waveform.pdf, page is rotated 90 degrees>] [9 <./immagi
-ni/TACoverlayed_dist.pdf, page is rotated 90 degrees> <./immagini/Speed_fit.pdf
+ [8 <./immagini/digital_waveform.pdf, page is rotated 90 degrees> <./immagini/T
+ACoverlayed_dist.pdf, page is rotated 90 degrees>] [9 <./immagini/Speed_fit.pdf
 , page is rotated 90 degrees>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
  (./main.aux)
@@ -1183,6 +1202,9 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
@@ -1193,34 +1215,33 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 8775 strings out of 492985
- 130855 string characters out of 6132571
- 316816 words of memory out of 5000000
- 12132 multiletter control sequences out of 15000+600000
- 14878 words of font info for 55 fonts, out of 8000000 for 9000
+ 8829 strings out of 492985
+ 131648 string characters out of 6132571
+ 318041 words of memory out of 5000000
+ 12180 multiletter control sequences out of 15000+600000
+ 13330 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,10n,49p,662b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,10n,49p,698b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
 usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
 sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/
-texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texliv
-e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/
-2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2
-017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/201
-7/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (10 pages, 1685598 bytes).
+al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local
+/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
+2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
+17/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2017
+/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on main.pdf (10 pages, 2139796 bytes).
 PDF statistics:
  787 PDF objects out of 1000 (max. 8388607)
  402 compressed objects within 5 object streams
- 42 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 44 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
