@@ -28,9 +28,12 @@ from analogue and digital treatment of the signals.
 \item Measurement of the speed of light. 
 \end{itemize}
 
+\section*{Experimental Set Up}
+To perform the timing analysis two cylindrical organic scintillator EJ-228 with diameter and thickness of 5~cm were used, each one coupled with a Photonics Photomultiplier XP2020~(see Fig.~\ref{fig:Set_up}). The anode outputs of the PMT were sent to a Quad Linear Gate FAN-IN/OUT mod. Philips 744 in order to split them. One output then was sent directly to a CAEN digitizer mod. DT5751, an ADC with a sampling rate of 1 Gs/s and a resolution of 10 bit, while the other one was sent to a Quad CFD mod. 935. The timing signals obtained from the CFD unit were processed by a CAEN Quad Logic Unit mod. N455 to produce a coincidence signal between the two detectors, used as trigger input for the digitizer. They were also to sent to an Ortec TAC unit to measure their time difference. The output of the TAC module was also digitized.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{immagini/SetUp.pdf}
-	\caption{Experimental configuration used in the timing analysis.}
+	\caption{Experimental configuration adopted for the timing analysis.}
 	\label{fig:Set_up}
 \end{figure}
