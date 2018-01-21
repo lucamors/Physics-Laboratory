@@ -10,10 +10,10 @@ ExperimentalSetup::ExperimentalSetup()
 
   CylindricalDetector * d1 = new CylindricalDetector(p1,0.2);
 
-  arma::vec z_axis = {0,0,1};
+  arma::vec rot_axis = {0,0,1};
 
-  CylindricalDetector * d2 = new CylindricalDetector(*d1, 120, z_axis);
-  CylindricalDetector * d3 = new CylindricalDetector(*d1, 240, z_axis);
+  CylindricalDetector * d2 = new CylindricalDetector(*d1, 120, rot_axis);
+  CylindricalDetector * d3 = new CylindricalDetector(*d1, 240, rot_axis);
 
   detector_list.push_back(d1);
   detector_list.push_back(d2);
