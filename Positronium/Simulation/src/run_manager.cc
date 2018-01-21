@@ -15,14 +15,16 @@ RunManger::RunManger(bool flag )
 
 void RunManger::run(long int n_events)
 {
-
   // Generating Simulated Events
   for (size_t i = 1; i <= n_events; i++)
   {
-    std::cout << "Generating event #" << i+1 << ". . ." << '\n';
+    if( n_events % i == 0)
+    {
+      std::cout << "Generating event #" << i << ". . ." << '\n';
+    }
+
     Event * sample_ev = new Event(i,generate_fake_event);
     event_list.push_back(sample_ev);
-    system("clear");
 
   }
 
@@ -47,7 +49,6 @@ void RunManger::run(long int n_events)
   int d3_c = 0;
   int dnot_c = 0;
 
-
   // Retrieving Detectors
   std::vector<CylindricalDetector*> det_list = setup->get_detector_list();
 
@@ -57,33 +58,52 @@ void RunManger::run(long int n_events)
 
   // Checking Detection
 
+  bool d1_check_det,d2_check_det,d3_check_det;
+  long int coincidences = 0;
+
   arma::vec event_momentum;
   for (size_t i = 0; i < event_list.size(); i++)
   {
     std::vector<Photon *> photon_list = event_list[i]->get_gamma_configuration();
 
+    d1_check_det = false;
+    d2_check_det = false;
+    d3_check_det = false;
+
     for (size_t j = 0; j < photon_list.size(); j++)
     {
 
+
       arma::vec photon_momentum = photon_list[j]->get_momentum();
+      double photon_energy = photon_list[j]->get_energy();
+
+      if( j == 0 ) det_1_sp->Fill(photon_energy);
+      if( j == 1 ) det_2_sp->Fill(photon_energy);
+      if( j == 2 ) det_3_sp->Fill(photon_energy);
+
+      momentum_sp->Fill(norm(photon_momentum));
 
       if(d1->check_detection(photon_momentum))
       {
         d1_detected->SetPoint(ev_det_1, photon_momentum[0],photon_momentum[1], photon_momentum[2]);
         ev_det_1++;
         d1_c++;
+        d1_check_det = true;
       }
       else if(d2->check_detection(photon_momentum))
       {
         d2_detected->SetPoint(ev_det_2, photon_momentum[0],photon_momentum[1], photon_momentum[2]);
         ev_det_2++;
         d2_c++;
+        d2_check_det = true;
+
       }
       else if(d3->check_detection(photon_momentum))
       {
         d3_detected->SetPoint(ev_det_3, photon_momentum[0],photon_momentum[1], photon_momentum[2]);
         ev_det_3++;
         d3_c++;
+        d3_check_det = true;
       }
       else
       {
@@ -91,6 +111,8 @@ void RunManger::run(long int n_events)
         ev_not_det++;
         dnot_c++;
       }
+
+      if (d1_check_det and d2_check_det and d3_check_det ) coincidences++;
     }
   }
 
@@ -98,6 +120,7 @@ void RunManger::run(long int n_events)
   std::cout << "Detected photon in #1 :" << d1_c << '\n';
   std::cout << "Detected photon in #2 :" << d2_c << '\n';
   std::cout << "Detected photon in #3 :" << d3_c << '\n';
+  std::cout << "Coincidences :" << coincidences << '\n';
   std::cout << "Not detected :" << dnot_c << '\n';
 
 
@@ -108,6 +131,10 @@ void RunManger::run(long int n_events)
   d2_detected->Write();
   d3_detected->Write();
   not_det->Write();
+  det_1_sp->Write();
+  det_2_sp->Write();
+  det_3_sp->Write();
+  momentum_sp->Write();
 
   outfile->Close();
 
