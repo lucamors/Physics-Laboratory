@@ -21,7 +21,7 @@ class RunManger
     TH1F * det_1_sp = new TH1F("d1_en_sp","Energy Spectrum D#1",511,0,511);
     TH1F * det_2_sp = new TH1F("d2_en_sp","Energy Spectrum D#2",511,0,511);
     TH1F * det_3_sp = new TH1F("d3_en_sp","Energy Spectrum D#3",511,0,511);
-    TH1F * momentum_sp = new TH1F("momentum_p","Momentum Sum", 1022,0,1022);
+    TH1F * momentum_sp = new TH1F("momentum_p","Momentum Sum", 100,1022-25,1022+25);
 
   public:
 
