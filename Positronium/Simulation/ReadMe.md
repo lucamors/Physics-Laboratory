@@ -2,11 +2,9 @@
 
 ## Description
 
-This is a simple decay program that can generate three gamma decay from positronium.
+This is a simple decay simulation program that can generate three gamma decay from positronium.
 
 ![Alt text](info/splash.png "sim splash")
-
-*Simulated Event: green events are collected in our detector*
 
 ## Compile
 
