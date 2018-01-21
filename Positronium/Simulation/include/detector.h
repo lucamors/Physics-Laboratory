@@ -19,7 +19,7 @@ class CylindricalDetector
   public:
 
     CylindricalDetector(); // to be deleted
-    CylindricalDetector(const &CylindricalDetector);
+    CylindricalDetector(const &CylindricalDetector, double, arma::vec); // angle in degrees
     CylindricalDetector(arma::vec, double);
 
     // Getter Methods

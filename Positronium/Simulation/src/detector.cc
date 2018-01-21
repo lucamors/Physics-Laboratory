@@ -7,7 +7,16 @@
 
 CylindricalDetector::CylindricalDetector(){}
 
+CylindricalDetector::CylindricalDetector(const &CylindricalDetector s_detector, double angle, arma::vec k)
+{
+  position = *s_detector.position;
+  radius = *s_detector.radius;
+  half_aperture = *s_detector.half_aperture;
 
+  // Rodrigues' rotation formula
+  theta = (theta*M_PI)/180.0;
+  position = position*cos(theta)+(cross(k,position))*sin(theta)+k*(dot(k,v))*(1-cos(theta));
+}
 
 CylindricalDetector::CylindricalDetector(arma::vec x, double r)
 {
