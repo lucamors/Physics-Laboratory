@@ -1,41 +1,41 @@
+
 \section*{Energy Calibration}
 
-In this experiment we have used  two cylindrical organic scintillators EJ-228, with a 5 cm diameter and 5 cm thickness. 
-Due to the organic composition of our detectors the photo-electric cross-section of its constituents is negligible for the energy used in laboratory. Furthermore due two the limited size of the detectors total absorbtion through multiple compton scattering is negligible too. The detectors response will be dominated by the individual Compton interaction, the result in the energy spectrum is a continuous distribution that corresponds to different angles of interaction. This can be seen in the spectra acquired with the $•^{22}$Na source (Fig. \ref{fig: uncalibrated energy spectra}).
+Due to the organic composition of our detectors the photo-electric cross-section of its constituents is negligible in the energy range considered. Furthermore total absorption through multiple Compton scattering is negligible too, because of detector limited size . The detectors response will be dominated by individual Compton interaction, thus the energy spectrum is a continuous distribution that corresponds to different angles of interaction. This can be seen in the spectra acquired with the $^{22}$Na source in Fig. \ref{fig: uncalibrated energy spectra}.
 
 \smallskip
 \begin{figure}[h!]
 \centering
-\subfloat[][\emph{Detector \#1 spectrum}.]
+\subfloat[][\emph{Detector 1 }.]
    {\includegraphics[width=.45\textwidth]{d1_spectrum_qlong}} \quad
-\subfloat[][\emph{Detector \#2 spectrum}.]
+\subfloat[][\emph{Detector 2 }.]
    {\includegraphics[width=.45\textwidth]{d2_spectrum_qlong}} \\
-\caption{Detectors spectra (not calibrated).}
+\caption{\emph{Detector 1} (a) and \emph{Detector 2} (b) uncalibrated energy spectra  obtained from a $^{22}$Na $\gamma$ source.}
 \label{fig: uncalibrated energy spectra}
 \end{figure}
-\clearpage
-\noindent The finite resolution of our detectors result in a shift towards lower energies depending on the detector resolution (Fig. \ref{fig: smeared spectra}).
+
+The finite resolution of our detectors result in a shift towards lower energies depending on the detector resolution as shown in Fig.~\ref{fig: smeared spectra}.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.8\textwidth]{smeared_spectra}
-\caption{Gaussian smeared spectra at different $\sigma$ for 511 keV photon.}
+\caption{Gaussian smeared spectra at different $\sigma$ generated using the  Klein-Nishina Compton Scattering cross-section  for 511~keV photons.}
 \label{fig: smeared spectra}
 \end{figure}
 
-
-\noindent In order to obtain the energy calibration parameters we have to generate several smeared spectra using the Klein-Nishina cross-section for Compton Scattering:
-\begin{equation*}
+In order to obtain the energy calibration parameters, several smeared spectra were generated using the  Klein-Nishina Compton Scattering cross-section~(see Eq.~\ref{eq:Klein-Nishina}) for $511$ keV and $1275$ keV $\gamma$ respectively.
+\begin{equation}
 \dfrac{d\sigma}{dT} = \dfrac{\pi r_e^2}{m_ec^2\alpha^2}\left(2+\dfrac{s^2}{\alpha^2(1-s)^2}+\dfrac{s}{1-s} \left(s-\dfrac{2}{\alpha}\right) \right)
-\end{equation*}
-for $511$ keV and $1275$ keV respectively. Then we have to subtract the Compton background from acquired spectra in order to search for Compton edge position (Fig. \ref{fig: compton back}).
+\label{eq:Klein-Nishina}
+\end{equation}
+To locate the Compton edge then, the background from acquired spectra was removed  as shown in Fig.~\ref{fig: compton back}.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.8\textwidth]{spectra_vs_background.eps}
-\caption{Acquired Spectra (blue). Spectra with subtracted Compton background (red).}
+\caption{$^{22}$Na energy spectra. The blue one represent the original acquired spectrum, while the red one is obtained by background removal.}
 \label{fig: compton back}
 \end{figure}
-
-\noindent Once we have the compton edge position we have to loop on every previous generated smearing and calculating the $\chi^2$ between experimental spectrum and gaussian smeared one selecting the smearing with the $\sigma$ that led to minimum $\chi^2$. Once we have selected a proper $\sigma$ we have also the corresponding shift of the Compton Edge that we have to use in order to calibrate our detector.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+Once we have the compton edge position we have to loop on every previous generated smearing and calculating the $\chi^2$ between experimental spectrum and gaussian smeared one selecting the smearing with the $\sigma$ that led to minimum $\chi^2$. Once we have selected a proper $\sigma$ we have also the corresponding shift of the Compton Edge that we have to use in order to calibrate our detector.
 
 \begin{figure}[h!]
 \centering
