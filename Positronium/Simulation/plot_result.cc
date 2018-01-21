@@ -32,6 +32,5 @@ void plot_result()
   d2->Draw("p SAME");
   d3->Draw("p SAME");
 
-
   return;
 }

@@ -71,7 +71,6 @@ Event::Event(unsigned long id, bool flag)
 
 Event::~Event(){}
 
-
 void Event::generate_gamma(Photon * gamma)
 {
   /*
@@ -95,9 +94,9 @@ void Event::generate_gamma(Photon * gamma)
   phi = acos(1 - 2 * uniform01(generator));
 
   // Mapping theta-phi into spherical coordinates
-  s_momentum[0] = (s_energy * 1000 * (1.0/C) * sin(phi) * cos(theta));
-  s_momentum[1] = (s_energy * 1000 * (1.0/C) * sin(phi) * sin(theta));
-  s_momentum[2] = ( s_energy * 1000 * (1.0/C) * cos(phi));
+  s_momentum[0] = (s_energy * (1.0/C) * 1000.0 * sin(phi) * cos(theta));
+  s_momentum[1] = (s_energy * (1.0/C) * 1000.0 * sin(phi) * sin(theta));
+  s_momentum[2] = (s_energy * (1.0/C) * 100.0 * cos(phi));
 
   gamma->set_momentum(s_momentum);
   gamma->set_energy(s_energy);
@@ -131,7 +130,7 @@ void Event::generate_third_gamma()
 
   gamma3->set_momentum(s_momentum);
 
-  double s_energy = gamma3->get_totalmomentum() * C / 1000.0 ;
+  double s_energy = gamma3->get_totalmomentum() * C / 1000.0;
 
   gamma3->set_energy(s_energy);
 
@@ -150,7 +149,7 @@ bool Event::check_physics()
   // std::cout << "total ene ->" << total_ene-1022.0 << '\n';
   // std::cout << "------------------------------" << '\n';
 
-  if(total_ene-1022.0 <= 15 and total_ene-1022.0>-15) return false;
+  if(total_ene-1022.0 <= 5 and total_ene-1022.0>-5) return false;
 
   return true;
 }

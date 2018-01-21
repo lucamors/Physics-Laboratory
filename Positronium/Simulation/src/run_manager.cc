@@ -62,17 +62,22 @@ void RunManger::run(long int n_events)
   long int coincidences = 0;
 
   arma::vec event_momentum;
+
+  double energy_sum;
+
   for (size_t i = 0; i < event_list.size(); i++)
   {
+
     std::vector<Photon *> photon_list = event_list[i]->get_gamma_configuration();
 
     d1_check_det = false;
     d2_check_det = false;
     d3_check_det = false;
 
+    energy_sum = 0;
+
     for (size_t j = 0; j < photon_list.size(); j++)
     {
-
 
       arma::vec photon_momentum = photon_list[j]->get_momentum();
       double photon_energy = photon_list[j]->get_energy();
@@ -81,7 +86,7 @@ void RunManger::run(long int n_events)
       if( j == 1 ) det_2_sp->Fill(photon_energy);
       if( j == 2 ) det_3_sp->Fill(photon_energy);
 
-      momentum_sp->Fill(norm(photon_momentum));
+      energy_sum += photon_energy;
 
       if(d1->check_detection(photon_momentum))
       {
@@ -114,6 +119,8 @@ void RunManger::run(long int n_events)
 
       if (d1_check_det and d2_check_det and d3_check_det ) coincidences++;
     }
+
+    momentum_sp->Fill(energy_sum);
   }
 
   // Outputting result via iostream
