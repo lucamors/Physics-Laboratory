@@ -5,9 +5,9 @@
 #include <string>
 #include <cmath>
 #include<chrono>
-
+#include<armadillo>
 #include <event.h>
-#include <vector_3.h>
+
 
 #include "TH1F.h"
 #include "TFile.h"
@@ -15,10 +15,11 @@
 
 const double C = 3E8;
 
-Event::Event(unsigned long id)
+Event::Event(unsigned long id, bool flag)
 {
 
   identifier = id;
+  fake_event = flag;
   std::string event_name = "event_"+std::to_string(id);
 
   // Generating energy gamma energy
@@ -45,24 +46,30 @@ Event::Event(unsigned long id)
 
   }
 
-  std::cout << "pre-good!" << '\n';
+  if(fake_event)
+  {
+    // Generating event
+    generate_fake(gamma1);
+    generate_fake(gamma2);
+    generate_fake(gamma3);
 
-  // Generating event
-  do{
+  }
+  else
+  {
+    // Generating event
+    do{
 
-    generate_gamma(gamma1);
-    generate_gamma(gamma2);
-    generate_third_gamma();
+      generate_gamma(gamma1);
+      generate_gamma(gamma2);
+      generate_third_gamma();
 
-  }while(check_physics());
+    }while(check_physics());
 
-  std::cout << "good!" << '\n';
-
+  }
 
 }
 
 Event::~Event(){}
-
 
 void Event::generate_gamma(Photon * gamma)
 {
@@ -77,20 +84,19 @@ void Event::generate_gamma(Photon * gamma)
 
   double s_energy;
   double theta, phi; // Spherical coordinate
-  VECTOR_3D s_momentum;
+  arma::vec s_momentum(3);
 
   // Generating the first gamma
   s_energy = energy_spectrum->GetRandom();
 
-  // Generating momentum vector for the first gamma
   // Generated according to the spherical differential area dA
   theta = 2 * M_PI * uniform01(generator);
   phi = acos(1 - 2 * uniform01(generator));
 
   // Mapping theta-phi into spherical coordinates
-  s_momentum.set_x(s_energy * 1000 * (1.0/C) * sin(phi) * cos(theta));
-  s_momentum.set_y(s_energy * 1000 * (1.0/C) * sin(phi) * sin(theta));
-  s_momentum.set_z( s_energy * 1000 * (1.0/C) * cos(phi));
+  s_momentum[0] = (s_energy * (1.0/C) * 1000.0 * sin(phi) * cos(theta));
+  s_momentum[1] = (s_energy * (1.0/C) * 1000.0 * sin(phi) * sin(theta));
+  s_momentum[2] = (s_energy * (1.0/C) * 100.0 * cos(phi));
 
   gamma->set_momentum(s_momentum);
   gamma->set_energy(s_energy);
@@ -102,29 +108,29 @@ void Event::generate_third_gamma()
 {
 
   // Retrieving momentum direction of gamma 1
-  double g1_x = gamma1->get_momentum().get_x();
-  double g1_y = gamma1->get_momentum().get_y();
-  double g1_z = gamma1->get_momentum().get_z();
+  double g1_x = gamma1->get_momentum()[0];
+  double g1_y = gamma1->get_momentum()[1];
+  double g1_z = gamma1->get_momentum()[2];
 
   // Retrieving momentum direction of gamma 2
-  double g2_x = gamma2->get_momentum().get_x();
-  double g2_y = gamma2->get_momentum().get_y();
-  double g2_z = gamma2->get_momentum().get_z();
+  double g2_x = gamma2->get_momentum()[0];
+  double g2_y = gamma2->get_momentum()[1];
+  double g2_z = gamma2->get_momentum()[2];
 
   // Imposing the conservation of the momentum
   double g3_x = -g1_x-g2_x;
   double g3_y = -g1_y-g2_y;
   double g3_z = -g1_z-g2_z;
 
-  VECTOR_3D s_momentum;
+  arma::vec s_momentum(3);
 
-  s_momentum.set_x(g3_x);
-  s_momentum.set_y(g3_y);
-  s_momentum.set_z(g3_z);
+  s_momentum[0] = g3_x;
+  s_momentum[1] = g3_y;
+  s_momentum[2] = g3_z;
 
   gamma3->set_momentum(s_momentum);
 
-  double s_energy = gamma3->get_totalmomentum() * C / 1000.0 ;
+  double s_energy = gamma3->get_totalmomentum() * C / 1000.0;
 
   gamma3->set_energy(s_energy);
 
@@ -143,7 +149,7 @@ bool Event::check_physics()
   // std::cout << "total ene ->" << total_ene-1022.0 << '\n';
   // std::cout << "------------------------------" << '\n';
 
-  if(total_ene-1022.0 <= 15 and total_ene-1022.0>-15) return false;
+  if(total_ene-1022.0 <= 5 and total_ene-1022.0>-5) return false;
 
   return true;
 }
@@ -157,4 +163,33 @@ std::vector<Photon*> Event::get_gamma_configuration()
   decayed_gamma.push_back(gamma3);
 
   return decayed_gamma;
+}
+
+void Event::generate_fake(Photon * gamma)
+{
+  // Random generator
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  std::mt19937 generator (seed);
+  std::uniform_real_distribution<double> uniform01(0.0, 1.0);
+
+  double s_energy;
+  double theta, phi; // Spherical coordinate
+  arma::vec s_momentum(3);
+
+  s_energy = 1; // fake point that lies on S2
+
+  // Generated according to the spherical differential area dA
+  theta = 2 * M_PI * uniform01(generator);
+  phi = acos(1 - 2 * uniform01(generator));
+
+  // Mapping theta-phi into spherical coordinates
+  s_momentum[0] = ( sin(phi) * cos(theta) );
+  s_momentum[1] = ( sin(phi) * sin(theta) );
+  s_momentum[2] = ( cos(phi) );
+
+  // s_momentum = normalise(s_momentum);
+
+  gamma->set_momentum(s_momentum);
+  gamma->set_energy(s_energy);
+
 }
