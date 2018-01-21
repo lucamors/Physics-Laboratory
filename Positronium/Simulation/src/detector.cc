@@ -7,15 +7,15 @@
 
 CylindricalDetector::CylindricalDetector(){}
 
-CylindricalDetector::CylindricalDetector(const &CylindricalDetector s_detector, double angle, arma::vec k)
+CylindricalDetector::CylindricalDetector(const CylindricalDetector& s_detector, double theta, arma::vec k)
 {
-  position = *s_detector.position;
-  radius = *s_detector.radius;
-  half_aperture = *s_detector.half_aperture;
+  position = s_detector.position;
+  radius = s_detector.radius;
+  half_aperture = s_detector.half_aperture;
 
-  // Rodrigues' rotation formula
+  // Rodrigues' rotation formula [citation needed]
   theta = (theta*M_PI)/180.0;
-  position = position*cos(theta)+(cross(k,position))*sin(theta)+k*(dot(k,v))*(1-cos(theta));
+  position = position*cos(theta)+(cross(k,position))*sin(theta)+k*(dot(k,position))*(1-cos(theta));
 }
 
 CylindricalDetector::CylindricalDetector(arma::vec x, double r)
@@ -40,7 +40,7 @@ CylindricalDetector::CylindricalDetector(arma::vec x, double r)
     e_orthogonal = {uniform01(generator), uniform01(generator), uniform01(generator)};
     e_orthogonal = normalise(e_orthogonal);
 
-  } while( normalise(cross(position, e_orthogonal)) == 1);
+  } while( norm(cross(position, e_orthogonal)) == 1);
 
   arma::vec e_r = normalise(cross(position,e_orthogonal));
 
@@ -67,7 +67,7 @@ bool CylindricalDetector::check_detection(arma::vec gamma_direction)
 
 // Geometrical Methods
 
-CylindricalDetector::XRotate(double theta)
+void CylindricalDetector::XRotate(double theta)
 {
   theta = (theta*M_PI)/180.0;
 
@@ -76,7 +76,7 @@ CylindricalDetector::XRotate(double theta)
 }
 
 
-CylindricalDetector::YRotate(double theta)
+void CylindricalDetector::YRotate(double theta)
 {
 
   theta = (theta*M_PI)/180.0;
@@ -86,7 +86,7 @@ CylindricalDetector::YRotate(double theta)
 
 }
 
-CylindricalDetector::ZRotate(double theta)
+void CylindricalDetector::ZRotate(double theta)
 {
 
   theta = (theta*M_PI)/180.0;
