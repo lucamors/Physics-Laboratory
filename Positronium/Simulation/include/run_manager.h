@@ -21,7 +21,9 @@ class RunManger
     TH1F * det_1_sp = new TH1F("d1_en_sp","Energy Spectrum D#1",511,0,511);
     TH1F * det_2_sp = new TH1F("d2_en_sp","Energy Spectrum D#2",511,0,511);
     TH1F * det_3_sp = new TH1F("d3_en_sp","Energy Spectrum D#3",511,0,511);
-    TH1F * momentum_sp = new TH1F("momentum_p","Momentum Sum", 100,1022-25,1022+25);
+    TH1F * coincidences_sp_1 = new TH1F("coincidences_sp_1","Triple Coincidences #1",511,0,511);
+    TH1F * coincidences_sp_2 = new TH1F("coincidences_sp_2","Triple Coincidences #2",511,0,511);
+    TH1F * coincidences_sp_3 = new TH1F("coincidences_sp_3","Triple Coincidences #3",511,0,511);
 
   public:
 

@@ -18,10 +18,16 @@ void RunManger::run(long int n_events)
   // Generating Simulated Events
   for (size_t i = 1; i <= n_events; i++)
   {
-    if( n_events % i == 0)
-    {
-      std::cout << "Generating event #" << i << ". . ." << '\n';
-    }
+    if (i % (n_events/100) == 0 )
+        {
+            system("clear");
+            std::cout << "Positronium Decay Simulation\n";
+            std::cout << "----------------------------\n";
+            std::cout << "Simulation at "
+                      <<  (int)((i*100.0)/n_events)
+                      << "% ."
+                      << std::endl;
+}
 
     Event * sample_ev = new Event(i,generate_fake_event);
     event_list.push_back(sample_ev);
@@ -63,8 +69,6 @@ void RunManger::run(long int n_events)
 
   arma::vec event_momentum;
 
-  double energy_sum;
-
   for (size_t i = 0; i < event_list.size(); i++)
   {
 
@@ -74,7 +78,6 @@ void RunManger::run(long int n_events)
     d2_check_det = false;
     d3_check_det = false;
 
-    energy_sum = 0;
 
     for (size_t j = 0; j < photon_list.size(); j++)
     {
@@ -86,7 +89,6 @@ void RunManger::run(long int n_events)
       if( j == 1 ) det_2_sp->Fill(photon_energy);
       if( j == 2 ) det_3_sp->Fill(photon_energy);
 
-      energy_sum += photon_energy;
 
       if(d1->check_detection(photon_momentum))
       {
@@ -101,7 +103,6 @@ void RunManger::run(long int n_events)
         ev_det_2++;
         d2_c++;
         d2_check_det = true;
-
       }
       else if(d3->check_detection(photon_momentum))
       {
@@ -116,11 +117,17 @@ void RunManger::run(long int n_events)
         ev_not_det++;
         dnot_c++;
       }
-
-      if (d1_check_det and d2_check_det and d3_check_det ) coincidences++;
     }
 
-    momentum_sp->Fill(energy_sum);
+    if (d1_check_det and d2_check_det and d3_check_det )
+    {
+      coincidences_sp_1->Fill(photon_list[0]->get_energy());
+      coincidences_sp_2->Fill(photon_list[1]->get_energy());
+      coincidences_sp_3->Fill(photon_list[2]->get_energy());
+    }
+
+    delete event_list[i];
+
   }
 
   // Outputting result via iostream
@@ -137,11 +144,14 @@ void RunManger::run(long int n_events)
   d1_detected->Write();
   d2_detected->Write();
   d3_detected->Write();
+  coincidences_sp_1->Write();
+  coincidences_sp_2->Write();
+  coincidences_sp_3->Write();
   not_det->Write();
   det_1_sp->Write();
   det_2_sp->Write();
   det_3_sp->Write();
-  momentum_sp->Write();
+
 
   outfile->Close();
 
