@@ -373,7 +373,7 @@ void Timer(string infile_name)
 	 TACVsAmp0->GetYaxis()->SetLimits(min-19.5,max-19.5);
 	 TACVsAmp0->GetYaxis()->SetRangeUser(-7,7);
    TACVsAmp0->GetXaxis()->SetNdivisions(14);
-   TACVsAmp0->SetOptStat(kFALSE);
+   //TACVsAmp0->SetOptStat(kFALSE);
    TACVsAmp0->SetTitle("");
    TACVsAmp0->Draw("COLZ");
 
