@@ -96,7 +96,7 @@ void Event::generate_gamma(Photon * gamma)
   // Mapping theta-phi into spherical coordinates
   s_momentum[0] = (s_energy * (1.0/C) * 1000.0 * sin(phi) * cos(theta));
   s_momentum[1] = (s_energy * (1.0/C) * 1000.0 * sin(phi) * sin(theta));
-  s_momentum[2] = (s_energy * (1.0/C) * 100.0 * cos(phi));
+  s_momentum[2] = (s_energy * (1.0/C) * 1000.0 * cos(phi));
 
   gamma->set_momentum(s_momentum);
   gamma->set_energy(s_energy);
