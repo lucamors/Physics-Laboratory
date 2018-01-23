@@ -8,7 +8,11 @@ This is a simple decay simulation program that can generate three gamma decay fr
 
 with the simulated events the theoretical angular distribution was reproduced:
 
-![Alt text](info/angular_distribution.pdf "sim ang")
+<object data="info/angular_distribution.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="info/angular_distribution.pdf">
+        This browser does not support PDFs. Please download the PDF to view it: <a href="info/angular_distribution.pdf"></a>.</p>
+    </embed>
+</object>
 
 ## Compile
 
