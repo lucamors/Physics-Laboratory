@@ -6,9 +6,9 @@ ExperimentalSetup::ExperimentalSetup()
   // Here we need to construct our experimental exp_setup
   // need to be refactored in separated derived class maybe+
 
-  arma::vec p1 = {1,0,0};
+  arma::vec p1 = {12.5,0,0};
 
-  CylindricalDetector * d1 = new CylindricalDetector(p1,0.2);
+  CylindricalDetector * d1 = new CylindricalDetector(p1,5);
 
   arma::vec rot_axis = {0,0,1};
 
