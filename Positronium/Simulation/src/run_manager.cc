@@ -15,26 +15,8 @@ RunManger::RunManger(bool flag )
 
 void RunManger::run(long int n_events)
 {
-  // Generating Simulated Events
-  for (size_t i = 1; i <= n_events; i++)
-  {
-    if (i % (n_events/100) == 0 )
-        {
-            system("clear");
-            std::cout << "Positronium Decay Simulation\n";
-            std::cout << "----------------------------\n";
-            std::cout << "Simulation at "
-                      <<  (int)((i*100.0)/n_events)
-                      << "% ."
-                      << std::endl;
-}
 
-    Event * sample_ev = new Event(i,generate_fake_event);
-    event_list.push_back(sample_ev);
-
-  }
-
-  // Defining OutpuT Graph
+  // Defining output Graph
   TGraph2D * d1_detected = new TGraph2D();
   d1_detected->SetName("d1_det");
   TGraph2D * d2_detected = new TGraph2D();
@@ -67,17 +49,31 @@ void RunManger::run(long int n_events)
   bool d1_check_det,d2_check_det,d3_check_det;
   long int coincidences = 0;
 
-  arma::vec event_momentum;
-
-  for (size_t i = 0; i < event_list.size(); i++)
+  // Generating Simulated Events
+  for (size_t i = 1; i <= n_events; i++)
   {
 
-    std::vector<Photon *> photon_list = event_list[i]->get_gamma_configuration();
+    // Displaying information
+    if (i % (n_events/100) == 0 )
+    {
+            system("clear");
+            std::cout << "Positronium Decay Simulation\n";
+            std::cout << "----------------------------\n";
+            std::cout << "Simulation at "
+                      <<  (int)((i*100.0)/n_events)
+                      << "%"
+                      << std::endl;
+    }
+
+    Event * sample_ev = new Event(i,generate_fake_event);
+
+    std::vector<Photon *> photon_list = sample_ev->get_gamma_configuration();
+
+    // Setting to off detection status
 
     d1_check_det = false;
     d2_check_det = false;
     d3_check_det = false;
-
 
     for (size_t j = 0; j < photon_list.size(); j++)
     {
@@ -88,7 +84,6 @@ void RunManger::run(long int n_events)
       if( j == 0 ) det_1_sp->Fill(photon_energy);
       if( j == 1 ) det_2_sp->Fill(photon_energy);
       if( j == 2 ) det_3_sp->Fill(photon_energy);
-
 
       if(d1->check_detection(photon_momentum))
       {
@@ -121,14 +116,25 @@ void RunManger::run(long int n_events)
 
     if (d1_check_det and d2_check_det and d3_check_det )
     {
+      coincidences++;
       coincidences_sp_1->Fill(photon_list[0]->get_energy());
       coincidences_sp_2->Fill(photon_list[1]->get_energy());
       coincidences_sp_3->Fill(photon_list[2]->get_energy());
     }
 
-    delete event_list[i];
+    double angle12 = acos(dot(photon_list[0]->get_momentum(), photon_list[1]->get_momentum())/(norm(photon_list[0]->get_momentum())*norm(photon_list[1]->get_momentum())));
+    double angle23 = acos(dot(photon_list[1]->get_momentum(), photon_list[2]->get_momentum())/(norm(photon_list[1]->get_momentum())*norm(photon_list[2]->get_momentum())));
 
+    // Plotting angular distribution in degrees
+    angular_distribution->Fill(angle12*180.0/M_PI, angle23*180.0/M_PI);
+
+    delete photon_list[0];
+    delete photon_list[1];
+    delete photon_list[2];
+    delete sample_ev;
+    
   }
+
 
   // Outputting result via iostream
   std::cout << "Detected photon in #1 :" << d1_c << '\n';
@@ -151,6 +157,7 @@ void RunManger::run(long int n_events)
   det_1_sp->Write();
   det_2_sp->Write();
   det_3_sp->Write();
+  angular_distribution->Write();
 
 
   outfile->Close();

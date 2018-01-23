@@ -6,6 +6,7 @@
 #include <exp_setup.h>
 
 #include "TH1F.h"
+#include "TH2F.h"
 
 // Up to now work only with our experimental setup due to the lack of
 // time for a general implementation
@@ -24,6 +25,10 @@ class RunManger
     TH1F * coincidences_sp_1 = new TH1F("coincidences_sp_1","Triple Coincidences #1",511,0,511);
     TH1F * coincidences_sp_2 = new TH1F("coincidences_sp_2","Triple Coincidences #2",511,0,511);
     TH1F * coincidences_sp_3 = new TH1F("coincidences_sp_3","Triple Coincidences #3",511,0,511);
+    
+    // Angular distribution has to be as in [reference]
+    TH2F * angular_distribution = new TH2F("ang_dist", "Angular Distribution", 200, 0, 180, 200, 0, 180);
+
 
   public:
 

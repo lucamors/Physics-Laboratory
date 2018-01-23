@@ -33,7 +33,7 @@ class Event
 
     void generate_fake(Photon * gamma);
     void generate_gamma(Photon * gamma);
-    void generate_third_gamma();
+    void generate_third_gamma(Photon * , Photon *, Photon * );
     bool check_physics();
 
 

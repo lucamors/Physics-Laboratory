@@ -4,8 +4,8 @@
 #include <vector>
 #include <string>
 #include <cmath>
-#include<chrono>
-#include<armadillo>
+#include <chrono>
+#include <armadillo>
 #include <event.h>
 
 
@@ -46,6 +46,13 @@ Event::Event(unsigned long id, bool flag)
 
   }
 
+  // Random generator
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  std::mt19937 generator (seed);
+  std::uniform_real_distribution<double> uniform01(0.0, 1.0);
+
+  double selector = uniform01(generator);
+
   if(fake_event)
   {
     // Generating event
@@ -59,9 +66,24 @@ Event::Event(unsigned long id, bool flag)
     // Generating event
     do{
 
-      generate_gamma(gamma1);
-      generate_gamma(gamma2);
-      generate_third_gamma();
+      if(selector > 0 and selector < 0.33)
+      {
+        generate_gamma(gamma1);
+        generate_gamma(gamma2);
+        generate_third_gamma(gamma1, gamma2, gamma3 );
+      }
+      if(selector > 0.33 and selector < 0.66)
+      {
+        generate_gamma(gamma2);
+        generate_gamma(gamma3);
+        generate_third_gamma(gamma2, gamma3, gamma1);
+      }
+      if(selector > 0.66)
+      {
+        generate_gamma(gamma3);
+        generate_gamma(gamma1);
+        generate_third_gamma(gamma3, gamma1, gamma2);
+      }
 
     }while(check_physics());
 
@@ -104,18 +126,18 @@ void Event::generate_gamma(Photon * gamma)
   return ;
 }
 
-void Event::generate_third_gamma()
+void Event::generate_third_gamma(Photon * gamma_s1, Photon * gamma_s2, Photon * gamma_s3 )
 {
 
   // Retrieving momentum direction of gamma 1
-  double g1_x = gamma1->get_momentum()[0];
-  double g1_y = gamma1->get_momentum()[1];
-  double g1_z = gamma1->get_momentum()[2];
+  double g1_x = gamma_s1->get_momentum()[0];
+  double g1_y = gamma_s1->get_momentum()[1];
+  double g1_z = gamma_s1->get_momentum()[2];
 
   // Retrieving momentum direction of gamma 2
-  double g2_x = gamma2->get_momentum()[0];
-  double g2_y = gamma2->get_momentum()[1];
-  double g2_z = gamma2->get_momentum()[2];
+  double g2_x = gamma_s2->get_momentum()[0];
+  double g2_y = gamma_s2->get_momentum()[1];
+  double g2_z = gamma_s2->get_momentum()[2];
 
   // Imposing the conservation of the momentum
   double g3_x = -g1_x-g2_x;
@@ -128,11 +150,11 @@ void Event::generate_third_gamma()
   s_momentum[1] = g3_y;
   s_momentum[2] = g3_z;
 
-  gamma3->set_momentum(s_momentum);
+  gamma_s3->set_momentum(s_momentum);
 
-  double s_energy = gamma3->get_totalmomentum() * C / 1000.0;
+  double s_energy = gamma_s3->get_totalmomentum() * C / 1000.0;
 
-  gamma3->set_energy(s_energy);
+  gamma_s3->set_energy(s_energy);
 
   return ;
 }

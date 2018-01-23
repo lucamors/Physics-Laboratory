@@ -15,9 +15,7 @@ In order to compile this program you need the following library:
 
 then you can compile it using:
 
-
-`g++ -I include/ test_det.cc src/detector.cc src/photon.cc src/event.cc src/run_manager.cc src/exp_setup.cc   `\``root-config --cflags --glibs`\``  -std=c++11 -larmadillo -o sim`
-
+`./Compile`
 
 ## Usage
 
