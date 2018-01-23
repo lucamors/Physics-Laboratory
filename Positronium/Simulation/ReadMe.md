@@ -6,6 +6,10 @@ This is a simple decay simulation program that can generate three gamma decay fr
 
 ![Alt text](info/splash.png "sim splash")
 
+with the simulated events the theoretical angular distribution was reproduced:
+
+![Alt text](info/angular_distribution.pdf "sim ang")
+
 ## Compile
 
 In order to compile this program you need the following library:
