@@ -96,6 +96,7 @@ Event::~Event()
   delete gamma1;
   delete gamma2;
   delete gamma3;
+  delete energy_spectrum;
 
 }
 
