@@ -20,6 +20,7 @@ class Photon
     // Constructor & Destructor
     Photon();
     Photon(arma::vec, double);
+    ~Photon();
 
     // Getter Methods
 
