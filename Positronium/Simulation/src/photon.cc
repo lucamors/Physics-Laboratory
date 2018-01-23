@@ -11,6 +11,8 @@ Photon::Photon(arma::vec p, double e)
   total_momentum = norm(p);
 }
 
+Photon::~Photon(){}
+
 arma::vec Photon::get_momentum(){ return momentum; }
 double Photon::get_totalmomentum(){ return total_momentum; }
 double Photon::get_energy(){ return energy; }
