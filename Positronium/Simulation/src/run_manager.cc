@@ -128,11 +128,8 @@ void RunManger::run(long int n_events)
     // Plotting angular distribution in degrees
     angular_distribution->Fill(angle12*180.0/M_PI, angle23*180.0/M_PI);
 
-    delete photon_list[0];
-    delete photon_list[1];
-    delete photon_list[2];
     delete sample_ev;
-    
+
   }
 
 
