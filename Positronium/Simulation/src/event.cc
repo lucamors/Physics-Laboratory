@@ -91,7 +91,13 @@ Event::Event(unsigned long id, bool flag)
 
 }
 
-Event::~Event(){}
+Event::~Event()
+{
+  delete gamma1;
+  delete gamma2;
+  delete gamma3;
+
+}
 
 void Event::generate_gamma(Photon * gamma)
 {
