@@ -29,7 +29,7 @@ class RunManger
     // Angular distribution has to be as in [reference]
     TH2F * angular_distribution = new TH2F("ang_dist", "Angular Distribution", 400, 0, 180, 400, 0, 180);
     TH2F * angular_distribution_coinc = new TH2F("ang_dist_coinc", "Angular Distribution", 400, 0, 180, 400, 0, 180);
-    TH2F * heat_map = new TH2F("heat_map","heat_map", 100,0,360,5,0,2);
+    TH2F * heat_map = new TH2F("heat_map","heat_map", 100,0,360,10,0,2);
 
   public:
 
