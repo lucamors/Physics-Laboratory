@@ -13,7 +13,7 @@
 
 class RunManger
 {
-  private:
+  private:B
 
     std::vector<Event*> event_list;
     bool generate_fake_event; // Debugging Purpouse
@@ -27,8 +27,9 @@ class RunManger
     TH1F * coincidences_sp_3 = new TH1F("coincidences_sp_3","Triple Coincidences #3",511,0,511);
 
     // Angular distribution has to be as in [reference]
-    TH2F * angular_distribution = new TH2F("ang_dist", "Angular Distribution", 200, 0, 180, 200, 0, 180);
-
+    TH2F * angular_distribution = new TH2F("ang_dist", "Angular Distribution", 400, 0, 180, 400, 0, 180);
+    TH2F * angular_distribution_coinc = new TH2F("ang_dist_coinc", "Angular Distribution", 400, 0, 180, 400, 0, 180);
+    TH2F * heat_map = new TH2F("heat_map","heat_map", 100,0,360,5,0,2);
 
   public:
 
