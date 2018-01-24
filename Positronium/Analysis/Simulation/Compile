@@ -1,0 +1,2 @@
+clear
+g++ -I include/ main.cc src/detector.cc src/photon.cc src/event.cc src/run_manager.cc src/exp_setup.cc   `root-config --cflags --glibs`  -std=c++11 -larmadillo -o sim
