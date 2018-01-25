@@ -6,9 +6,6 @@ This is a simple decay simulation program that can generate three gamma decay fr
 
 ![Alt text](info/result.png "sim result")
 
-with the simulated events the theoretical angular distribution was reproduced:
-
-![Alt text](info/ang_dist.png "sim ang")
 
 ## Compile
 
