@@ -4,7 +4,7 @@
 
 This is a simple decay simulation program that can generate three gamma decay from positronium.
 
-![Alt text](info/splash.png "sim splash")
+![Alt text](info/result.png "sim result")
 
 with the simulated events the theoretical angular distribution was reproduced:
 
