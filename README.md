@@ -1,6 +1,6 @@
 # Physics Lab Reports
 
-Experimental Reports for Physics Laboratory Master Course. AA 18/19
+Experimental Reports for Physics Laboratory Master Course. AA 17/18
 
 ## Timing Experiment
 
