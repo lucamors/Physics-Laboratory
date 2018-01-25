@@ -5,7 +5,6 @@
 This code allows the simulation of photon decay from orthopositronium state. Ortho-Positronium system decay into three photons.
 
 [![Sim Result](info/result.png "sim result")]("These plot are obtained from a simulation of 10E6 events.")
-[![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com)
 
 
 ## Code Structure
@@ -20,13 +19,13 @@ This class characterize each photon with the usual observable:
 
 This class handle event generator. A physical event is generated using the following "algorithm":
 
-1- Sample the theoretical energy distribution of photon from o-Ps decay the energy for the first photon is obtained.
-2- Sample a random point on a sphere surface for the purpose of obtaining the direction for momentum versor.
-3- Scaling momentum vector according to the sampled energy.
-4- Repeat 1-3 for the second gamma.
-5- By imposing momentum conservation obtaining the third gamma momentum vector.
-6- From previously obtained vector derive energy.
-7- Sum the energy of all of the gammas and check the energy conservation.
+1. Sample the theoretical energy distribution of photon from o-Ps decay the energy for the first photon is obtained.
+2. Sample a random point on a sphere surface for the purpose of obtaining the direction for momentum versor.
+3. Scaling momentum vector according to the sampled energy.
+4. Repeat 1-3 for the second gamma.
+5. By imposing momentum conservation obtaining the third gamma momentum vector.
+6. From previously obtained vector derive energy.
+7. Sum the energy of all of the gammas and check the energy conservation.
 
 ### Detector Class
 The detector class implement only one type of detector: Cylindrical Detectors. 
