@@ -4,7 +4,8 @@
 
 This code allows the simulation of photon decay from orthopositronium state. Ortho-Positronium system decay into three photons.
 
-[![Alt text](info/result.png "sim result")](These plot are obtained froma simulation of 10E6 events.)
+[![Sim Result](info/result.png "sim result")](These plot are obtained from a simulation of 10E6 events.)
+
 
 
 ## Code Structure
