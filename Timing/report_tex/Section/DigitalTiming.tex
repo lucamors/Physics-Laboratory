@@ -10,10 +10,11 @@ where $\chi$ is a reduction fraction and $\delta$ an integer delay.  Fig.~\ref{F
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{AverageCFD}
-	\caption{Digital waveform obtained as average of $10^3$ normalized signals. The Delayed and fractioned signals with their sum are represented too. }
+	\caption{Digital waveform obtained as an average of $10^4$ normalized signals. The Delayed and fractioned signals with their sum are represented too. }
 	\label{Fig:DigitalCFD}
 \end{figure}
 
+\newpage
 The intersection with the axis is found by taking the samples above and below  it  and interpolating to find the time reference. 
 A cubic spline interpolation with derivative bound continuity condition up to second order was chosen.
 Lets consider the sample range $[t_{-1},t_{0}]$ with $t_{0}$ the first sampled point after the intersection and $t_{-1}$ the preceding one. The reconstructed pulse $f(t)$ inside the range is evaluated as follow:\\
