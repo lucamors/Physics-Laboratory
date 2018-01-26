@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  26 JAN 2018 16:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  26 JAN 2018 17:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1179,40 +1179,55 @@ e 12.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9 <./immagini/Slice_thresh_comparison.pdf, page is rotated 90 degrees>]
-Underfull \hbox (badness 10000) in paragraph at lines 17--20
+Underfull \hbox (badness 10000) in paragraph at lines 18--21
 
  []
 
 ) (./Section/SpeedofLight.tex
-<immagini/TACoverlayed_dist.pdf, id=1980, pagebox=cropbox, 569.12625pt x 347.29
+<immagini/Light_Speed_setup.pdf, id=1981, pagebox=cropbox, 859.28107pt x 219.06
+146pt>
+File: immagini/Light_Speed_setup.pdf Graphic file (type pdf)
+<use immagini/Light_Speed_setup.pdf>
+Package pdftex.def Info: immagini/Light_Speed_setup.pdf  used on input line 5. 
+on input line 5.
+Package pdftex.def Info: Requested size: 307.29095pt x 78.3406pt on input line 
+5.
+ [10 <./immagini/AverageCFD.pdf> <./immagini/Light_Speed_setup.pdf
+
+pdfTeX warning: /opt/texbin/pdflatex (file ./immagini/Light_Speed_setup.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+>]
+<immagini/TACoverlayed_dist.pdf, id=2095, pagebox=cropbox, 569.12625pt x 347.29
 75pt>
 File: immagini/TACoverlayed_dist.pdf Graphic file (type pdf)
 <use immagini/TACoverlayed_dist.pdf>
-Package pdftex.def Info: immagini/TACoverlayed_dist.pdf  used on input line 10.
- on input line 10.
+Package pdftex.def Info: immagini/TACoverlayed_dist.pdf  used on input line 29.
+ on input line 29.
 Package pdftex.def Info: Requested size: 307.29095pt x 187.52725pt on input lin
-e 10.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<immagini/Speed_fit.pdf, id=1981, pagebox=cropbox, 569.12625pt x 347.2975pt>
+e 29.
+<immagini/Speed_fit.pdf, id=2097, pagebox=cropbox, 569.12625pt x 347.2975pt>
 File: immagini/Speed_fit.pdf Graphic file (type pdf)
 <use immagini/Speed_fit.pdf>
-Package pdftex.def Info: immagini/Speed_fit.pdf  used on input line 16. on inpu
-t line 16.
-Package pdftex.def Info: Requested size: 307.29095pt x 187.52725pt on input lin
-e 16.
+Package pdftex.def Info: immagini/Speed_fit.pdf  used on input line 39. on inpu
+t line 39.
+Package pdftex.def Info: Requested size: 230.46968pt x 140.63881pt on input lin
+e 39.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (17.01802pt too wide) in paragraph at lines 46--58
+ [][] 
+ []
+
+
+Overfull \hbox (21.6401pt too wide) in paragraph at lines 37--60
+[][]  [] 
+ []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
- [10 <./immagini/AverageCFD.pdf>] [11 <./immagini/TACoverlayed_dist.pdf, page i
-s rotated 90 degrees> <./immagini/Speed_fit.pdf, page is rotated 90 degrees>]
+ [11 <./immagini/TACoverlayed_dist.pdf, page is rotated 90 degrees> <./immagini
+/Speed_fit.pdf, page is rotated 90 degrees>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
-
-(./main.aux)
+ (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `main.out' has not changed.
@@ -1224,10 +1239,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 8847 strings out of 492985
- 132101 string characters out of 6132571
- 320152 words of memory out of 5000000
- 12191 multiletter control sequences out of 15000+600000
+ 8855 strings out of 492985
+ 132338 string characters out of 6132571
+ 320412 words of memory out of 5000000
+ 12198 multiletter control sequences out of 15000+600000
  12665 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,11n,49p,889b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1250,10 +1265,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2017/texmf
 -dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (12 pages, 2344499 bytes).
+Output written on main.pdf (12 pages, 2352530 bytes).
 PDF statistics:
- 2251 PDF objects out of 2487 (max. 8388607)
- 1423 compressed objects within 15 object streams
+ 2262 PDF objects out of 2487 (max. 8388607)
+ 1431 compressed objects within 15 object streams
  52 named destinations out of 1000 (max. 500000)
- 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 
