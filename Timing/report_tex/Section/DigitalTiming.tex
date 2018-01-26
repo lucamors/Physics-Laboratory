@@ -1,16 +1,20 @@
 \section*{Digital Timing}
 Digital timing algorithm uses directly the digitized waveforms, performing a digital signal treatment similar to the analog one.
  
-The CFD method works generating a bipolar signal from the original pulse and then finding its zero crossing as time reference. Lets name $W_t$ the digitized waveform with $t$ an integer number (sample number). The bipolar pulse $P_t$ is calculated as:
+The CFD method works generating a bipolar signal from the original pulse and then computing its zero crossing as time reference. Lets name $W_t$ the digitized waveform with $t$ an integer number (sample number). The bipolar pulse $P_t$ is calculated as:
 \begin{equation}
 P_t=\chi W_t-W_{t-\delta},
 \label{eq:bipolarCFD}
 \end{equation}
-where $\chi$ is a reduction fraction and $\delta$ an integer delay. Fig. shows the CFD method applied on a signal. 
+where $\chi$ is a reduction fraction and $\delta$ an integer delay.  Fig.~\ref{Fig:DigitalCFD} shows the CFD method applied on a signal. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{AverageCFD}
+	\caption{Digital waveform obtained as average of $10^3$ normalized signals. The Delayed and fractioned signals with their sum are represented too. }
+	\label{Fig:DigitalCFD}
+\end{figure}
 
-
-
-The intersection with the axis is found by taking the samples above and below  value and interpolating to find the time reference. 
+The intersection with the axis is found by taking the samples above and below  it  and interpolating to find the time reference. 
 A cubic spline interpolation with derivative bound continuity condition up to second order was chosen.
 Lets consider the sample range $[t_{-1},t_{0}]$ with $t_{0}$ the first sampled point after the intersection and $t_{-1}$ the preceding one. The reconstructed pulse $f(t)$ inside the range is evaluated as follow:\\
 \[\mathbf{f(t)=a (t-t_{-1})^3+b (t-t_{-1})^2+c (t-t_{-1})+d}\]
@@ -24,28 +28,5 @@ d &=P_{t_{-1}}
 \end{aligned}
 \right.
 \]
-
-
-
-
-We can perform a digital timing that reconstructs all the analog chain using software. In order to do so we need the signal waveforms provided by the DT5751 CAEN digitizer\footnote{with a sampling rate of 1 GS/s}.
-The digitized waveform then is manipulated in order to obtain a bipolar signal (Fig.\ref{Fig: digital waveform manipulations}).
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\textwidth]{digital_waveform}
-\caption{Digital waveforms manipulations used to get the bipolar signal}
-\label{Fig: digital waveform manipulations}
-\end{figure}
-Then troughtout an algorithms we have to find the zero of the signal that is the time that we associate to the event.
-
-\medskip
-descrizione dell'algoritmo e del fit c2 etc etc
-\medskip
-
-\noindent The bipolar signal shape depends on two parameter that we need to tune in order to optimize the time resolution:
-\begin{itemize}
-\item Fraction
-\item Delay
-\end{itemize}
 
 
