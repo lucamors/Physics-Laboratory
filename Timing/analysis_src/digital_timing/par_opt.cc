@@ -104,6 +104,24 @@ double TimingC2(double *data, int Buffer, double Fact, int delay, double Zcline,
             return Time;
 }
 
+void printProgBar( int percent ) {
+  string bar;
+
+  for(int i = 0; i < 50; i++){
+    if( i < (percent/2)){
+      bar.replace(i,1,"=");
+    }else if( i == (percent/2)){
+      bar.replace(i,1,">");
+    }else{
+      bar.replace(i,1," ");
+    }
+  }
+
+  cout<< "\r" "[" << bar << "] ";
+  cout.width( 3 );
+  cout<< percent << "%     " << std::flush;
+}
+
 void par_opt(string input_file_name)
 {
   // Retrieving File
@@ -166,9 +184,9 @@ void par_opt(string input_file_name)
 
 	alg_statistics << "#Frac	del	zcl	processed	time\n";
 
-    for(float Frac = 0.1; Frac<0.5; Frac+=0.05)
+    for(float Frac = 0.1; Frac<0.22; Frac+=0.02)
     {
-      for(int Del=2; Del<14; Del++)
+      for(int Del=7; Del<15; Del++)
       {
         for(int ZCL=0; ZCL<1; ZCL+=1)
         {
@@ -190,12 +208,8 @@ void par_opt(string input_file_name)
 
                system("clear");
                std::cout << "Loading Event " << counter << endl;
-               std::cout << "Frac: " << Frac << " Del:" << Del << " ZCL: " << ZCL << std::endl;
-               std::cout << "-----------------------\n";
-               std::cout << "Load "
-                         <<  (int)((counter*100.0)/number_of_ev)
-                         << "%"
-                         << std::endl;
+               std::cout << "Frac: " << Frac << " Del:" << Del << " ZCL: " << ZCL << std::endl<<std::endl;
+               printProgBar ((int)((counter*100.0)/number_of_ev));
               }
 
               branch_ch_A->GetEntry(counter);

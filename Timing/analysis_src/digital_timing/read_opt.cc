@@ -81,6 +81,7 @@ void read_opt(string filename)
 	std::vector<Int_t> Del;
 	std::vector<Double_t> FWHM;
 	std::vector<Int_t> Zcl;
+	const int Zcl_fix=0;    //value for del-frac scan
 
   for (size_t i = 0; i < n_ev; i++)
   {
@@ -99,7 +100,7 @@ void read_opt(string filename)
 			Time->Fill(opt_sett->TimeA[j]-opt_sett->TimeB[j]);
 		}
 
-		std::vector<Double_t> v = Fitter(Time,0.55);
+		std::vector<Double_t> v = Fitter(Time,1.5);
 
 		Frac.push_back(Fraction);
 		Del.push_back(Delay);
@@ -112,9 +113,11 @@ void read_opt(string filename)
 
   std::vector<Float_t> Frac_scanned;
 	std::vector<Int_t> Del_scanned;
+	std::vector<Int_t> Zcl_scanned;
+
   //Number of different Fraction
 	for (size_t i = 0; i < Frac.size(); i++) {
-		if (Zcl[i]==0){
+		if (Zcl[i]==Zcl_fix){
 			if (Frac_scanned.size()==0) Frac_scanned.push_back(Frac[i]);
 			int k = 0;
 			for (size_t j = 0; j < Frac_scanned.size(); j++) {
@@ -127,9 +130,10 @@ void read_opt(string filename)
 
 		}
 	}
+
 	//Number of different Delay
 	for (size_t i = 0; i < Del.size(); i++) {
-		if (Zcl[i]==0){
+		if (Zcl[i]==Zcl_fix){
 			if (Del_scanned.size()==0) Del_scanned.push_back(Del[i]);
 			int k = 0;
 			for (size_t j = 0; j < Del_scanned.size(); j++) {
@@ -143,6 +147,22 @@ void read_opt(string filename)
 		}
 	}
 
+	//Number of different Zcl
+	for (size_t i = 0; i < Zcl.size(); i++) {
+		if (Frac[i]==Frac_scanned[0] && Del[i]==Del_scanned[0]){
+			if (Zcl_scanned.size()==0) Zcl_scanned.push_back(Zcl[i]);
+			int k = 0;
+			for (size_t j = 0; j < Zcl_scanned.size(); j++) {
+				if (Zcl_scanned[j]==Zcl[i]) k++;
+			}
+			if(k == 0){
+				Zcl_scanned.push_back(Zcl[i]);
+				//cout<<Zcl[i]<<endl;                                        //debug
+			}
+
+		}
+	}
+
 	TRandom *color = new TRandom();
 	//FWHMvsDelay
   std::vector<TGraph *> FWHMvsDelay;
@@ -151,7 +171,7 @@ void read_opt(string filename)
 		FWHMvsDelay.push_back(new TGraph(Del_scanned.size()));
 		int j = 0;
 		for (size_t k = 0; k < Frac.size(); k++) {
-			if (Zcl[k]==0 && Frac[k]==Frac_scanned[i]){
+			if (Zcl[k]==Zcl_fix && Frac[k]==Frac_scanned[i]){
 				FWHMvsDelay[i]->SetPoint(j,Del[k],FWHM[k]);
 				j++;
 				//cout<<Del[k]<<" "<<FWHM[k]<<endl;           //debug
@@ -179,7 +199,7 @@ void read_opt(string filename)
 		FWHMvsFraction.push_back(new TGraph(Frac_scanned.size()));
 		int j = 0;
 		for (size_t k = 0; k < Del.size(); k++) {
-			if (Zcl[k]==0 && Del[k]==Del_scanned[i]){
+			if (Zcl[k]==Zcl_fix && Del[k]==Del_scanned[i]){
 				FWHMvsFraction[i]->SetPoint(j,Frac[k],FWHM[k]);
 				j++;
 				//cout<<Frac[k]<<" "<<FWHM[k]<<endl;           //debug
@@ -200,6 +220,34 @@ void read_opt(string filename)
 	FWHMvsFraction_mg->Draw("A*L");
 	FWHMvsFraction_Canvas->Update();
 
+	//FWHMvsZcl
+  std::vector<TGraph *> FWHMvsZcl;
+	for (size_t i = 0; i < Del_scanned.size(); i++) {
+		cout<<"Delay set------>"<<Del_scanned[i]<<endl;  //debug
+		FWHMvsZcl.push_back(new TGraph(Zcl_scanned.size()));
+		int j = 0;
+		for (size_t k = 0; k < Del.size(); k++) {
+			if (Del[k]==Del_scanned[i]){
+				FWHMvsZcl[i]->SetPoint(j,Zcl[k],FWHM[k]);
+				j++;
+				//cout<<Zcl[k]<<" "<<FWHM[k]<<endl;           //debug
+			}
+		}
+
+		FWHMvsZcl[i]->Sort();
+		FWHMvsZcl[i]->SetTitle(Form("Delay %i ns",Del_scanned[i]));
+		FWHMvsZcl[i]->SetLineColor(color->Integer(9)+1);
+	}
+
+	TMultiGraph *FWHMvsZcl_mg = new TMultiGraph();
+	TCanvas * FWHMvsZcl_Canvas = new TCanvas("FWHMvsZcl_Canvas", "FWHM as function of Zcl",1280,720);
+	FWHMvsZcl_Canvas->cd();
+	for (size_t i = 0; i < FWHMvsZcl.size(); i++) {
+		FWHMvsZcl_mg->Add(FWHMvsZcl[i]);
+	}
+	FWHMvsZcl_mg->Draw("A*L");
+	FWHMvsZcl_Canvas->Update();
+
 	//2-D surface plot
 	Float_t Frac_step  = Frac_scanned[1]-Frac_scanned[0];
 	Float_t Frac_start = Frac_scanned[0]-0.5*Frac_step;
@@ -216,7 +264,7 @@ void read_opt(string filename)
 	for (size_t i = 0; i < Del_scanned.size(); i++) {
 
 		for (size_t k = 0; k < Frac.size(); k++) {
-			if (Zcl[k]==0 && Del[k]==Del_scanned[i]){
+			if (Zcl[k]==Zcl_fix && Del[k]==Del_scanned[i]){
 				FWHM_opt->Fill(Frac[k],Del[k],FWHM[k]);
 				cout<<Frac[k]<<" "<<Del[k]<<" "<<FWHM[k]<<endl;           //debug
 			}
