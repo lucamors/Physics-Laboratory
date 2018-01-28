@@ -41,14 +41,21 @@ std::vector<Double_t> Fitter(TH1F * histo, Double_t range)
 	y_peak         = GausPeak->GetParameter(0);
 	Double_t Sigma = GausPeak->GetParameter(2);
 	Double_t SigmaSig = GausPeak->GetParError(2);
-	Double_t FWHM    = 2*sqrt2ln2*Sigma;
-	Double_t FWHMsig = 2*sqrt2ln2*SigmaSig;
-
+	Double_t FWHM     = 2*sqrt2ln2*Sigma;
+	Double_t FWHMsig  = 2*sqrt2ln2*SigmaSig;
+	TAxis *axis = histo->GetXaxis();
+  int bmin = axis->FindBin(x_peak-sqrt2ln2*Sigma); //in your case xmin=-1.5
+  int bmax = axis->FindBin(x_peak+sqrt2ln2*Sigma); //in your case xmax=0.8
+  Double_t integral = histo->Integral(bmin,bmax);
+  integral -= histo->GetBinContent(bmin)*(((x_peak-sqrt2ln2*Sigma)-axis->GetBinLowEdge(bmin))/(axis->GetBinWidth(bmin)));
+  integral -= histo->GetBinContent(bmax)*((axis->GetBinUpEdge(bmax)-x_peak-sqrt2ln2*Sigma)/(axis->GetBinWidth(bmax)));
 	std::vector<Double_t> FitResult;
   FitResult.push_back(FWHM);
   FitResult.push_back(FWHMsig);
+	FitResult.push_back(integral);
 
   delete GausPeak;
+	//delete axis;
 	delete search_peak;
 	return FitResult;
 
@@ -81,6 +88,8 @@ void read_opt(string filename)
 	std::vector<Int_t> Del;
 	std::vector<Double_t> FWHM;
 	std::vector<Int_t> Zcl;
+	std::vector<Double_t> Integ;
+
 	const int Zcl_fix=0;    //value for del-frac scan
 
   for (size_t i = 0; i < n_ev; i++)
@@ -106,6 +115,7 @@ void read_opt(string filename)
 		Del.push_back(Delay);
     Zcl.push_back(ZCL);
 		FWHM.push_back(v[0]);
+		Integ.push_back(v[2]);
 
 		delete Time;
 
@@ -181,6 +191,9 @@ void read_opt(string filename)
 		FWHMvsDelay[i]->Sort();
 		FWHMvsDelay[i]->SetTitle(Form("Fraction %.2f",Frac_scanned[i]));
 		FWHMvsDelay[i]->SetLineColor(color->Integer(9)+1);
+		FWHMvsDelay[i]->GetXaxis()->SetTitle("Delay [ns]");
+		FWHMvsDelay[i]->GetYaxis()->SetTitle("FWHM [ns]");
+
 	}
 
 	TMultiGraph *FWHMvsDelay_mg = new TMultiGraph();
@@ -209,6 +222,8 @@ void read_opt(string filename)
 		FWHMvsFraction[i]->Sort();
 		FWHMvsFraction[i]->SetTitle(Form("Delay %i ns",Del_scanned[i]));
 		FWHMvsFraction[i]->SetLineColor(color->Integer(9)+1);
+		FWHMvsFraction[i]->GetXaxis()->SetTitle("Fraction");
+		FWHMvsFraction[i]->GetYaxis()->SetTitle("FWHM [ns]");
 	}
 
 	TMultiGraph *FWHMvsFraction_mg = new TMultiGraph();
@@ -237,6 +252,8 @@ void read_opt(string filename)
 		FWHMvsZcl[i]->Sort();
 		FWHMvsZcl[i]->SetTitle(Form("Delay %i ns",Del_scanned[i]));
 		FWHMvsZcl[i]->SetLineColor(color->Integer(9)+1);
+		FWHMvsZcl[i]->GetXaxis()->SetTitle("ZCL");
+		FWHMvsZcl[i]->GetYaxis()->SetTitle("FWHM [ns]");
 	}
 
 	TMultiGraph *FWHMvsZcl_mg = new TMultiGraph();
@@ -257,6 +274,26 @@ void read_opt(string filename)
 	Float_t Del_start = Del_scanned[0]-0.5*Del_step;
 	Float_t Del_stop  = Del_scanned[Del_scanned.size()-1]+0.5*Del_step;
 
+	TCanvas * FWHM_integ = new TCanvas("FWHM_Integral", "FWHM surface integral plot",1280,720);
+
+	TH2D * FWHM_opt_int = new TH2D("surface integral plot", "2-D fraction vs delay",Frac_scanned.size(),Frac_start,Frac_stop,Del_scanned.size(),Del_start,Del_stop);
+
+	for (size_t i = 0; i < Del_scanned.size(); i++) {
+
+		for (size_t k = 0; k < Frac.size(); k++) {
+			if (Zcl[k]==Zcl_fix && Del[k]==Del_scanned[i]){
+				FWHM_opt_int->Fill(Frac[k],Del[k],Integ[k]);
+				//cout<<Frac[k]<<" "<<Del[k]<<" "<<Integ[k]<<endl;           //debug
+			}
+		}
+	}
+  FWHM_integ->cd();
+	FWHM_opt_int->SetStats(kFALSE);
+	FWHM_opt_int->GetXaxis()->SetTitle("Fraction");
+	FWHM_opt_int->GetYaxis()->SetTitle("Delay [ns]");
+	FWHM_opt_int->Draw("COLZ");
+	FWHM_integ->Update();
+
 	TCanvas * FWHM_surf = new TCanvas("FWHM_surf", "FWHM surface plot",1280,720);
 
 	TH2D * FWHM_opt = new TH2D("surface plot", "2-D fraction vs delay",Frac_scanned.size(),Frac_start,Frac_stop,Del_scanned.size(),Del_start,Del_stop);
@@ -266,12 +303,16 @@ void read_opt(string filename)
 		for (size_t k = 0; k < Frac.size(); k++) {
 			if (Zcl[k]==Zcl_fix && Del[k]==Del_scanned[i]){
 				FWHM_opt->Fill(Frac[k],Del[k],FWHM[k]);
-				cout<<Frac[k]<<" "<<Del[k]<<" "<<FWHM[k]<<endl;           //debug
+				//cout<<Frac[k]<<" "<<Del[k]<<" "<<FWHM[k]<<endl;           //debug
 			}
 		}
 	}
   FWHM_surf->cd();
+	FWHM_opt->SetStats(kFALSE);
+	FWHM_opt->GetXaxis()->SetTitle("Fraction");
+	FWHM_opt->GetYaxis()->SetTitle("Delay [ns]");
 	FWHM_opt->Draw("COLZ");
 	FWHM_surf->Update();
+
 	return ;
 }
