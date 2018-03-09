@@ -16,7 +16,7 @@ void subcompt(string input_filename,
 
   TF1 * linear_poly = new TF1("linpoly", "[0]+[1]*x", fit_min, fit_max);
 
-  energy_spectrum->Fit("linpoly", "RA");
+  energy_spectrum->Fit("linpoly", "R0");
 
   double compton_background = linear_poly->GetParameter(0);
 
