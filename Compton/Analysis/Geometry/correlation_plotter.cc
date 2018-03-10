@@ -44,7 +44,7 @@ void printProgBar( int percent )
 void cutter(string data_filename, string cut_filename, string output_file_name)
 {
   // Retrieving File
-  TFile * data_file = new TFile(data_file.c_str());
+  TFile * data_file = new TFile(data_filename.c_str());
 
 	TTree * daq_tree;
 
@@ -116,13 +116,13 @@ void cutter(string data_filename, string cut_filename, string output_file_name)
       if ( correlation_cut->IsInside(event_ch_B->qlong*0.0577517-7.81986, event_ch_C->qlong*0.0531775-6.78006) )
       {
 				scatterer_x.push_back(event_ch_B->qlong*0.0577517-7.81986);
-				detector_y.push_back(event_ch_C->qlong*0.0531775-6.78006)
+				detector_y.push_back(event_ch_C->qlong*0.0531775-6.78006);
       }
 
   }
 
 
-	TGraph * correlation_plot = new TGraph(scatterer_x.size(), scatterer_x, detector_y);
+	TGraph * correlation_plot = new TGraph(scatterer_x.size(), &scatterer_x[0], &detector_y[0]);
 
 	correlation_plot->Write();
 
