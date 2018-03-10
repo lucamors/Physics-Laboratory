@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  10 MAR 2018 16:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.7)  10 MAR 2018 18:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -936,9 +936,26 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
-(./Section/Calibration.tex
-<immagini/calibrated_spectra.pdf, id=17, pagebox=cropbox, 569.12625pt x 361.35p
+)
+Overfull \hbox (11.021pt too wide) in paragraph at lines 14--15
+\OT1/cmr/m/n/10.95 di-am-e-ter and height were used. up-led with a Pho-ton-ics 
+Pho-to-mul-ti-plier XP2020 (see
+ []
+
+<immagini/SetUp.pdf, id=17, pagebox=cropbox, 1127.99213pt x 592.15198pt>
+File: immagini/SetUp.pdf Graphic file (type pdf)
+<use immagini/SetUp.pdf>
+Package pdftex.def Info: immagini/SetUp.pdf  used on input line 18. on input li
+ne 18.
+Package pdftex.def Info: Requested size: 384.11223pt x 201.64525pt on input lin
+e 18.
+) (./Section/Calibration.texpdfTeX warning (ext4): destination with the same id
+entifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7 \item D
+           etector [1 <./immagini/SetUp.pdf>]
+<immagini/calibrated_spectra.pdf, id=43, pagebox=cropbox, 569.12625pt x 361.35p
 t>
 File: immagini/calibrated_spectra.pdf Graphic file (type pdf)
 <use immagini/calibrated_spectra.pdf>
@@ -946,15 +963,9 @@ Package pdftex.def Info: immagini/calibrated_spectra.pdf  used on input line 18
 . on input line 18.
 Package pdftex.def Info: Requested size: 384.11223pt x 243.8897pt on input line
  18.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.17 
-      [1 <./immagini/calibrated_spectra.pdf, page is rotated 90 degrees>]
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 18.
-
-[2]
+ [2 <./immagini/calibrated_spectra.pdf, page is rotated 90 degrees>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 18.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 18.
@@ -968,13 +979,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 18.
  ) 
 Here is how much of TeX's memory you used:
- 8658 strings out of 492985
- 127122 string characters out of 6132571
- 315090 words of memory out of 5000000
- 12089 multiletter control sequences out of 15000+600000
+ 8666 strings out of 492985
+ 127284 string characters out of 6132571
+ 315194 words of memory out of 5000000
+ 12094 multiletter control sequences out of 15000+600000
  10449 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,39p,244b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,39p,870b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
@@ -985,10 +996,10 @@ local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
 /texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
 texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (3 pages, 578519 bytes).
+Output written on main.pdf (3 pages, 595081 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 131 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
