@@ -18,7 +18,8 @@ void subcompt(string input_filename,
 
   energy_spectrum->Fit("linpoly", "R0");
 
-  double compton_background = linear_poly->GetParameter(0);
+  double q = linear_poly->GetParameter(0);
+  double m = linear_poly->GetParameter(1);
 
   // Subtracting the background
 
@@ -29,8 +30,10 @@ void subcompt(string input_filename,
   {
     double current_counter = energy_spectrum->GetBinContent(i);
 
-    energy_spectrum->SetBinContent(i,  current_counter - compton_background );
+    energy_spectrum->SetBinContent(i,  current_counter - m*energy_spectrum->GetBinCenter(i)-q );
   }
+
+  Double F_511 = 0;
 
   // Saving to file
 
