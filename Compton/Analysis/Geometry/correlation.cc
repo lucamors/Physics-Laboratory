@@ -19,12 +19,18 @@ void printProgBar( int percent )
 {
   string bar;
 
-  for(int i = 0; i < 50; i++){
-    if( i < (percent/2)){
+  for(int i = 0; i < 50; i++)
+  {
+    if( i < (percent/2))
+    {
       bar.replace(i,1,"=");
-    }else if( i == (percent/2)){
+    }
+    else if( i == (percent/2))
+    {
       bar.replace(i,1,">");
-    }else{
+    }
+    else
+    {
       bar.replace(i,1," ");
     }
   }
@@ -101,8 +107,19 @@ void plotter(string input_file_name, string output_file_name)
         Correlation->Fill(event_ch_B->qlong*0.0577517-7.81986, event_ch_C->qlong*0.0531775-6.78006);
       }
 
+
     }
 
+    Correlation->Draw();
+
+    TCutG * cut_correlation = new TCutG();
+
+    std::cout << "Create the cut in TCanvas\n";
+
+    cut_correlation = (TCutG*) gPad->WaitPrimitive("CUTG");
+    cut_correlation->SetName("cut");
+
+    cut_correlation->Write();
     Correlation->Write();
 
 		outfile->Close();
