@@ -1,7 +1,7 @@
 // Comparison between event by event energy conservation
 // and simpler software gate
 
-void comparison(string input_filename)
+TCanvas * comparison(string input_filename)
 {
 
   TFile * input_file = new TFile(input_filename.c_str() );
@@ -59,12 +59,7 @@ void comparison(string input_filename)
 
   conservation_scatterer->Draw();
 
-  TFile * outfile = new TFile("prova.root", "RECREATE");
-
-  comparison_canvas->Write();
-  outfile->Close();
-
 
   input_file->Close();
-  return ;
+  return comparison_canvas;
 }
