@@ -59,7 +59,5 @@ TCanvas * comparison(string input_filename)
 
   conservation_scatterer->Draw();
 
-
-  input_file->Close();
   return comparison_canvas;
 }
