@@ -34,7 +34,6 @@ void clean_data(string input_file_name, string outfile_name)
 {
 
 
-
 	// Retrieving File
   TFile * input_file = new TFile(input_file_name.c_str());
 
@@ -69,7 +68,7 @@ void clean_data(string input_file_name, string outfile_name)
 	TTree * out_tree = new TTree("acq_tree_0", "Dati Allineati");
 
 	out_tree->Branch("acq_ch0",&event_ch_A_clean);
-	out_tree->Branch("acq_ch1",&event_ch_B_clean);
+	out_tree->Branch("acq_ch2",&event_ch_B_clean);
 
 
 	// aligning channels
