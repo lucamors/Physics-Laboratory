@@ -125,7 +125,7 @@ void counter(string data_filename, string output_file_name)
 
 			Correlation->Fill(tagger_energy, detector_energy);
 
-			if ( tagger_energy > 490 and tagger_energy < 520 )
+			if ( tagger_energy > 470 and tagger_energy < 550 )
 			{
 
 				if( 1 )
