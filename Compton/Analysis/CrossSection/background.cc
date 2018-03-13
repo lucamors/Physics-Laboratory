@@ -18,6 +18,7 @@ void back_sub(string filename_noscat, string filename_scat)
 	}
 
 	scat_h->Draw();
-
+	double gamma=  scat_h->Integral(scat_h->GetXaxis()->FindBin(215.5),scat_h->GetXaxis()->FindBin(295.5));
+  cout<<gamma<<endl;
 	return ;
 }
