@@ -1,5 +1,5 @@
 
-const string branch_name  = "cal_sp";
+const string branch_name  = "ch2";
 
 void subcompt(string input_filename,
               double fit_min, double fit_max,
@@ -33,8 +33,8 @@ void subcompt(string input_filename,
     energy_spectrum->SetBinContent(i,  current_counter - m*energy_spectrum->GetBinCenter(i)-q );
   }
 
-  Double F_511 = 0;
-
+  double A511=  energy_spectrum->Integral(energy_spectrum->GetXaxis()->FindBin(470),energy_spectrum->GetXaxis()->FindBin(550));
+  cout<<A511<<endl;
   // Saving to file
 
   TFile * outfile = new TFile((output_filename+".root").c_str(),"RECREATE");

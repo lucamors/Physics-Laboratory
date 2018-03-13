@@ -126,7 +126,7 @@ void counter(string data_filename, string output_file_name)
 			Energy_spectrum_ch0->Fill(tagger_energy);
       Energy_spectrum_ch1->Fill(scatterer_energy);
 			Energy_spectrum_ch2->Fill(detector_energy);
-			Correlation->Fill(scatterer_energy, detector_energy);
+			Correlation->Fill(tagger_energy, detector_energy);   ////mod with Tagger
 
 			if ( tagger_energy > 470 and tagger_energy < 550 )
 			{
@@ -135,7 +135,7 @@ void counter(string data_filename, string output_file_name)
 					Energy_spectrum_ch0_coinc->Fill(tagger_energy);
 					Energy_spectrum_ch1_coinc->Fill(scatterer_energy);
 					Energy_spectrum_ch2_coinc->Fill(detector_energy);
-					Correlation_coinc->Fill(scatterer_energy, detector_energy);
+					Correlation_coinc->Fill(tagger_energy, detector_energy);
 				}
 
 			}
