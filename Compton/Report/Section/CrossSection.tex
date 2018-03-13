@@ -10,7 +10,7 @@ where $r_e$ is the classical radius of the electron\footnote{$r_e =\dfrac{1}{4\p
 
 In order to experimentally measure the differential cross section and make a comparison with the theoretical value, the Detector was rotated at 90$^\circ$ and the Scatterer was replaced by an aluminum sample of  diameter $\phi$ 3.4~cm and thickness~h 0.7~cm.  
 
-Initially  a first data acquisition was performed without the aluminum scatterer to store a background spectrum for the two detectors, then the real acquisition was done using the Al sample. For both the session the coincidences between the detectors were used as trigger signals for the digitizer, moreover the total number of events detected by the Tagger was recorded using a CAEN scaler. Fig.~ \ref{Fig:CrossSection_spectra} presents the acquired spectra with and without the aluminum sample. Tagger spectrum does not change with or without the target as expected, instead the Detector spectrum present some differences. The background figure highlight the presence of noise under 200~keV, then a peak around $\sim$250~keV arise with the scattering target, which represents the interested events .
+Initially  a first data acquisition was performed without the aluminum scatterer to store a background spectrum for the two detectors, then the real acquisition was done using the Al sample. For both the session the coincidences between the detectors were used as trigger signals for the digitizer, moreover the total number of events detected by the Tagger was recorded using a CAEN scaler. Fig.~ \ref{Fig:CrossSection_spectra} presents the acquired spectra with and without the aluminum sample. Tagger spectrum does not change in the two cases as expected, instead the Detector spectrum present some differences. The background figure highlight the presence of noise under 200~keV, then a peak around $\sim$250~keV arise with the scattering target, which represents the interested events . Fig.~\ref{Fig:2D_comparison} shows the 2D density plots of the energies measured in the Detector versus the energies measured in the Tagger, collected using the Scatterer as scattering center. In the left figure a conservation condition on the energy between the recoil electron and the scattered $\gamma$ is imposed, while the highlighted regions of the plots represent the events selected using a gate on the Tagger detected energy.  From this comparison is explained the noise under 200~keV above mentioned, which are events not related to the Compton scattering. 
 
 \begin{figure}[h!]
 	\centering
@@ -30,7 +30,8 @@ Initially  a first data acquisition was performed without the aluminum scatterer
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{90deg_bg}
-\caption{Here are reported two 2D histogram where the energy of the scattered photon is put in relation to the energy of the photon that impinges on the tagger. The red overlay cover all the events that can be selected gating on the photopeak of the tagger. For left plot all the collected events are histogrammed meanwhile for the right one only the events that conserve the energy (the sum of the energy of the scattered photon and the recoil electron is equal to 511 keV) are histogrammed. This background subtraction is possible only if we have an active target so this is not a viable way in the computation of the cross section but allow us to understand the shape of the spectra without the active target.}
+\caption{2D density plots of the energies measured in the Detector versus the energies measured in the Tagger, collected using the Scatterer as scattering center. In the left figure a condition of energy conservation between the recoil electron and the scattered $\gamma$ is used.}
+\label{Fig:2D_comparison}
 \end{figure}
 
 
