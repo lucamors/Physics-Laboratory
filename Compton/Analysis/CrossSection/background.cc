@@ -11,7 +11,7 @@ void back_sub(string filename_noscat, string filename_scat)
 
 	for (size_t i = 0; i < 3500; i++)
 	{
-		current_bg = 2 * noscat_h->GetBinContent(i);
+		current_bg = 1.9235955 * noscat_h->GetBinContent(i);
 		current_wbg = scat_h->GetBinContent(i);
 
 		scat_h->SetBinContent(i, current_wbg - current_bg );

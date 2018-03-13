@@ -30,7 +30,7 @@ class cleanEv : public TObject
 
 ClassImp(cleanEv)
 
-void clean_data(string input_file_name, string outfile_name)
+void Timer(string input_file_name)
 {
 
 
@@ -158,7 +158,7 @@ void clean_data(string input_file_name, string outfile_name)
     }
 	}
 
-	std::cout << "Time diff [h] : " << (timetag_last-timetag_first)*(10E-9)*4/3600.0 << '\n';
+	std::cout << "Time diff [h] : " << (timetag_last-timetag_first)*(1E-9)*4/3600.0 << '\n';
 
 	// Debugging Purpouse
 	// timetag_histo_ch02->Write();
