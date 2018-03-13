@@ -39,7 +39,7 @@ void cal_sp(string filename, int channel, string outfilename)
 
       break;
 
-    case 2: // Scatterer
+    case 2: // Detector
 
       calibrated_spectra = (TH1F*) _inputfile->Get("ch2");
 
