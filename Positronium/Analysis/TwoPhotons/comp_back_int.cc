@@ -1,4 +1,4 @@
-void ComptonSubInt(string filename)
+void ComptonSubInt(string filename, int channel)
 {
 
   gStyle->SetTitleAlign(33);
@@ -8,27 +8,28 @@ void ComptonSubInt(string filename)
 
   TCanvas * c1 = new TCanvas("c1");
 
-  c1->Divide(2,1);
-
-  c1->cd(1);
-
+  string channel_name = "ch" + to_string(channel);
   // Setting up detector 1
-  TH1F * ch0_raw = (TH1F*) infile->Get("ch0");
+  TH1F * ch0_raw = (TH1F*) infile->Get(channel_name.c_str());
 
-  int nbins = 1000;
+  int nbins = ch0_raw->GetSize();
 
   Double_t source[nbins];
 
-  TH1F * ch0_bg = new TH1F("ch0_bg","",nbins, 0, 2000);
-  TH1F * ch0_clean = new TH1F("ch0_clean","",nbins, 0, 2000);
+//    TH1F * ch0_bg = new TH1F("ch0_bg","",nbins, 0, );
+//    TH1F * ch0_clean = new TH1F("ch0_clean","",nbins, 0, 2000);
+
+      TH1F * ch0_bg = (TH1F*)ch0_raw->Clone("ch0_bg");
+      TH1F * ch0_clean = (TH1F*)ch0_raw->Clone("ch0_clean");
+
 
   TSpectrum * s_ch0 = new TSpectrum();
 
   for (int i = 0; i < nbins; i++) source[i] = ch0_raw->GetBinContent(i + 1);
 
-  s_ch0->Background(source,nbins,10,TSpectrum::kBackDecreasingWindow,
-                TSpectrum::kBackOrder8,kTRUE,
-                TSpectrum::kBackSmoothing5,kTRUE);
+  s_ch0->Background(source,nbins,100,TSpectrum::kBackDecreasingWindow,
+                TSpectrum::kBackOrder4,kTRUE,
+                TSpectrum::kBackSmoothing3,kTRUE);
 
   for (int i = 0; i < nbins; i++) ch0_bg->SetBinContent(i + 1,source[i]);
 
@@ -38,8 +39,8 @@ void ComptonSubInt(string filename)
     ch0_clean->SetBinContent(i+1, ch0_raw->GetBinContent(i+1)-ch0_bg->GetBinContent(i+1));
   }
 
-  ch0_raw->SetTitle("Detector #1");
-  ch0_raw->GetXaxis()->SetRangeUser(400,650);
+  ch0_raw->SetTitle("");
+  ch0_raw->GetXaxis()->SetRangeUser(0,600);
   ch0_raw->SetStats(kFALSE);
   ch0_raw->Draw();
   ch0_bg->SetLineColor(kRed);
@@ -48,61 +49,28 @@ void ComptonSubInt(string filename)
   ch0_clean->SetLineWidth(2);
   ch0_clean->Draw("SAME");
 
+  TH1F *h1c = (TH1F*)ch0_clean->Clone();
+  h1c->SetFillColorAlpha(kRed,0.80);
+  h1c->SetFillStyle(3003);
+  const double sqrt2ln2 = 1.17741002251547;
 
-  // Setting up detector 2
+  TF1 *GausPeak = new TF1("GPeak","gaus", 200, 400);
+  ch0_clean->Fit(GausPeak,"RNME");
+  Double_t Center = GausPeak->GetParameter(1);
+  Double_t Sigma  = GausPeak->GetParameter(2);
+  Double_t FWHM     = 2*sqrt2ln2*Sigma;
+// Computing Integral
 
-  c1->cd(2);
-  TH1F * ch1_raw = (TH1F*) infile->Get("ch1");
-
-  Double_t source2[nbins];
-
-  TH1F * ch1_bg = new TH1F("ch1_bg","",nbins, 0, 2000);
-  TH1F * ch1_clean = new TH1F("ch1_clean","",nbins, 0, 2000);
-
-  TSpectrum * s_ch1 = new TSpectrum();
-
-  for (int i = 0; i < nbins; i++) source2[i] = ch1_raw->GetBinContent(i + 1);
-
-  s_ch1->Background(source2,nbins,10,TSpectrum::kBackDecreasingWindow,
-                TSpectrum::kBackOrder8,kTRUE,
-                TSpectrum::kBackSmoothing5,kTRUE);
-
-  for (int i = 0; i < nbins; i++) ch1_bg->SetBinContent(i + 1,source2[i]);
-
-
-  for (size_t i = 0; i < nbins; i++)
-  {
-    ch1_clean->SetBinContent(i+1, ch1_raw->GetBinContent(i+1)-ch1_bg->GetBinContent(i+1));
-  }
-
-  ch1_raw->SetTitle("Detector #2");
-  ch1_raw->GetXaxis()->SetRangeUser(400,650);
-  ch1_raw->SetStats(kFALSE);
-  ch1_raw->Draw();
-  ch1_bg->SetLineColor(kRed);
-  ch1_bg->Draw("SAME");
-  ch1_clean->SetLineColor(kOrange);
-  ch1_clean->SetLineWidth(2);
-  ch1_clean->Draw("SAME");
-
-
-  // Computing Integral
-
-  int xmin1 = ch0_clean->GetXaxis()->FindBin(400);
-  int xmax1 = ch0_clean->GetXaxis()->FindBin(650);
-  int xmin2 = ch1_clean->GetXaxis()->FindBin(400);
-  int xmax2 = ch1_clean->GetXaxis()->FindBin(650);
-
+  h1c->GetXaxis()->SetRangeUser(Center-1.5*FWHM,Center+1.5*FWHM);
+  h1c->Draw("SAME");
+  c1->Update();
+  int xmin1 = ch0_clean->GetXaxis()->FindBin(Center-1.5*FWHM);
+  int xmax1 = ch0_clean->GetXaxis()->FindBin(Center+1.5*FWHM);
   int gamma_det1 = ch0_clean->Integral(xmin1,xmax1);
-  int gamma_det2 = ch1_clean->Integral(xmin2,xmax2);
-
 
   // Output result
 
   std::cout << "Integral of photopeak detector #1 : " << gamma_det1 << '\n';
-  std::cout << "Integral of photopeak detector #2 : " << gamma_det2 << '\n';
-
-
 
   return ;
 }
