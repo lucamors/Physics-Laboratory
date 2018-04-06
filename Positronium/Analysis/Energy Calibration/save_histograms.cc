@@ -133,8 +133,8 @@ void save_histograms(string infilename, string outfile_name)
 
 		incbranch_2->GetEntry(counter_ch2);
 
-		// ch2_spectrum->Fill(inc_data_ch2.qlong* 0.0714929-26.3991); //det 3
-		ch2_spectrum->Fill(inc_data_ch2.qlong* 0.109041-26.2515); //det 4
+		ch2_spectrum->Fill(inc_data_ch2.qlong*0.0714929-26.3991); //det 3
+		//ch2_spectrum->Fill(inc_data_ch2.qlong* 0.109041-26.2515); //det 4
 
 		counter_ch2++;
 

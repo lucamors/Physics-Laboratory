@@ -94,17 +94,17 @@ void save_histograms(string infilename, string outfile_name)
 	long int counter_ch3 = 0;
 
 	// CH0 SPECTRUM
-	TH1F * ch0_spectrum = new TH1F("ch0", "Channel 0", 1000, 0, 35000);  //3500 bin for 2 coinc
+	TH1F * ch0_spectrum = new TH1F("ch0", "Channel 0", 400, 0, 35000);  //3500 bin for 2 coinc
 	ch0_spectrum->GetXaxis()->SetTitle("Energy [a.u.]");
 	ch0_spectrum->GetYaxis()->SetTitle("Counts #");
 
 	// CH1 SPECTRUM
-	TH1F * ch1_spectrum = new TH1F("ch1", "Channel 1", 1000, 0, 35000);
+	TH1F * ch1_spectrum = new TH1F("ch1", "Channel 1", 400, 0, 35000);
 	ch1_spectrum->GetXaxis()->SetTitle("Energy [a.u.]");
 	ch1_spectrum->GetYaxis()->SetTitle("Counts #");
 
 	// CH2 SPECTRUM
-	TH1F * ch2_spectrum = new TH1F("ch2", "Channel 2", 1000, 0, 35000);
+	TH1F * ch2_spectrum = new TH1F("ch2", "Channel 2", 400, 0, 35000);
 	ch2_spectrum->GetXaxis()->SetTitle("Energy [a.u.]");
 	ch2_spectrum->GetYaxis()->SetTitle("Counts #");
 

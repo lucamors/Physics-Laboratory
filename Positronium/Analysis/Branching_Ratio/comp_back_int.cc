@@ -38,23 +38,29 @@ void ComptonSubInt(string filename, int channel)
   {
     ch0_clean->SetBinContent(i+1, ch0_raw->GetBinContent(i+1)-ch0_bg->GetBinContent(i+1));
   }
-
+/*
   ch0_raw->SetTitle("");
-  ch0_raw->GetXaxis()->SetRangeUser(0,600);
+  ch0_raw->GetXaxis()->SetRangeUser(0,800);
+  ch0_raw->GetXaxis()->SetTitle("Energy [keV]");
   ch0_raw->SetStats(kFALSE);
   ch0_raw->Draw();
   ch0_bg->SetLineColor(kRed);
-  ch0_bg->Draw("SAME");
+  ch0_bg->Draw("SAME");*/
   ch0_clean->SetLineColor(kOrange);
+  ch0_clean->GetXaxis()->SetRangeUser(0,800);
+  ch0_clean->GetYaxis()->SetRangeUser(0,60);
+  ch0_clean->GetXaxis()->SetTitle("Energy [keV]");
+  ch0_clean->SetStats(kFALSE);
+  ch0_clean->SetTitle("");
   ch0_clean->SetLineWidth(2);
-  ch0_clean->Draw("SAME");
+  ch0_clean->Draw();
 
   TH1F *h1c = (TH1F*)ch0_clean->Clone();
   h1c->SetFillColorAlpha(kRed,0.80);
   h1c->SetFillStyle(3003);
   const double sqrt2ln2 = 1.17741002251547;
 
-  TF1 *GausPeak = new TF1("GPeak","gaus", 200, 400);
+  TF1 *GausPeak = new TF1("GPeak","gaus", 200, 420);
   ch0_clean->Fit(GausPeak,"RNME");
   Double_t Center = GausPeak->GetParameter(1);
   Double_t Sigma  = GausPeak->GetParameter(2);
