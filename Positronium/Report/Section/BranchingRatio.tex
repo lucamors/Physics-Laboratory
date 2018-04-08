@@ -18,37 +18,51 @@ The o-Ps decay channel was selected, instead, placing the three detectors at 120
 	\label{Fig:PsGeometry}
 \end{figure}
 
-The spectra recorded by the two detectors for the p-Ps configuration are presented in Fig. \ref{Fig:pPs_spectra_bkg}.
-\begin{figure}[H]
-\centering
-\includegraphics[width = 0.8\textwidth]{two_coinc_wbg}
-\caption{2-$\gamma$ coincidence. From configuration 1}
-\label{Fig:pPs_spectra_bkg}
-\end{figure}
-
-In order to determine the number of detected para-positronium decay events, the photopeak has to be integrated.
-Before integrating the photopeak, however, the Compton Background has to be removed as in Fig \ref{Fig: removed compton back}.
+The spectra recorded by the two detectors for the p-Ps configuration are presented in Fig. \ref{Fig:1_2_spectra}.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width = 0.8\textwidth]{coinc_back}
-\caption{2-$\gamma$ coincidence with removed background.}
-\label{Fig: removed compton back}
+	\centering
+	\subfloat[][\emph{Detector 1}.]
+	{\includegraphics[width=.45\textwidth]{1_2_ch0_origin}} \quad
+		\subfloat[][\emph{Detector 2}.]
+	{\includegraphics[width=.45\textwidth]{1_2_ch1_origin}} \\
+	\caption{Spectra obtained from the two detectors with p-Ps configuration.}
+\label{Fig:1_2_spectra}
+\end{figure}
+In order to determine the number of detected p-Ps decay~($N_{2-\gamma}^{Exp.}$), the photopeak has to be integrated. Therefore the Compton background was removed and an integration window of 3 FWHM width around the photopeak centroid was selected, as presented in Fig \ref{Fig:1_2_integral}.
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][\emph{Detector 1}.]
+	{\includegraphics[width=.45\textwidth, height=.20\textheight]{1_2_ch0}} \quad
+		\subfloat[][\emph{Detector 2}.]
+	{\includegraphics[width=.45\textwidth, height=.20\textheight]{1_2_ch1}} \\
+	\caption{Spectra obtained from the two detectors with p-Ps configuration and background removal. The shaded area represents the events counted by the integral of the photpeak. }
+\label{Fig:1_2_integral}
+\end{figure}
+ 
+The same was performed with the o-Ps measurements counting the events in the peak at 340~keV~($N_{3-\gamma}^{Exp.}$), one third of the total energy, due to the fact the three $\gamma$ have the same energy at 120$^\circ$. The integrated spectra are shown in Fig.~\ 
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][\emph{Detector 1}.]
+	{\includegraphics[width=.45\textwidth, height=.20\textheight]{1_2_3_ch0}} \quad
+		\subfloat[][\emph{Detector 2}.]
+	{\includegraphics[width=.45\textwidth, height=.20\textheight]{1_2_3_ch1}} \quad
+		\subfloat[][\emph{Detector 3}.]
+	{\includegraphics[width=.45\textwidth, height=.20\textheight]{1_2_3_ch1}} \\
+	\caption{Spectra obtained from the three detectors with o-Ps configuration and background removal. The shaded area represents the events counted by the integral of the spectrum. }
+\label{Fig:1_2_integral}
 \end{figure}
 
-After that the photopeak could be integrated resulting in a yields of:
+The measured counts for the two configuration however are affected by the geometry and efficiency of the system, therefore the following equation was used to correct them and evaluate the branching ratio:
 \begin{equation}
-N_{2\gamma} = 218248
-\end{equation} 
+Ratio=\dfrac{N_{3-\gamma}^{Tot.}}{N_{2-\gamma}^{Tot.}}=\dfrac{N_{3-\gamma}^{Exp.}\ f_{3-\gamma}^{Geom.}\ \varepsilon_{511~keV}^2}{N_{2-\gamma}^{Exp.}\ f_{2-\gamma}^{Geom.}\ \varepsilon_{340~keV}^3}
+\end{equation}
 
-The number of obtained events has to be corrected due to the fact that not all para positronium decay events are detected and then counted. With the purpose of correcting this measure, we need an estimate of the covered solid angle in this configuration:
-\begin{equation}
-f_{2\gamma} = \dfrac{2\pi r^2}{4\pi d}
-\end{equation}
-that lead to an estimate for the number of parapositronium decay events of:
-\begin{equation}
-N_{2\gamma} = \dfrac{N_{2\gamma}^{\text{measured}}}{f_{2\gamma}}
-\end{equation}
+$\varepsilon_{340~keV}$ and $\varepsilon_{511~keV}$ are the detectors intrinsic efficiency at the energies of interest, elevated in the equation to the number of emitted $\gamma$. 
+
+$f_{3-\gamma}^{Geom.}$ and $f_{2-\gamma}^{Geom.}$ are geometric correction factor for the two setup, due to the fact the detectors used in the experiment do not cover the whole solid angle. In the case of $f_{2-\gamma}^{Geom.}$ this is simply the ratio between the surface of the two facing detectors and $4\pi$. The former instead was evaluated performing a simulation, described in the following section. 
 
 
 
