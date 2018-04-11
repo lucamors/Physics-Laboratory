@@ -41,7 +41,7 @@ In order to determine the number of detected p-Ps decay~($N_{2-\gamma}^{Exp.}$),
 \label{Fig:1_2_integral}
 \end{figure}
  
-The same was performed with the o-Ps measurements counting the events in the peak at 340~keV~($N_{3-\gamma}^{Exp.}$), one third of the total energy, due to the fact the three $\gamma$ have the same energy at 120$^\circ$. The integrated spectra are shown in Fig.~\ 
+The same was performed with the o-Ps measurements counting the events in the peak at 340~keV~($N_{3-\gamma}^{Exp.}$), one third of the total energy, due to the fact the three $\gamma$ have the same energy at 120$^\circ$. The integrated spectra are shown in Fig.~\ref{Fig:1_2_3_integral}. 
 
 \begin{figure}[H]
 	\centering
@@ -52,13 +52,15 @@ The same was performed with the o-Ps measurements counting the events in the pea
 		\subfloat[][\emph{Detector 3}.]
 	{\includegraphics[width=.45\textwidth, height=.20\textheight]{1_2_3_ch1}} \\
 	\caption{Spectra obtained from the three detectors with o-Ps configuration and background removal. The shaded area represents the events counted by the integral of the spectrum. }
-\label{Fig:1_2_integral}
+\label{Fig:1_2_3_integral}
 \end{figure}
 
 The measured counts for the two configuration however are affected by the geometry and efficiency of the system, therefore the following equation was used to correct them and evaluate the branching ratio:
-\begin{equation}
-Ratio=\dfrac{N_{3-\gamma}^{Tot.}}{N_{2-\gamma}^{Tot.}}=\dfrac{N_{3-\gamma}^{Exp.}\ f_{3-\gamma}^{Geom.}\ \varepsilon_{511~keV}^2}{N_{2-\gamma}^{Exp.}\ f_{2-\gamma}^{Geom.}\ \varepsilon_{340~keV}^3}
-\end{equation}
+\begin{equation*}
+Ratio=\dfrac{N_{3-\gamma}^{Tot.}}{N_{2-\gamma}^{Tot.}}=\dfrac{N_{3-\gamma}^{Exp.}\ f_{2-\gamma}^{Geom.}\ \varepsilon_{511~keV}^2}{N_{2-\gamma}^{Exp.}\ f_{3-\gamma}^{Geom.}\ \varepsilon_{340~keV}^3}\ R^{Acq.Time}
+\end{equation*}
+
+$R^{Acq.Time}$ represent the ratio between the acquisition time of 3-$\gamma$ and 2-$\gamma$ coincidences, and its value is $1/12$.
 
 $\varepsilon_{340~keV}$ and $\varepsilon_{511~keV}$ are the detectors intrinsic efficiency at the energies of interest, elevated in the equation to the number of emitted $\gamma$. 
 
