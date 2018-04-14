@@ -1,16 +1,15 @@
 
 \section*{Energy Calibration}
 
-Due to the organic composition of our detectors the photo-electric cross-section of its constituents is negligible in the energy range considered. Furthermore total absorption through multiple Compton scattering is negligible too, because of detector limited size . The detectors response will be dominated by individual Compton interaction, thus the energy spectrum is a continuous distribution that corresponds to different angles of interaction. This can be seen in the spectra acquired with the $^{22}$Na source in Fig. \ref{fig: uncalibrated energy spectra}.
+Due to the organic composition of our detectors the photoelectric cross section of its constituents is negligible in the energy range considered. Furthermore total absorption through multiple Compton scattering is negligible too, because of detector limited size . The detectors response will be dominated by individual Compton interaction, thus the energy spectrum is a continuous distribution that corresponds to different angles of interaction. This can be seen in the spectra acquired with the $^{22}$Na source in Fig. \ref{fig: uncalibrated energy spectra}.
 
-\smallskip
 \begin{figure}[h!]
 \centering
 \subfloat[][\emph{Detector 1 }.]
    {\includegraphics[width=.45\textwidth]{d1_spectrum_qlong}} \quad
 \subfloat[][\emph{Detector 2 }.]
    {\includegraphics[width=.45\textwidth]{d2_spectrum_qlong}} \\
-\caption{\emph{Detector 1} (a) and \emph{Detector 2} (b) uncalibrated energy spectra  obtained from a $^{22}$Na $\gamma$ source.}
+\caption{\emph{Detector 1} (a) and \emph{Detector 2} (b) uncalibrated energy spectra  obtained from a $^{22}$Na $\gamma$-source.}
 \label{fig: uncalibrated energy spectra}
 \end{figure}
 
@@ -18,11 +17,11 @@ The finite resolution of our detectors results in a shift towards lower energies
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.8\textwidth]{smeared_spectra}
-\caption{Gaussian smeared spectra at different $\sigma$ generated using the  Klein-Nishina Compton Scattering cross-section  for 511~keV photons.}
+\caption{Gaussian smeared spectra at different $\sigma$ generated using the  Klein-Nishina Compton scattering cross section  for 511~keV photons.}
 \label{fig: smeared spectra}
 \end{figure}
 
-In order to obtain the energy calibration parameters, several smeared spectra were generated using the  Klein-Nishina Compton Scattering cross-section~(see Eq.~\ref{eq:Klein-Nishina}) for $511$ keV and $1275$ keV $\gamma$ respectively.
+In order to obtain the energy calibration parameters, several smeared spectra were generated using the  Klein-Nishina Compton scattering cross section~(see Eq.~\ref{eq:Klein-Nishina}) for $511$ keV and $1275$ keV $\gamma$ respectively.
 \begin{equation}
 \dfrac{d\sigma}{dT} = \dfrac{\pi r_e^2}{m_ec^2\alpha^2}\left(2+\dfrac{s^2}{\alpha^2(1-s)^2}+\dfrac{s}{1-s} \left(s-\dfrac{2}{\alpha}\right) \right)
 \label{eq:Klein-Nishina}
@@ -38,20 +37,20 @@ The $\chi^2$ between experimental spectrum and Gaussian smeared spectra was mini
 
 \begin{table}[h!]
 	\centering
-	\begin{tabular}{cccc}
+	\begin{tabular}{ccccc}
 		\toprule
 		\toprule
-		Detector & Photon Energy [keV] & $\sigma$ [keV] & C.E. shifting [keV] \\
+		Detector & Photon Energy [keV] & $\sigma$ [keV] & Resolution & C.E. shifting [keV] \\
 		\midrule
-		1&511 & 34& 40.66 \\
-		&1275 & 40 & 52.15\\
+		1&511    & 34 & $11\%$ & 40.66 \\
+		  &1275 & 40 & $4\%$  & 52.15   \\
 		\midrule
-		2&511 & 28 & 34.66 \\
-		&1275 & 40 & 52.15\\
+		2&511   & 28  & $9\%$& 34.66 \\
+		  &1275 & 40 & $4\%$& 52.15  \\
 		\bottomrule
 		\bottomrule
 	\end{tabular}
-	\caption{$\sigma$ and C.E. shift for the two detectors.}
+	\caption{$\sigma$, Resolution and C.E. shift for the two detectors.}
 	\label{tab:CEshift}
 \end{table}
 \newpage
@@ -64,8 +63,8 @@ Finally the calibration parameters were computed~(see Tab.~\ref{tab:Cal_par}), t
 		\toprule
 		Detector & a [keV/channel] & b [keV] \\
 		\midrule
-		\#1 &  0.0748945$\pm$ & -54.2511$\pm$ \\
-		\#2 & 0.083215$\pm$ & -32.6856$\pm$ \\
+		\#1 &  0.07 & -54.3 \\
+		\#2 & 0.08 & -32.7 \\
 		\bottomrule
 		\bottomrule
 	\end{tabular}
@@ -84,7 +83,7 @@ Finally the calibration parameters were computed~(see Tab.~\ref{tab:Cal_par}), t
 \end{figure}
 
 \clearpage
-\section*{TAC calibration}
+\section*{TAC Calibration}
 In order to calibrate the TAC unit, several spectra were produced using as start input the CFD timing signals and as stop the same signals delayed by a chosen value. With 2~ns delay steps the spectra of Fig. \ref{fig: uncalibrated TAC} was obtained, the peaks centroids were used to compute the calibration parameters performing a linear fit~(see Fig.~\ref{fig: fit tac}). 
 \begin{figure}[h!]
 \centering
