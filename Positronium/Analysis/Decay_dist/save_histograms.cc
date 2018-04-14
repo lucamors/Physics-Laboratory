@@ -109,7 +109,7 @@ void save_histograms(string infilename, string outfile_name)
 	ch2_spectrum->GetYaxis()->SetTitle("Counts #");
 
 	// CH3 SPECTRUM
-	TH1F * ch3_spectrum = new TH1F("ch3", "Channel 3", 3500, 0, 35000);
+	TH1F * ch3_spectrum = new TH1F("ch3", "Channel 3", 3500, 0, 50000);
 	ch3_spectrum->GetXaxis()->SetTitle("TAC [ns]");
 	ch3_spectrum->GetYaxis()->SetTitle("Counts #");
 

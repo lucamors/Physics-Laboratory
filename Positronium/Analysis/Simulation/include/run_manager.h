@@ -13,7 +13,7 @@
 
 class RunManger
 {
-  private:B
+  private:
 
     std::vector<Event*> event_list;
     bool generate_fake_event; // Debugging Purpouse
