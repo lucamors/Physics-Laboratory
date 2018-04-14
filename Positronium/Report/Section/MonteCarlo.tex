@@ -22,8 +22,8 @@ The event generator handle the photon creation from o-Ps decay. The algorithm us
 \State Sample a random point on a sphere surface for the purpose of obtaining the direction for momentum versor.
 \State Scale momentum vector according to the sampled energy.
 \State Repeat 1-3 for the 2$^{nd}\ \gamma$.
-\State By imposing momentum conservation obtain the 3$^{nd}\ \gamma$ momentum vector.
-\State From previously obtained vector get 3$^{nd}\ \gamma$ energy.
+\State By imposing momentum conservation obtain the 3$^{rd}\ \gamma$ momentum vector.
+\State From previously obtained vector get 3$^{rd}\ \gamma$ energy.
 \State Sum the energy of all of the three $\gamma$ and check if energy conservation holds. If yes return the three Photon object otherwise return to 1.
 \end{algorithmic}
 \end{algorithm}
@@ -46,7 +46,7 @@ This part of code handle detector creation and positioning. A detector object is
 
 This last part of the code handle the coincidence between detectors and the extraction of the required information.
 
-Using the implemented code a simulation of $10^7$ events was performed and the resulting plots are presented in Fig. \ref{Fig: simulation result}.
+Using the implemented code a simulation of $10^7$ events was performed finding 27293 coincidences. The resulting plots are presented in Fig. \ref{Fig: simulation result}.
 
 \begin{figure}[H]
 \centering
@@ -55,4 +55,6 @@ Using the implemented code a simulation of $10^7$ events was performed and the r
 \label{Fig: simulation result}
 \end{figure}
 
-The simulation founds 
+
+
+

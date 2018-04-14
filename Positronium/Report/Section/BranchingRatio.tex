@@ -40,6 +40,11 @@ In order to determine the number of detected p-Ps decay~($N_{2-\gamma}^{Exp.}$),
 	\caption{Spectra obtained from the two detectors with p-Ps configuration and background removal. The shaded area represents the events counted by the integral of the photpeak. }
 \label{Fig:1_2_integral}
 \end{figure}
+
+The final result was:
+\begin{equation*}
+N_{2-\gamma}^{Exp.}=2695225 \pm 328
+\end{equation*}
  
 The same was performed with the o-Ps measurements counting the events in the peak at 340~keV~($N_{3-\gamma}^{Exp.}$), one third of the total energy, due to the fact the three $\gamma$ have the same energy at 120$^\circ$. The integrated spectra are shown in Fig.~\ref{Fig:1_2_3_integral}. 
 
@@ -54,17 +59,51 @@ The same was performed with the o-Ps measurements counting the events in the pea
 	\caption{Spectra obtained from the three detectors with o-Ps configuration and background removal. The shaded area represents the events counted by the integral of the spectrum. }
 \label{Fig:1_2_3_integral}
 \end{figure}
-
-The measured counts for the two configuration however are affected by the geometry and efficiency of the system, therefore the following equation was used to correct them and evaluate the branching ratio:
+$N_{3-\gamma}^{Exp.}$  finally resulted:
 \begin{equation*}
-Ratio=\dfrac{N_{3-\gamma}^{Tot.}}{N_{2-\gamma}^{Tot.}}=\dfrac{N_{3-\gamma}^{Exp.}\ f_{2-\gamma}^{Geom.}\ \varepsilon_{511~keV}^2}{N_{2-\gamma}^{Exp.}\ f_{3-\gamma}^{Geom.}\ \varepsilon_{340~keV}^3}\ R^{Acq.Time}
+N_{3-\gamma}^{Exp.}=81340\pm 8
+\end{equation*}
+ In both the computation an average of the counts was performed.
+ 
+The measured counts of the two configuration however are affected by the geometry and efficiency of the system, therefore the following equation was used to correct them and evaluate the branching ratio:
+\begin{equation*}
+\text{Ratio}=\dfrac{N_{3-\gamma}^{Tot.}}{N_{2-\gamma}^{Tot.}}=\dfrac{N_{3-\gamma}^{Exp.}\ f_{2-\gamma}^{Geom.}\ \varepsilon_{511~keV}^2}{N_{2-\gamma}^{Exp.}\ f_{3-\gamma}^{Geom.}\ \varepsilon_{340~keV}^3}\ R^{Acq.Time}
 \end{equation*}
 
+\subsection*{Acquisition Time Ratio}
 $R^{Acq.Time}$ represent the ratio between the acquisition time of 3-$\gamma$ and 2-$\gamma$ coincidences, and its value is $1/12$.
 
-$\varepsilon_{340~keV}$ and $\varepsilon_{511~keV}$ are the detectors intrinsic efficiency at the energies of interest, elevated in the equation to the number of emitted $\gamma$. 
+\subsection*{Detector Intrinsic Efficiency}
+$\varepsilon_{340~keV}$ and $\varepsilon_{511~keV}$ are the detectors intrinsic efficiency at the energies of interest,  with the number of emitted $\gamma$ as exponent. The values where taken from the graph in Fig.~\ref{Fig:Efficiency} and are: 
+\begin{equation*}
+\begin{split}
+\varepsilon_{340~keV} & =0.98 \\
+\varepsilon_{511~keV}  & =0.96
+\end{split}
+\end{equation*} 
 
-$f_{3-\gamma}^{Geom.}$ and $f_{2-\gamma}^{Geom.}$ are geometric correction factor for the two setup, due to the fact the detectors used in the experiment do not cover the whole solid angle. In the case of $f_{2-\gamma}^{Geom.}$ this is simply the ratio between the surface of the two facing detectors and $4\pi$. The former instead was evaluated performing a simulation, described in the following section. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{efficienza_grafico_scintillatori}
+\caption{Na(Tl) intrinsic absorption efficiency as function of energy and detector thickness.}
+\label{Fig:Efficiency}
+\end{figure} 
+
+\subsection*{Geometric Acceptance}
+$f_{3-\gamma}^{Geom.}$ and $f_{2-\gamma}^{Geom.}$ are geometric correction factor for the two setup, due to the fact the detectors used in the experiment do not cover the whole solid angle. In the case of $f_{2-\gamma}^{Geom.}$ this is simply the ratio between the surface of the two facing detectors and $4 \pi d$ with $d$ the detectors distance from the source resulting: 
+\begin{equation*}
+f_{2-\gamma}^{Geom.}=0.08
+\end{equation*}
+
+ The former instead was evaluated performing a simulation described in the following section and resulted :
+\begin{equation*}
+f_{3-\gamma}^{Geom.}=0.0003
+\end{equation*}
+
+With the above values the branching ratio was computed resulting:
+\begin{equation*}
+\mathbf{ \text{\textbf{Ratio}}=(2.5\pm0.1)\times 10^{-3} }
+\end{equation*}
 
 
 
