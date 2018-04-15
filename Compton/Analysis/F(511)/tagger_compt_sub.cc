@@ -3,8 +3,7 @@ const string branch_name  = "cal_sp";
 
 void subcompt(string input_filename,
               double fit_min, double fit_max,
-              double sub_min, double sub_max,
-              string output_filename)
+              double sub_min, double sub_max)
 {
 
   // Retrieving energy spectrum histogram
@@ -35,11 +34,18 @@ void subcompt(string input_filename,
 
   double A511=  energy_spectrum->Integral(energy_spectrum->GetXaxis()->FindBin(470),energy_spectrum->GetXaxis()->FindBin(550));
   cout<<A511<<endl;
-  // Saving to file
+  energy_spectrum->GetXaxis()->SetRangeUser(0,800);
+  energy_spectrum->GetXaxis()->SetTitle("Energy [keV]");
+  energy_spectrum->SetStats(kFALSE);
+  energy_spectrum->SetTitle("");
+  energy_spectrum->Draw();
 
-  TFile * outfile = new TFile((output_filename+".root").c_str(),"RECREATE");
-  energy_spectrum->Write();
-  outfile->Close();
+  TH1F *h1c = (TH1F*)energy_spectrum->Clone();
+  h1c->SetFillColorAlpha(kRed,0.80);
+  h1c->SetFillStyle(3003);
+	h1c->GetXaxis()->SetRangeUser(470,550);
+  h1c->Draw("SAME");
+
 
   return ;
 }
